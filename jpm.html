@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Force readable font size specifically for this page */
+        .card, .card p, .card h3 {
+            font-size: 1.5rem !important;
+            line-height: 1.6 !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Matrix Background -->
+    <canvas id="matrix-canvas"></canvas>
+
+    <!-- Your Content -->
+    <div class="container">
+        <h1>COMMAND CENTER: JESSE MIEIRS</h1>
+
+        <!-- Profile Images -->
+        <div class="profile-images">
+            <img src="B1DE88F5-862D-4964-B249-16986C927FF6-IMG_STYLE.PNG" alt="Mission Asset 1" width="150">
+            <img src="7A9B53A4-EDFA-4793-B3A1-0B10EAA82E78-IMG_STYLE.PNG" alt="Mission Asset 2" width="150">
+        </div>
+
+        <!-- Categories -->
+        <div class="card blue">
+            <h3>PROFESSIONAL PROFILE</h3>
+            <p>Education: Bachelor of History, Sacramento State (2017).</p>
+            <p>Military Service: USAF Veteran (1998-exit).</p>
+            <p>Expertise: HVAC, refrigeration, and electronic principles.</p>
+        </div>
+
+        <div class="card yellow">
+            <h3>LIVING & INTERESTS</h3>
+            <p>Location: Folsom, CA.</p>
+            <p>Companions: Cookie and Snickers.</p>
+            <p><strong>Past Hobbies:</strong> Rock climbing, motorcycle riding, ocean camping, and animal lover.</p>
+        </div>
+
+        <div class="card blue">
+            <h3>MECHANICAL PROJECTS (JUNE 2026)</h3>
+            <p>Rexhall Aerbus: Exterior restoration (rust repair, sealing holes, turbo paint, 2K gloss topcoat).</p>
+            <p>Subaru Crosstrek: Engine refresh (intake manifold/valve cover gaskets, serpentine belt).</p>
+        </div>
+
+        <div class="card yellow">
+            <h3>CURRENT MISSIONS</h3>
+            <p>Garage Org: Finalizing robot-ready space by 2027.</p>
+            <p>Travel: Planning for 2028 Los Angeles Summer.</p>
+        </div>
+    </div>
+
+    <!-- Matrix Script -->
+    <script>
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters.charAt(Math.floor(Math.random() * letters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 33);
+    </script>
+</body>
+</html>

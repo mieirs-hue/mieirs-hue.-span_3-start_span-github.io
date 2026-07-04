@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Uncle Gadget Estimator</title>
+    <!-- This links to your theme file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="flying-logo">
+        <img src="UNCLEJESSELOGO.jpg" alt="UNCLE JESSE'S ALWAYS AVAILABLE LLC Logo" style="width: 100%;">
+    </div>
+	
+</body>
+</html>
+	<div class="content-wrapper">
+	<h2>SELECT WORKLOAD</h2>
+	<div id="choiceBoard">
+    		<div class="service-btn" onclick="addTotal('SUBARU REPAIR', 250)">SUBARU REPAIR</div>
+    		<div class="service-btn" onclick="addTotal('SUBARU MAINT.', 150)">SUBARU MAINT.</div>
+   		<div class="service-btn" onclick="addTotal('HVAC REPAIR', 300)">HVAC REPAIR</div>
+   		<div class="service-btn" onclick="addTotal('HVAC MAINT.', 100)">HVAC MAINT.</div>
+    		<div class="service-btn" onclick="addTotal('AI MODELING', 450)">AI MODELING</div>
+    		<div class="service-btn" onclick="addTotal('PC MAINT.', 125)">PC MAINT.</div>
+    		<div class="service-btn" onclick="addTotal('REXHALL RUST', 350)">REXHALL RUST</div>
+    		<div class="service-btn" onclick="addTotal('CERAMIC COAT', 500)">CERAMIC COAT</div>
+   		<div class="service-btn" onclick="addTotal('CIRCUITRY', 200)">CIRCUITRY</div>
+   		<div class="service-btn" onclick="addTotal('RV SEALING', 200)">RV SEALING</div>
+   		<div class="service-btn" onclick="addTotal('CONSULTING', 250)">CONSULTING</div>
+  		<div class="service-btn" onclick="addTotal('DIGITAL DESIGN', 150)">DIGITAL DESIGN</div>
+    		<div class="service-btn" onclick="addTotal('COMPANION FIELD SUPPORT', 400)">COMPANION FIELD SUPPORT</div>
+  		<div class="service-btn" onclick="addTotal('ENVIRONMENTAL SANITIZATION', 300)">ENVIRONMENTAL SANITIZATION</div>
+    <div class="service-btn" onclick="addTotal('GHOSTBUSTERS', 500)">GHOSTBUSTERS</div>
+</div>
+
+<div id="selectionList"></div>
+<div id="grandTotal">TOTAL: $0</div>
+<a href="checkout.html">GO GO GADGET TO PROCESS WORKLOAD TRANSACTION</a>
+
+<script>
+    let savedSelections = localStorage.getItem('userSelections');
+    let selections = savedSelections ? JSON.parse(savedSelections) : {};
+    let savedTotal = localStorage.getItem('grandTotal');
+    let currentTotal = savedTotal ? parseInt(savedTotal) : 0;
+
+    function addTotal(name, price) {
+        if (!selections[name]) { selections[name] = { count: 0, price: price }; }
+        selections[name].count += 1;
+        currentTotal += price;
+        localStorage.setItem('userSelections', JSON.stringify(selections));
+        localStorage.setItem('grandTotal', currentTotal);
+        updateDisplay();
+    }
+
+    function updateDisplay() {
+        document.getElementById('grandTotal').innerText = "TOTAL: $" + currentTotal.toLocaleString();
+        let listHTML = "";
+        for (let name in selections) {
+            listHTML += `<div>${selections[name].count}x ${name} 
+                         <button onclick="removeItem('${name}')">Remove</button></div>`;
+        }
+        document.getElementById('selectionList').innerHTML = listHTML;
+    }
+
+    function removeItem(name) {
+        if (selections[name]) {
+            currentTotal -= selections[name].price;
+            selections[name].count -= 1;
+            if (selections[name].count <= 0) { delete selections[name]; }
+            localStorage.setItem('userSelections', JSON.stringify(selections));
+            localStorage.setItem('grandTotal', currentTotal);
+            updateDisplay();
+        }
+    }
+
+    window.onload = updateDisplay;
+</script>
+</body>
+</html>

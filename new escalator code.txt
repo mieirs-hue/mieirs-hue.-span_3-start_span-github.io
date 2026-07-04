@@ -1,0 +1,57 @@
+<div id="escalatorNode" onmouseenter="triggerSlowEscalatorDown()" style="margin: 15px auto 25px auto; max-width: 250px; padding: 8px; border: 1px dashed #00ffff; background: rgba(0, 255, 255, 0.05); border-radius: 4px; text-align: center; cursor: pointer; transition: all 0.3s ease; clear: both;">
+	<span id="escalatorText" style="color:#00ffff; font-family: 'OCR-B', monospace; font-size: 11px; letter-spacing: 1px; display: block; margin-bottom: 4px;">
+		[ HOVER TO ESCATE DOWN ]
+	</span>
+	<div id="escalatorArrow" style="color: #ffcc00; font-size: 18px; font-weight: bold; line-height: 1; animation: bounceEscalator 1.5s infinitw;">
+			🔽
+	</div>
+</div>
+<script>
+let scrollInterval = null;
+
+function triggerSlowEscalatorDown() { 	
+	clearInterval(scrollInterval);
+
+	// Smoothly steps the screen downward
+	scrollInterval = setInterval (() => {
+		const currentScroll = window.scrollY;
+		const maxScroll = document.body.scrollHeight * 0.4; // Steps down 40% of the page
+
+		if (currentScroll < maxScroll) {
+			window.scrollBy(0, 6); // Controls the speed (6 is a smooth glide) 
+		} else {
+			clearInterval(scrollInterval);
+		}
+	}, 10);
+}
+
+// Single monitor loop to handle the autpomatic swap
+window.addEventListener('scroll', () => {
+	const textNode = document.getElementById('escalatorText');
+	const arrowNode = document.getElementById('escalatorArrow');
+	const nodeBox = document.getElementById('escalatorNode');
+
+	if (!textNode || !arrowNode || !nodeBox) return:
+
+	if (window.scrollY > 150) {
+		textNode.innerText = "[ CLICK TO ESCALATE UP ]";
+		arrowNode.innertext = "🔽";
+		nodeBox.removeattribute('onclick');
+		nodeBox.onmouseenter = triggerSlowEscalatorDown; // Re-arms the hover down
+	}
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

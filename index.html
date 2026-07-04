@@ -1,0 +1,1932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNCLE JESSE'S ALWAYS AVAILABLE LLC - Command Center</title>
+    <style>
+        /* ================================================
+           UNCLE JESSE'S ALWAYS AVAILABLE LLC
+           Production CSS - Single Consolidated Block
+        ================================================ */
+
+        /* Base Reset & Body */
+        body {
+            background-color: #020904;
+            color: #e2e8f0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Subtle green ambient overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at top, rgba(0,255,8,0.06), transparent 20%),
+                        linear-gradient(180deg, rgba(0,255,8,0.04), transparent 55%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Matrix Wallpaper Layer */
+        .matrix-wallpaper {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle, rgba(0,255,0,0.08) 0%, transparent 40%);
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .matrix-wallpaper span {
+            position: absolute;
+            color: rgba(0, 255, 0, 0.25);
+            font-family: monospace;
+            white-space: nowrap;
+            animation: matrixDrop linear infinite;
+            text-shadow: 0 0 20px rgba(0,255,0,0.8), 0 0 40px rgba(0,255,0,0.4);
+            font-size: 16px;
+            line-height: 1.4;
+            font-weight: bold;
+        }
+
+        @keyframes matrixDrop {
+            0%   { transform: translateY(-100%); opacity: 0; }
+            10%  { opacity: 0.6; }
+            20%  { opacity: 0.8; }
+            50%  { opacity: 0.4; }
+            100% { transform: translateY(120vh); opacity: 0; }
+        }
+
+        @keyframes matrixGlitch {
+            0%, 100% { color: rgba(0, 255, 0, 0.25); text-shadow: 0 0 20px rgba(0,255,0,0.8); }
+            25% { color: rgba(0, 255, 255, 0.35); text-shadow: 0 0 20px rgba(0,255,255,0.8); }
+            50% { color: rgba(255, 0, 255, 0.3); text-shadow: 0 0 20px rgba(255,0,255,0.8); }
+            75% { color: rgba(0, 255, 0, 0.25); text-shadow: 0 0 20px rgba(0,255,0,0.8); }
+        }
+
+        .matrix-wallpaper span:nth-child(odd) {
+            animation: matrixDrop linear infinite, matrixGlitch 8s ease-in-out infinite;
+        }
+
+        /* Content sits above wallpaper */
+        .content-layer {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 8px 16px;
+            background: rgba(0, 255, 0, 0.05);
+            border: 1px solid rgba(0, 255, 0, 0.2);
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-family: 'OCR-B', monospace;
+            font-size: 13px;
+            color: #00ff66;
+            letter-spacing: 1px;
+            list-style: none;
+        }
+
+        .status-item { white-space: nowrap; }
+
+        /* Flying Logo Across Screen */
+        @keyframes flyAcrossScreen {
+            0% {
+                left: -100px;
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                left: 100vw;
+                opacity: 0;
+            }
+        }
+
+        .flying-logo-banner {
+            position: fixed;
+            top: 20px;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 999;
+            animation: flyAcrossScreen 10s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        /* Flying Logo Animation */
+        @keyframes flyingLogo {
+            0%, 100% {
+                transform: translateY(0) rotateZ(-2deg) scale(1);
+            }
+            25% {
+                transform: translateY(-15px) rotateZ(1deg) scale(1.02);
+            }
+            50% {
+                transform: translateY(-28px) rotateZ(-1deg) scale(1.04);
+            }
+            75% {
+                transform: translateY(-12px) rotateZ(2deg) scale(1.02);
+            }
+        }
+
+        /* Logo Block */
+        .flying-logo {
+            max-width: 280px;
+            margin: 0 auto 20px auto;
+            text-align: center;
+            animation: flyingLogo 4s ease-in-out infinite;
+        }
+
+        .flying-logo img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        /* Main Console Panel */
+        .console-border {
+            border: 3px solid #ffaa00;
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 950px;
+            width: 100%;
+            background-color: rgba(11, 15, 25, 0.95);
+            box-shadow: 0 0 25px rgba(255, 170, 0, 0.12);
+            box-sizing: border-box;
+        }
+
+        /* Clearfix utility */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /* Mission Button */
+        .mission-btn {
+            display: inline-block;
+            padding: 10px 22px;
+            background: #ffcc00;
+            color: #0b0f19;
+            font-family: 'OCR-B', monospace;
+            font-weight: bold;
+            font-size: 14px;
+            border-radius: 4px;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .mission-btn:hover {
+            background: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* Mission Profile Container */
+        .mission-profile-container {
+            padding: 20px;
+            border: 1px solid rgba(255, 170, 0, 0.3);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Main Title Glitch Effect */
+        .mission-profile-container h1 {
+            animation: glitchText 6s ease-in-out infinite;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.6), 0 0 20px rgba(255, 0, 255, 0.3);
+        }
+
+        /* Left Matrix Status Panel */
+        .matrix-status-panel {
+            float: left;
+            width: 240px;
+            font-family: 'OCR-B', monospace;
+            font-weight: bold;
+            color: #ffaa00;
+            letter-spacing: 1.5px;
+            line-height: 1.8;
+            padding-top: 15px;
+            font-size: 16px;
+        }
+
+        /* Amber Display Deck (floats right of status panel) */
+        .display-deck {
+            margin-left: 260px;
+            background: linear-gradient(135deg, #ff9900, #ffcc00);
+            border-radius: 8px;
+            padding: 30px;
+            color: #0b0f19;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+            min-height: 200px;
+        }
+
+        /* Greeting & Command Text */
+        .sub-greeting {
+            font-family: 'OCR-B', monospace;
+            font-size: 14px;
+            letter-spacing: 1.5px;
+            color: #0b0f19;
+            line-height: 1.7;
+        }
+
+        .metallic-text {
+            font-family: 'OCR-B', monospace;
+            font-weight: bold;
+            letter-spacing: 3px;
+            font-size: 18px;
+            color: #0b0f19;
+            margin: 12px 0;
+        }
+
+        /* Architecture Note Block */
+        .architecture-note-title {
+            font-family: 'OCR-B', monospace;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            color: #ffcc00;
+            letter-spacing: 1.5px;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        .architecture-note-body {
+            font-size: 17px;
+            line-height: 1.7;
+            text-align: center;
+            font-weight: bold;
+            max-width: 580px;
+            margin: 0 auto 20px auto;
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6), 0 0 20px rgba(0, 255, 255, 0.3);
+            animation: holographicGlow 4s ease-in-out infinite;
+        }
+
+        /* Emoji Indicator Array */
+        .indicator-array {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            margin-top: 25px;
+            font-size: 32px;
+        }
+
+        /* Action Buttons Block */
+        .action-block {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .terminal-btn {
+            background-color: #ffcc00;
+            color: #0b0f19;
+            border: none;
+            padding: 14px 28px;
+            font-family: 'Courier New', monospace;
+            font-weight: 900;
+            font-size: 1.1em;
+            cursor: pointer;
+            text-transform: uppercase;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .terminal-btn:hover {
+            background-color: #ffffff;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+        }
+
+        /* Escalator Widget bounce animation */
+        @keyframes bounceEscalator {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(5px); }
+        }
+
+        /* Vector Grid */
+        .vector-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 35px;
+            clear: both;
+            width: 100%;
+        }
+
+        .vector-card {
+            border: 2px solid #00ffff;
+            border-radius: 6px;
+            padding: 20px;
+            text-align: center;
+            background: rgba(0, 255, 255, 0.02);
+            transition: all 0.3s ease;
+            animation: cyberPulse 6s ease-in-out infinite;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+        }
+
+        .vector-card:hover {
+            background: rgba(0, 255, 255, 0.15);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.6), inset 0 0 10px rgba(0, 255, 255, 0.1);
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .vector-title {
+            font-family: 'OCR-B', monospace;
+            color: #00ffff;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+            animation: holographicGlow 4s ease-in-out infinite;
+        }
+
+        .vector-desc {
+            font-family: 'OCR-B', monospace;
+            font-size: 14px;
+            font-weight: bold;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            margin: 0;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+
+        .vector-card.active-robotics {
+            border-color: #0088ff;
+            background: rgba(0, 136, 255, 0.08);
+            animation: cyberPulse 5s ease-in-out infinite, glitchText 8s ease-in-out infinite;
+        }
+
+        .vector-card.active-robotics .vector-title {
+            color: #0088ff;
+            animation: holographicGlow 3.5s ease-in-out infinite;
+        }
+
+        /* Neon Green Expansion Content Zone */
+        .content-expansion-zone {
+            margin-top: 50px;
+            width: 100%;
+            max-width: 950px;
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+            box-sizing: border-box;
+        }
+
+        /* Gadget Room Panels */
+        .gadget-room-panel {
+            border: 3px solid #00ff66;
+            border-radius: 10px;
+            padding: 30px;
+            background-color: rgba(11, 15, 25, 0.9);
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.15);
+        }
+
+        .room-header {
+            font-family: 'OCR-B', monospace;
+            font-size: 17px;
+            font-weight: bold;
+            color: #00ff66;
+            letter-spacing: 2px;
+            border-bottom: 2px solid rgba(0, 255, 102, 0.3);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(0, 255, 102, 0.8), 0 0 20px rgba(0, 255, 102, 0.4);
+            animation: holographicGlow 3.5s ease-in-out infinite;
+        }
+
+        .room-body {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #e2e8f0;
+            text-shadow: 0 0 3px rgba(0, 255, 102, 0.2);
+        }
+
+        /* Motto Banner */
+        .motto-banner {
+            font-family: 'OCR-B', monospace;
+            font-size: 22px;
+            font-weight: bold;
+            color: #ffcc00;
+            text-align: center;
+            letter-spacing: 3px;
+            margin: 40px 0;
+            text-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+        }
+
+        /* Contact Form Container */
+        .contact-form-container {
+            border: 3px solid #00ff66;
+            border-radius: 10px;
+            padding: 30px;
+            background-color: rgba(11, 15, 25, 0.9);
+            animation: cyberPulse 5s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.3), inset 0 0 10px rgba(0, 255, 102, 0.05);
+        }
+
+        .contact-input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 18px 0;
+            background: rgba(11, 15, 25, 0.7);
+            border: 1px solid #00ffff;
+            color: #ffffff;
+            font-family: 'OCR-B', monospace;
+            font-size: 15px;
+            border-radius: 4px;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 5px rgba(0, 255, 255, 0.2);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        .contact-input:focus {
+            border-color: #00ff66;
+            outline: none;
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.6), 0 0 30px rgba(0, 255, 255, 0.3);
+            background: rgba(11, 15, 25, 0.95);
+            transform: translateY(-2px);
+            text-shadow: 0 0 10px rgba(0, 255, 102, 0.6);
+        }
+
+        .contact-label {
+            display: block;
+            color: #ffcc00;
+            font-family: 'OCR-B', monospace;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        .submit-button {
+            background: #ffcc00;
+            color: #0b0f19;
+            border: none;
+            padding: 15px 30px;
+            font-family: 'OCR-B', monospace;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+
+        .submit-button:hover {
+            background: #00ff66;
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
+        }
+
+        /* Services Grid & Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        @keyframes flicker {
+            0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 100% { opacity: 1; }
+            20%, 21.999%, 63%, 63.999%, 65%, 69.999%       { opacity: 0.75; }
+        }
+
+        .service-card {
+            border: 3px solid #00ff00;
+            padding: 28px;
+            background: rgba(0, 20, 0, 0.9);
+            transition: all 0.3s ease;
+            animation: flicker 5s infinite;
+            border-radius: 6px;
+        }
+
+        .service-card:hover {
+            border-color: #ffff00;
+            box-shadow: 0 0 20px #ffff00;
+            transform: translateY(-5px);
+            cursor: pointer;
+        }
+
+        .service-card h3 {
+            margin-top: 0;
+            color: #ffffff;
+            font-size: 1.3em;
+        }
+
+        .price {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #00ff00;
+            margin: 12px 0;
+        }
+
+        .service-card ul {
+            list-style: none;
+            padding: 0;
+            font-size: 1em;
+        }
+
+        .service-card li {
+            margin-bottom: 12px;
+        }
+
+        /* Tooltip */
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+            cursor: crosshair;
+            color: #39ff14;
+        }
+
+        .tooltip-container .tooltip-text {
+            visibility: hidden;
+            opacity: 0;
+            width: 250px;
+            background-color: #000;
+            color: #39ff14;
+            text-align: left;
+            border: 1px solid #39ff14;
+            padding: 10px;
+            border-radius: 4px;
+            position: absolute;
+            z-index: 10;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: opacity 0.3s ease-in-out;
+            font-size: 13px;
+            font-family: 'OCR-B', monospace;
+        }
+
+        .tooltip-container:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Back to Top Button */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 52px;
+            height: 52px;
+            background-color: #00ff00;
+            color: #000;
+            border-radius: 50%;
+            text-decoration: none;
+            font-weight: bold;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 255, 0, 0.35);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            z-index: 1000;
+            opacity: 0.95;
+        }
+
+        #backToTop:hover {
+            transform: translateY(-4px);
+            opacity: 1;
+        }
+
+        /* ── Neon Scan-line overlay (cyberpunk) ── */
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0px,
+                transparent 2px,
+                rgba(0, 255, 0, 0.06) 2px,
+                rgba(0, 255, 0, 0.06) 4px
+            );
+            pointer-events: none;
+            z-index: 2;
+            animation: scanlineFlicker 0.15s infinite;
+        }
+
+        @keyframes scanlineFlicker {
+            0% { opacity: 0.95; }
+            50% { opacity: 1; }
+            100% { opacity: 0.95; }
+        }
+
+        @keyframes glitchText {
+            0% { text-shadow: -3px 0 #ff00ff, 3px 0 #00ffff, -6px 0 #ffff00; }
+            20% { text-shadow: -3px 2px #00ffff, 3px -2px #ff00ff; transform: translate(-2px, 1px); }
+            40% { text-shadow: 3px -2px #ffff00, -3px 2px #00ff00; transform: translate(2px, -1px); }
+            60% { text-shadow: -3px 0 #ff00ff, 3px 0 #00ffff; transform: translate(-1px, 2px); }
+            80% { text-shadow: 3px 2px #00ffff, -3px -2px #ff00ff; transform: translate(1px, -2px); }
+            100% { text-shadow: -3px 0 #ff00ff, 3px 0 #00ffff; transform: translate(0, 0); }
+        }
+
+        @keyframes holographicGlow {
+            0%, 100% { text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(255, 0, 255, 0.4); }
+            50% { text-shadow: 0 0 20px rgba(0, 255, 255, 1), 0 0 30px rgba(255, 0, 255, 0.8), 0 0 40px rgba(0, 255, 0, 0.5); }
+        }
+
+        @keyframes cyberPulse {
+            0%, 100% { border-color: #00ffff; box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); }
+            25% { border-color: #ff00ff; box-shadow: 0 0 20px rgba(255, 0, 255, 0.8); }
+            50% { border-color: #00ff00; box-shadow: 0 0 15px rgba(0, 255, 0, 0.7); }
+            75% { border-color: #ffff00; box-shadow: 0 0 18px rgba(255, 255, 0, 0.6); }
+        }
+
+        @keyframes dataStream {
+            0% { transform: translateY(-100%); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateY(100%); opacity: 0; }
+        }
+
+        /* ── Neon glitch border pulse on console ── */
+        @keyframes neonPulse {
+            0%, 100% { box-shadow: 0 0 18px rgba(255,170,0,0.18), 0 0 40px rgba(0,255,100,0.06); }
+            50%       { box-shadow: 0 0 32px rgba(255,170,0,0.42), 0 0 70px rgba(0,255,100,0.14); }
+        }
+        .console-border { animation: neonPulse 4s ease-in-out infinite; }
+
+        /* ── Cyber grid background on expansion zone ── */
+        .content-expansion-zone {
+            background-image:
+                linear-gradient(rgba(0,255,100,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,255,100,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* ── Bottom Escalator Widget ── */
+        .escalator-bottom-wrap {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0 30px 0;
+        }
+        #escalatorBottomNode {
+            max-width: 340px;
+            width: 100%;
+            padding: 12px;
+            border: 2px dashed #ff00ff;
+            background: rgba(255,0,255,0.05);
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        #escalatorBottomNode:hover {
+            background: rgba(255,0,255,0.12);
+            box-shadow: 0 0 18px rgba(255,0,255,0.4);
+        }
+        @keyframes bounceUp {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(-5px); }
+        }
+
+        /* ── Pricing Tier Cards ── */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        @keyframes neonCardGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(0,255,255,0.4), 0 0 30px rgba(0,255,255,0.2); }
+            50%       { box-shadow: 0 0 30px rgba(0,255,255,0.7), 0 0 60px rgba(0,255,255,0.4); }
+        }
+
+        @keyframes proCardGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(255,0,255,0.5), 0 0 30px rgba(255,0,255,0.2); }
+            50%       { box-shadow: 0 0 30px rgba(255,0,255,0.8), 0 0 60px rgba(255,0,255,0.5); }
+        }
+
+        @keyframes eliteCardGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(255,204,0,0.4), 0 0 30px rgba(255,204,0,0.2); }
+            50%       { box-shadow: 0 0 30px rgba(255,204,0,0.7), 0 0 60px rgba(255,204,0,0.4); }
+        }
+
+        .pricing-card {
+            border-radius: 8px;
+            padding: 30px 24px;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        .pricing-card:hover { transform: translateY(-8px) scale(1.02); filter: brightness(1.1); }
+
+        .tier-starter {
+            border: 2px solid #00ffff;
+            background: linear-gradient(160deg, rgba(0,20,30,0.95), rgba(0,40,50,0.9));
+            animation: neonCardGlow 3.5s ease-in-out infinite;
+        }
+        .tier-pro {
+            border: 2px solid #ff00ff;
+            background: linear-gradient(160deg, rgba(25,0,30,0.95), rgba(50,0,60,0.9));
+            animation: proCardGlow 3s ease-in-out infinite;
+        }
+        .tier-elite {
+            border: 2px solid #ffcc00;
+            background: linear-gradient(160deg, rgba(30,20,0,0.95), rgba(50,35,0,0.9));
+            animation: eliteCardGlow 3.2s ease-in-out infinite;
+        }
+
+        .tier-badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-family: 'OCR-B', monospace;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 14px;
+        }
+        .tier-starter .tier-badge  { background: rgba(0,255,255,0.15); color: #00ffff; border: 1px solid #00ffff; }
+        .tier-pro    .tier-badge   { background: rgba(255,0,255,0.15); color: #ff00ff; border: 1px solid #ff00ff; }
+        .tier-elite  .tier-badge   { background: rgba(255,204,0,0.15); color: #ffcc00; border: 1px solid #ffcc00; }
+
+        .tier-name {
+            font-family: 'OCR-B', monospace;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        .tier-starter .tier-name  { color: #00ffff; }
+        .tier-pro    .tier-name   { color: #ff00ff; }
+        .tier-elite  .tier-name   { color: #ffcc00; }
+
+        .tier-price {
+            font-family: 'Courier New', monospace;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 12px 0 4px 0;
+        }
+        .tier-starter .tier-price { color: #00ffff; }
+        .tier-pro    .tier-price  { color: #ff00ff; }
+        .tier-elite  .tier-price  { color: #ffcc00; }
+
+        .tier-period {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 20px;
+            font-family: 'OCR-B', monospace;
+        }
+
+        .tier-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 24px 0;
+            text-align: left;
+        }
+        .tier-features li {
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            font-size: 14px;
+            font-family: 'OCR-B', monospace;
+            color: #cbd5e1;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .tier-features li::before { content: "▸"; flex-shrink: 0; }
+        .tier-starter .tier-features li::before { color: #00ffff; }
+        .tier-pro     .tier-features li::before { color: #ff00ff; }
+        .tier-elite   .tier-features li::before { color: #ffcc00; }
+
+        .tier-cta {
+            display: block;
+            width: 100%;
+            padding: 13px;
+            border-radius: 5px;
+            font-family: 'OCR-B', monospace;
+            font-weight: bold;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        .tier-starter .tier-cta { background: #00ffff; color: #000; }
+        .tier-starter .tier-cta:hover { background: #fff; box-shadow: 0 0 20px #00ffff; }
+        .tier-pro     .tier-cta { background: #ff00ff; color: #fff; }
+        .tier-pro     .tier-cta:hover { background: #fff; color: #ff00ff; box-shadow: 0 0 20px #ff00ff; }
+        .tier-elite   .tier-cta { background: #ffcc00; color: #000; }
+        .tier-elite   .tier-cta:hover { background: #fff; box-shadow: 0 0 20px #ffcc00; }
+
+        /* POPULAR badge */
+        .popular-flag {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff00ff;
+            color: #fff;
+            font-family: 'OCR-B', monospace;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            padding: 4px 16px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        /* ── Project Estimator ── */
+        .estimator-panel {
+            border: 3px solid #ffff00;
+            border-radius: 10px;
+            padding: 36px 30px;
+            background: linear-gradient(160deg, rgba(20,20,0,0.97), rgba(10,12,2,0.98));
+            box-shadow: 0 0 30px rgba(255,255,0,0.18), inset 0 0 60px rgba(255,255,0,0.03);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .estimator-panel::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 20px,
+                rgba(255,255,0,0.015) 20px,
+                rgba(255,255,0,0.015) 21px
+            );
+            pointer-events: none;
+        }
+
+        .estimator-title {
+            font-family: 'OCR-B', monospace;
+            font-size: 22px;
+            font-weight: bold;
+            color: #ffff00;
+            text-align: center;
+            letter-spacing: 4px;
+            margin-bottom: 8px;
+            text-shadow: 0 0 15px rgba(255,255,0,0.8), 0 0 30px rgba(255,255,0,0.4);
+            animation: holographicGlow 3s ease-in-out infinite;
+        }
+
+        .estimator-sub {
+            text-align: center;
+            color: #a3a300;
+            font-family: 'OCR-B', monospace;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-shadow: 0 0 5px rgba(255,255,0,0.4);
+            animation: dataStream 8s linear infinite;
+        }
+
+        .estimator-row {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 22px;
+        }
+
+        .estimator-label {
+            font-family: 'OCR-B', monospace;
+            font-size: 12px;
+            font-weight: bold;
+            color: #ffcc00;
+            letter-spacing: 1.5px;
+        }
+
+        .estimator-select,
+        .estimator-input {
+            background: rgba(0,0,0,0.7);
+            border: 1px solid #ffff00;
+            color: #ffff00;
+            font-family: 'OCR-B', monospace;
+            font-size: 14px;
+            padding: 10px 14px;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+            appearance: none;
+        }
+
+        .estimator-select:focus,
+        .estimator-input:focus {
+            outline: none;
+            box-shadow: 0 0 12px rgba(255,255,0,0.5);
+        }
+
+        .estimator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .estimator-calc-btn {
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            padding: 16px;
+            background: #ffff00;
+            color: #000;
+            font-family: 'OCR-B', monospace;
+            font-weight: bold;
+            font-size: 16px;
+            letter-spacing: 3px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .estimator-calc-btn:hover {
+            background: #fff;
+            box-shadow: 0 0 25px rgba(255,255,0,0.8);
+            transform: translateY(-2px);
+        }
+
+        .estimator-result {
+            display: none;
+            margin-top: 28px;
+            padding: 24px;
+            border: 2px solid #ffff00;
+            border-radius: 6px;
+            background: rgba(0,0,0,0.6);
+            text-align: center;
+        }
+
+        .estimator-result-label {
+            font-family: 'OCR-B', monospace;
+            font-size: 13px;
+            color: #a3a300;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .estimator-result-value {
+            font-family: 'Courier New', monospace;
+            font-size: 42px;
+            font-weight: bold;
+            color: #ffff00;
+            text-shadow: 0 0 20px rgba(255,255,0,0.8);
+            margin-bottom: 10px;
+        }
+
+        .estimator-result-note {
+            font-family: 'OCR-B', monospace;
+            font-size: 12px;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        /* ── Section dividers with neon glow ── */
+        .cyber-divider {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffff, #ff00ff, #ffcc00, transparent);
+            margin: 10px 0;
+            opacity: 0.6;
+        }
+
+        .section-header-cyber {
+            font-family: 'OCR-B', monospace;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-align: center;
+            padding: 12px 0;
+            margin: 20px 0 10px 0;
+        }
+
+        /* ── Access Control Modals ── */
+        .access-buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .access-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #ff00ff;
+            color: #fff;
+            font-family: 'OCR-B', monospace;
+            font-weight: bold;
+            font-size: 12px;
+            border: 2px solid #ff00ff;
+            border-radius: 4px;
+            text-decoration: none;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .access-btn:hover {
+            background: #fff;
+            color: #ff00ff;
+            box-shadow: 0 0 20px rgba(255,0,255,0.6);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 5000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(160deg, rgba(25,0,30,0.98), rgba(50,0,60,0.96));
+            border: 3px solid #ff00ff;
+            border-radius: 10px;
+            padding: 40px;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 0 40px rgba(255,0,255,0.5);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: #ff00ff;
+            font-size: 28px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #fff;
+        }
+
+        .modal-title {
+            font-family: 'OCR-B', monospace;
+            font-size: 20px;
+            font-weight: bold;
+            color: #ff00ff;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .modal-subtitle {
+            font-family: 'OCR-B', monospace;
+            font-size: 11px;
+            color: #a3a300;
+            letter-spacing: 1.5px;
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 16px;
+            background: rgba(0,0,0,0.7);
+            border: 2px solid #ff00ff;
+            color: #fff;
+            font-family: 'OCR-B', monospace;
+            font-size: 15px;
+            border-radius: 4px;
+            box-sizing: border-box;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .password-input:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(255,0,255,0.6);
+        }
+
+        .access-submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: #ff00ff;
+            color: #fff;
+            border: none;
+            font-family: 'OCR-B', monospace;
+            font-weight: bold;
+            font-size: 14px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .access-submit-btn:hover {
+            background: #fff;
+            color: #ff00ff;
+            box-shadow: 0 0 20px rgba(255,0,255,0.8);
+        }
+
+        .access-error {
+            color: #ff4444;
+            font-family: 'OCR-B', monospace;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 12px;
+            display: none;
+        }
+
+        .access-error.show {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .matrix-status-panel {
+                float: none;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            .display-deck {
+                margin-left: 0;
+            }
+            .vector-grid {
+                grid-template-columns: 1fr;
+            }
+            body {
+                padding: 12px;
+                font-size: 17px;
+            }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .estimator-grid { grid-template-columns: 1fr; }
+            .access-buttons-container {
+                flex-direction: column;
+            }
+            .access-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Flying Logo Banner (traverses screen) -->
+    <div class="flying-logo-banner" style="background-image: url('UNCLEJESSELOGO.jpg');"></div>
+
+    <!-- Matrix Wallpaper Background -->
+    <div class="matrix-wallpaper" id="matrixWallpaper"></div>
+
+    <div class="content-layer">
+
+        <!-- System Status Bar -->
+        <nav class="status-bar" aria-label="System status">
+            <div class="status-item">SYSTEM: ONLINE</div>
+            <div class="status-item">LATENCY: 4ms</div>
+            <div class="status-item">USER: AUTHORIZED</div>
+            <div class="status-item">SYSTEM_CLOCK: <span id="clock"></span></div>
+        </nav>
+
+        <!-- Company Logo -->
+        <div class="flying-logo">
+            <img src="UNCLEJESSELOGO.jpg" alt="UNCLE JESSE'S ALWAYS AVAILABLE LLC Logo" style="width: 100%;">
+        </div>
+
+        <!-- Main Console Panel -->
+        <div class="console-border clearfix">
+
+            <!-- Escalator Scroll Widget -->
+            <header style="margin-bottom: 20px;">
+                <div id="escalatorNode" style="margin: 0 auto 20px auto; max-width: 340px; padding: 12px; border: 2px dashed #00ffff; background: rgba(0,255,255,0.05); border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.3s ease;">
+                    <span id="escalatorText" style="color: #00ffff; font-family: 'OCR-B', monospace; font-size: 13px; font-weight: bold; letter-spacing: 1px; display: block; margin-bottom: 6px;">
+                        [ HOVER TO ESCALATE DOWN ]
+                    </span>
+                    <div id="escalatorArrow" style="color: #ffcc00; font-size: 22px; font-weight: bold; line-height: 1; animation: bounceEscalator 1.5s infinite;">&#9660;</div>
+                </div>
+            </header>
+
+            <!-- Mission Profile -->
+            <div class="mission-profile-container">
+                <a href="jpm.html" target="_blank" rel="noopener" class="mission-btn">&#128196; Mission Profile</a>
+                <div class="access-buttons-container">
+                    <button class="access-btn" id="captainAccessBtn">🔐 CAPTAIN ACCESS ONLY</button>
+                    <button class="access-btn" id="expenseLogBtn">📊 INTERNAL EXPENSE LOG</button>
+                </div>
+                <h1 style="color: #ffcc00; text-align: center; font-family: 'Courier New', monospace; font-size: 2.4em; margin: 16px 0 4px 0;">
+                    UNCLE JESSE'S ALWAYS AVAILABLE LLC
+                </h1>
+            </div>
+
+            <!-- Left Status Panel + Right Amber Deck -->
+            <div class="matrix-status-panel">
+                MATRIX_STATUS:<br>
+                SUNSHINE<br>
+                &amp; ORGANIC SYNC
+            </div>
+
+            <div class="display-deck">
+                <div class="sub-greeting" style="margin-bottom: 16px;">
+                    [ SYSTEM_GREETING ] HI, WELCOME TO MY OFFICE.<br>
+                    TAKE THE CONTROLS &mdash; ALWAYS WELCOME.
+                </div>
+                <div class="metallic-text">COMMAND CENTER ACTIVE.</div>
+                <div class="sub-greeting" style="margin-top: 12px;">PLEASE, STEP INTO MY OFFICE.</div>
+            </div>
+
+            <!-- Audio Stream Deck -->
+            <div style="max-width: 460px; margin: 28px auto 10px auto; text-align: center; clear: both; padding-top: 10px;">
+                <span style="font-family: 'OCR-B', monospace; font-size: 17px; font-weight: bold; color: #b2ef0b; display: block; margin-bottom: 8px; letter-spacing: 1px;">
+                    [ TERMINAL BACKGROUND STREAM ACTIVE ]
+                </span>
+                <audio id="terminalAudio" controls loop style="width: 100%; height: 36px;">
+                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                    Your browser does not support HTML5 audio.
+                </audio>
+            </div>
+
+            <!-- Architecture Note -->
+            <div class="architecture-note-title">[ SYSTEM ARCHITECTURE NOTE ]</div>
+            <div class="architecture-note-body">
+                Where automated infrastructure execution meets pristine wilderness calibration.
+                Nature kindly mixes with our advanced robotics arrays and precision mechanical
+                technical services environments to maintain peak site parameters.
+            </div>
+
+            <!-- Call-to-Action Buttons -->
+            <div class="action-block">
+                <a href="appointment.html" class="terminal-btn">[ START PROJECT ]</a>
+                <a href="estimator.html" class="terminal-btn">&#9658; ESTIMATE COMPLEXITY UPLINK &#9668;</a>
+            </div>
+
+            <!-- Status Indicator Emojis -->
+            <div class="indicator-array" aria-hidden="true">
+                <span title="Eagle">&#129413;</span>
+                <span title="Cat">&#128008;</span>
+                <span title="Sun">&#9728;</span>
+                <span title="Robot">&#129302;</span>
+            </div>
+
+            <!-- Vector Navigation Grid -->
+            <div class="vector-grid">
+                <div class="vector-card">
+                    <div class="vector-title">VECTOR // 01</div>
+                    <div class="vector-desc">DIAGNOSTICS &amp; DESIGN</div>
+                </div>
+                <div class="vector-card">
+                    <div class="vector-title">VECTOR // 02</div>
+                    <div class="vector-desc">HVAC &amp; AUTOMOTIVE</div>
+                </div>
+                <div class="vector-card active-robotics">
+                    <div class="vector-title">VECTOR // 03</div>
+                    <div class="vector-desc">ACTIVATE ROBOTICS</div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /console-border -->
+
+        <!-- Neon Green Room Expansions -->
+        <div class="content-expansion-zone">
+
+            <!-- Room 01: Diagnostics & Design -->
+            <div class="gadget-room-panel">
+                <div class="room-header">GO-GO-GADGET // DIAGNOSTICS &amp; DESIGN</div>
+                <div class="room-body">
+                    Deploying custom digital engineering architectures under the UNCLE JESSE'S ALWAYS AVAILABLE LLC system network.
+                    High-level multi-vector consultation setups tracking digital design execution from conception straight through assembly.
+                </div>
+            </div>
+
+            <!-- Room 02: HVAC & Mechanical -->
+            <div class="gadget-room-panel">
+                <div class="room-header">GO-GO-GADGET // HVAC &amp; MECHANICAL OPERATIONS</div>
+                <div class="room-body">
+                    Advanced electronic principles and refrigeration technical expertise applied straight to high-demand infrastructure execution.
+                    Keeping environmental parameters strictly optimized while maintaining operational records for heavy-duty structural maintenance projects.
+                </div>
+            </div>
+
+            <!-- Room 03: Robotics -->
+            <div class="gadget-room-panel">
+                <div class="room-header">GO-GO-GADGET // ACTIVATE ROBOTICS</div>
+                <div class="room-body">
+                    Calibrating high-precision automated systems. Establishing pristine, robot-ready environments utilizing custom stencils,
+                    tracking metrics, and sharp laser alignment arrays to ensure clean hardware coordination.
+                </div>
+            </div>
+
+            <!-- Official Motto -->
+            <div class="motto-banner">&ldquo;YOU MAY COUNT ON US&hellip; ALWAYS!&rdquo;</div>
+
+            <!-- Secure Contact Form -->
+            <div class="contact-form-container" id="contactSection">
+                <div class="room-header">SECURE UPLINK // GET IN TOUCH WITH UNCLE JESSE</div>
+                <p style="color: #cbd5e1; margin-bottom: 20px; line-height: 1.6; font-size: 16px;">
+                    Ready to calibrate your infrastructure, deploy digital design architectures, or spin up automated tracking?
+                    Drop your operational parameters below to establish a direct secure link.
+                </p>
+
+                <form id="cyberContactForm" action="https://formbold.com/s/3LaQv" method="POST">
+                    <input type="hidden" name="_next" value="thank_you.html">
+
+                    <label class="contact-label" for="name">[ IDENTIFY YOUR IDENTITY / FIRM ]</label>
+                    <input type="text" id="name" name="name" class="contact-input"
+                           placeholder="Enter name or agency..." required autocomplete="name">
+
+                    <label class="contact-label" for="email">[ SECURE RETURN UPLINK EMAIL ]</label>
+                    <input type="email" id="email" name="email" class="contact-input"
+                           placeholder="name@domain.com" required autocomplete="email">
+
+                    <label class="contact-label" for="message">[ MISSION DESCRIPTION / OBJECTIVES ]</label>
+                    <textarea id="message" name="message" class="contact-input" rows="5"
+                              placeholder="Outline your technical requirements or system parameters..."
+                              required style="resize: vertical;"></textarea>
+
+                    <button type="submit" id="transmitBtn" class="submit-button">
+                        TRANSMIT UPLINK PARAMETERS
+                    </button>
+                </form>
+
+                <p style="color: #94a3b8; margin-top: 12px; font-size: 0.85em; line-height: 1.5;">
+                    Submissions are securely relayed via Formbold. Expect a response within 1&ndash;2 business days.
+                </p>
+
+                <!-- Success Panel (hidden until submit fires) -->
+                <div id="successMessage" style="display: none; text-align: center; padding: 40px 10px;">
+                    <div style="font-family: 'OCR-B', monospace; font-size: 24px; color: #00ff66; font-weight: bold; letter-spacing: 2px; margin-bottom: 15px; text-shadow: 0 0 15px rgba(0,255,102,0.6);">
+                        &#9650; UPLINK ESTABLISHED &#9650;
+                    </div>
+                    <div style="font-family: 'OCR-B', monospace; font-size: 15px; color: #00ffff; font-weight: bold; letter-spacing: 1px;">
+                        MISSION PARAMETERS BEAMED SECURELY TO THE CONSOLE RECEPTACLE.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Escalator — hover to continue to page bottom -->
+            <div class="escalator-bottom-wrap" id="bottomEscWrap">
+                <div id="escalatorBottomNode">
+                    <span id="escalatorBottomText" style="color: #ff00ff; font-family: 'OCR-B', monospace; font-size: 13px; font-weight: bold; letter-spacing: 1px; display: block; margin-bottom: 6px;">
+                        [ HOVER TO CONTINUE DOWNLINK ]
+                    </span>
+                    <div id="escalatorBottomArrow" style="color: #ffcc00; font-size: 22px; font-weight: bold; line-height: 1; animation: bounceUp 1.5s infinite;">&#9660;</div>
+                </div>
+            </div>
+
+            <!-- CYBER DIVIDER -->
+            <div class="cyber-divider"></div>
+            <div class="section-header-cyber" style="color: #00ffff;">&#9670; SERVICE TIER MATRIX &#9670;</div>
+            <div class="cyber-divider"></div>
+
+            <!-- THREE PAYMENT TIER LEVELS -->
+            <div class="pricing-grid" id="pricingSection">
+
+                <!-- TIER 1: STARTER -->
+                <div class="pricing-card tier-starter">
+                    <span class="tier-badge">TIER 01</span>
+                    <div class="tier-name">DIAGNOSTICS &amp; CONSULT</div>
+                    <div class="tier-price">$750</div>
+                    <div class="tier-period">/ per engagement</div>
+                    <ul class="tier-features">
+                        <li>On-site or remote system diagnostics</li>
+                        <li>Full written assessment report</li>
+                        <li>Priority scheduling within 48 hrs</li>
+                        <li>Digital roadmap baseline</li>
+                        <li>1 follow-up consult included</li>
+                    </ul>
+                    <a href="appointment.html" class="tier-cta">[ INITIATE CONSULT ]</a>
+                </div>
+
+                <!-- TIER 2: PRO — POPULAR -->
+                <div class="pricing-card tier-pro" style="position: relative;">
+                    <div class="popular-flag">&#9733; MOST POPULAR &#9733;</div>
+                    <span class="tier-badge">TIER 02</span>
+                    <div class="tier-name">INFRASTRUCTURE DEPLOY</div>
+                    <div class="tier-price">$3,500</div>
+                    <div class="tier-period">$5,000 complex systems</div>
+                    <ul class="tier-features">
+                        <li>Full infrastructure build &amp; install</li>
+                        <li>HVAC, mechanical &amp; electrical integration</li>
+                        <li>Automated monitoring setup</li>
+                        <li>Optimization &amp; stress testing</li>
+                        <li>30-day post-deploy support</li>
+                        <li>Operational documentation package</li>
+                    </ul>
+                    <a href="appointment.html" class="tier-cta">[ DEPLOY NOW ]</a>
+                </div>
+
+                <!-- TIER 3: ELITE -->
+                <div class="pricing-card tier-elite">
+                    <span class="tier-badge">TIER 03</span>
+                    <div class="tier-name">FULL ROBOTICS &amp; SYSTEMS</div>
+                    <div class="tier-price">Custom</div>
+                    <div class="tier-period">enterprise pricing</div>
+                    <ul class="tier-features">
+                        <li>Precision robotics calibration &amp; install</li>
+                        <li>Custom automation stencil arrays</li>
+                        <li>Multi-vector tracking systems</li>
+                        <li>Digital &amp; physical site integration</li>
+                        <li>Long-term maintenance contract</li>
+                        <li>Dedicated project liaison officer</li>
+                    </ul>
+                    <a href="contacts.html" class="tier-cta">[ REQUEST QUOTE ]</a>
+                </div>
+
+            </div>
+            <!-- /pricing-grid -->
+
+            <!-- CYBER DIVIDER -->
+            <div class="cyber-divider" style="margin-top: 40px;"></div>
+            <div class="section-header-cyber" style="color: #ffff00;">&#9670; PROJECT COMPLEXITY ESTIMATOR &#9670;</div>
+            <div class="cyber-divider"></div>
+
+            <!-- PROJECT ESTIMATOR -->
+            <div class="estimator-panel" id="estimatorSection">
+                <div class="estimator-title">UNCLE JESSE'S ALWAYS AVAILABLE LLC</div>
+                <div class="estimator-sub">// PROJECT COST ESTIMATOR ENGINE v1.0 //</div>
+
+                <div class="estimator-grid">
+                    <div class="estimator-row">
+                        <label class="estimator-label" for="est-service">[ SELECT SERVICE TYPE ]</label>
+                        <select id="est-service" class="estimator-select">
+                            <option value="consult">Diagnostics &amp; Consultation</option>
+                            <option value="hvac">HVAC &amp; Mechanical</option>
+                            <option value="deploy">Infrastructure Deployment</option>
+                            <option value="robotics">Robotics &amp; Automation</option>
+                            <option value="digital">Digital Design &amp; Architecture</option>
+                            <option value="full">Full System Integration</option>
+                        </select>
+                    </div>
+                    <div class="estimator-row">
+                        <label class="estimator-label" for="est-size">[ PROJECT SCALE ]</label>
+                        <select id="est-size" class="estimator-select">
+                            <option value="1">Small — Single unit / residential</option>
+                            <option value="2">Medium — Small commercial</option>
+                            <option value="3">Large — Multi-system commercial</option>
+                            <option value="4">Enterprise — Full facility</option>
+                        </select>
+                    </div>
+                    <div class="estimator-row">
+                        <label class="estimator-label" for="est-urgency">[ URGENCY LEVEL ]</label>
+                        <select id="est-urgency" class="estimator-select">
+                            <option value="1">Standard — 1&ndash;2 weeks scheduling</option>
+                            <option value="1.2">Priority — Within 72 hours</option>
+                            <option value="1.5">Emergency — Same / next day</option>
+                        </select>
+                    </div>
+                    <div class="estimator-row">
+                        <label class="estimator-label" for="est-travel">[ TRAVEL / SITE DISTANCE ]</label>
+                        <select id="est-travel" class="estimator-select">
+                            <option value="0">Local — Within 25 miles</option>
+                            <option value="150">Regional — 25&ndash;75 miles</option>
+                            <option value="350">Extended — 75&ndash;150 miles</option>
+                            <option value="700">Remote — 150+ miles</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="estimator-calc-btn" id="estCalcBtn" onclick="runEstimator()">&#9889; CALCULATE ESTIMATE &#9889;</button>
+
+                <div class="estimator-result" id="estResult">
+                    <div class="estimator-result-label">ESTIMATED PROJECT INVESTMENT</div>
+                    <div class="estimator-result-value" id="estValue">$0</div>
+                    <div class="estimator-result-note" id="estNote">
+                        This is a baseline estimate. Final pricing is confirmed after on-site assessment.
+                        Contact UNCLE JESSE'S ALWAYS AVAILABLE LLC for a precise quote.
+                    </div>
+                </div>
+            </div>
+            <!-- /estimator-panel -->
+
+            <!-- Service Cards -->
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>MY DIGITAL ROADMAP</h3>
+                    <p class="price">STRATEGIC UPLINK</p>
+                    <ul>
+                        <li class="tooltip-container">Strategic planning
+                            <span class="tooltip-text">A strategic long-term plan mapping out your digital transformation and technical growth milestones.</span>
+                        </li>
+                        <li class="tooltip-container">Execution architecture
+                            <span class="tooltip-text">Tailoring your roadmap to ensure measurable execution and delivery.</span>
+                        </li>
+                        <li class="tooltip-container">Growth sustainment
+                            <span class="tooltip-text">Ongoing monitoring and refinement so your roadmap stays aligned with your goals.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>INFRASTRUCTURE DEPLOY</h3>
+                    <p class="price">$3,500 &ndash; $5,000</p>
+                    <ul>
+                        <li class="tooltip-container">System Deployment
+                            <span class="tooltip-text">Full-stack implementation of your custom server architecture and software environments.</span>
+                        </li>
+                        <li class="tooltip-container">Automated Monitoring
+                            <span class="tooltip-text">Continuous, real-time surveillance of system health with proactive alerting for incident prevention.</span>
+                        </li>
+                        <li class="tooltip-container">Optimization Testing
+                            <span class="tooltip-text">Stress-testing your systems under simulated loads to ensure peak performance and reliability.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <!-- /content-expansion-zone -->
+
+    </div>
+    <!-- /content-layer -->
+
+    <!-- Back to Top Button -->
+    <a id="backToTop" href="#" aria-label="Back to top">&#9650;</a>
+
+    <!-- Access Control Modals -->
+    <!-- CAPTAIN ACCESS ONLY Modal -->
+    <div class="modal" id="captainModal">
+        <div class="modal-content">
+            <button class="modal-close" id="captainCloseBtn">&times;</button>
+            <div class="modal-title">🔐 CAPTAIN ACCESS ONLY</div>
+            <div class="modal-subtitle">[ ENTER PASSWORD TO PROCEED ]</div>
+            <input type="password" id="captainPassword" class="password-input" placeholder="PASSWORD" autocomplete="off">
+            <button class="access-submit-btn" id="captainSubmitBtn">UNLOCK PORTAL</button>
+            <div class="access-error" id="captainError">INVALID PASSWORD // ACCESS DENIED</div>
+        </div>
+    </div>
+
+    <!-- INTERNAL EXPENSE LOG Modal -->
+    <div class="modal" id="expenseModal">
+        <div class="modal-content">
+            <button class="modal-close" id="expenseCloseBtn">&times;</button>
+            <div class="modal-title">📊 INTERNAL EXPENSE LOG</div>
+            <div class="modal-subtitle">[ ENTER PASSWORD TO ACCESS ]</div>
+            <input type="password" id="expensePassword" class="password-input" placeholder="PASSWORD" autocomplete="off">
+            <button class="access-submit-btn" id="expenseSubmitBtn">ACCESS LEDGER</button>
+            <div class="access-error" id="expenseError">INVALID PASSWORD // ACCESS DENIED</div>
+        </div>
+    </div>
+
+    <!-- Hidden Admin Portal (invisible footer link) -->
+    <footer style="margin-top: 60px; text-align: center; padding: 20px;">
+        <a href="ledger-entry.html"
+           style="color: #020904; font-size: 8px; text-decoration: none; user-select: none;"
+           tabindex="-1" aria-hidden="true">&#183;</a>
+    </footer>
+
+    <script>
+        /* ================================================
+           UNCLE JESSE'S ALWAYS AVAILABLE LLC
+           Production JavaScript - Single Consolidated Block
+        ================================================ */
+
+        // ── Matrix Wallpaper Generator ──────────────────
+        (function buildMatrixWallpaper() {
+            var wallpaper = document.getElementById('matrixWallpaper');
+            if (!wallpaper) return;
+            var chars  = '01<>-+=\\/[]{}()*&^%$#@!ｦｧｨｩｪｫｬｭｮ';
+            // Three neon colour bands: green, cyan, magenta
+            var colors = [
+                'rgba(0,255,80,{a})',
+                'rgba(0,255,255,{a})',
+                'rgba(255,0,255,{a})'
+            ];
+            for (var i = 0; i < 90; i++) {
+                var span  = document.createElement('span');
+                var color = colors[i % colors.length].replace('{a}', (Math.random() * 0.10 + 0.06).toFixed(2));
+                span.textContent            = chars[Math.floor(Math.random() * chars.length)];
+                span.style.left             = (Math.random() * 100) + '%';
+                span.style.fontSize         = (Math.random() * 14 + 10) + 'px';
+                span.style.color            = color;
+                span.style.textShadow       = '0 0 10px ' + color;
+                span.style.animationDuration= (Math.random() * 9 + 5) + 's';
+                span.style.animationDelay   = (Math.random() * 14) + 's';
+                wallpaper.appendChild(span);
+            }
+        })();
+
+        // ── Live Clock ──────────────────────────────────
+        function updateClock() {
+            var el = document.getElementById('clock');
+            if (el) el.textContent = new Date().toLocaleTimeString();
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        // ── Dual Escalator Scroll System ────────────────
+        var scrollFrameId = null;
+
+        function stopEscalator() {
+            if (scrollFrameId !== null) {
+                cancelAnimationFrame(scrollFrameId);
+                scrollFrameId = null;
+            }
+        }
+
+        function smoothScrollTo(destination) {
+            stopEscalator();
+            var startY = window.scrollY || document.documentElement.scrollTop || 0;
+            var maxY   = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+            var dest   = Math.min(maxY, Math.max(0, destination));
+            if (Math.abs(dest - startY) < 2) return;
+
+            var distance   = dest - startY;
+            var durationMs = Math.min(Math.abs(distance) * 1.2, 3000);
+            var pxPerMs    = distance / durationMs;
+            var startTime  = performance.now();
+
+            function step(now) {
+                var elapsed = now - startTime;
+                window.scrollTo({ top: startY + pxPerMs * elapsed, behavior: 'auto' });
+                if (elapsed < durationMs) {
+                    scrollFrameId = requestAnimationFrame(step);
+                } else {
+                    window.scrollTo({ top: dest, behavior: 'auto' });
+                    stopEscalator();
+                }
+            }
+            scrollFrameId = requestAnimationFrame(step);
+        }
+
+        // TOP escalator → scrolls to contact form
+        function initTopEscalator() {
+            var node  = document.getElementById('escalatorNode');
+            var text  = document.getElementById('escalatorText');
+            var arrow = document.getElementById('escalatorArrow');
+            if (!node || !text || !arrow) return;
+            text.textContent  = '[ HOVER TO ESCALATE DOWN ]';
+            arrow.innerHTML   = '&#9660;';
+
+            node.addEventListener('mouseenter', function () {
+                var target = document.getElementById('contactSection');
+                var dest = target
+                    ? Math.max(0, target.getBoundingClientRect().top + window.scrollY - 80)
+                    : document.documentElement.scrollHeight / 2;
+                smoothScrollTo(dest);
+            });
+            // NO mouseleave — let scroll complete uninterrupted
+        }
+
+        // BOTTOM escalator → scrolls to absolute bottom
+        function initBottomEscalator() {
+            var node  = document.getElementById('escalatorBottomNode');
+            var text  = document.getElementById('escalatorBottomText');
+            var arrow = document.getElementById('escalatorBottomArrow');
+            if (!node || !text || !arrow) return;
+            text.textContent = '[ HOVER TO CONTINUE DOWNLINK ]';
+            arrow.innerHTML  = '&#9660;';
+
+            node.addEventListener('mouseenter', function () {
+                var dest = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+                smoothScrollTo(dest);
+            });
+            // NO mouseleave — let scroll complete uninterrupted
+        }
+
+        // ── Audio Engine ────────────────────────────────
+        function initAudio() {
+            var audio = document.getElementById('terminalAudio');
+            if (!audio) return;
+            // Try autoplay; if blocked, play on first user click
+            audio.play().catch(function () {
+                function onFirstClick() {
+                    audio.play().catch(function () {});
+                    document.removeEventListener('click', onFirstClick);
+                }
+                document.addEventListener('click', onFirstClick);
+            });
+        }
+
+        // ── Back-to-Top Button ──────────────────────────
+        function initBackToTop() {
+            var btn = document.getElementById('backToTop');
+            if (!btn) return;
+            window.addEventListener('scroll', function () {
+                btn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+            });
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        // ── Form Handler ────────────────────────────────
+        function initForm() {
+            var form = document.getElementById('cyberContactForm');
+            var btn  = document.getElementById('transmitBtn');
+            if (!form || !btn) return;
+
+            form.addEventListener('submit', function () {
+                // Formbold handles the POST; _next redirects to thank_you.html
+                btn.textContent      = 'BEAMING SIGNALS...';
+                btn.style.background = '#00ffff';
+                btn.style.color      = '#0b0f19';
+                btn.disabled         = true;
+            });
+        }
+
+        // ── Boot ────────────────────────────────────────
+        // ── Project Estimator Calculator ─────────────────
+        function runEstimator() {
+            var serviceRates = {
+                consult:  750,
+                hvac:     1800,
+                deploy:   3500,
+                robotics: 5500,
+                digital:  2200,
+                full:     8500
+            };
+            var service  = document.getElementById('est-service').value;
+            var size     = parseFloat(document.getElementById('est-size').value);
+            var urgency  = parseFloat(document.getElementById('est-urgency').value);
+            var travel   = parseFloat(document.getElementById('est-travel').value);
+
+            var base     = serviceRates[service] || 1000;
+            var total    = Math.round((base * size * urgency) + travel);
+
+            var panel    = document.getElementById('estResult');
+            var valEl    = document.getElementById('estValue');
+            var noteEl   = document.getElementById('estNote');
+
+            valEl.textContent = '$' + total.toLocaleString();
+
+            var notes = {
+                consult:  'Includes diagnostics, written report, and 1 follow-up session.',
+                hvac:     'Covers HVAC/mechanical inspection, calibration, and performance report.',
+                deploy:   'Full infrastructure build with monitoring setup and 30-day support.',
+                robotics: 'Precision robotics install, calibration arrays, and site documentation.',
+                digital:  'Digital architecture planning, design execution, and delivery package.',
+                full:     'Complete multi-system integration — contact us for a final scope review.'
+            };
+            noteEl.textContent = (notes[service] || '') +
+                ' This estimate is a baseline. Final pricing confirmed after on-site assessment.';
+
+            panel.style.display = 'block';
+            panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // ── Access Control System ──────────────────────────
+        function initAccessControls() {
+            // CAPTAIN ACCESS
+            var captainBtn = document.getElementById('captainAccessBtn');
+            var captainModal = document.getElementById('captainModal');
+            var captainCloseBtn = document.getElementById('captainCloseBtn');
+            var captainSubmitBtn = document.getElementById('captainSubmitBtn');
+            var captainPasswordInput = document.getElementById('captainPassword');
+            var captainError = document.getElementById('captainError');
+
+            if (captainBtn) {
+                captainBtn.addEventListener('click', function () {
+                    captainModal.classList.add('active');
+                    captainPasswordInput.focus();
+                });
+            }
+
+            if (captainCloseBtn) {
+                captainCloseBtn.addEventListener('click', function () {
+                    captainModal.classList.remove('active');
+                    captainError.classList.remove('show');
+                    captainPasswordInput.value = '';
+                });
+            }
+
+            if (captainSubmitBtn) {
+                captainSubmitBtn.addEventListener('click', function () {
+                    var password = captainPasswordInput.value;
+                    // Simple password check (change this to your actual password)
+                    if (password === 'CAPTAIN2024') {
+                        // Open Stripe payment link or custom portal
+                        window.open('https://buy.stripe.com/your-link-here', '_blank');
+                        captainModal.classList.remove('active');
+                        captainPasswordInput.value = '';
+                        captainError.classList.remove('show');
+                    } else {
+                        captainError.classList.add('show');
+                        captainPasswordInput.value = '';
+                        setTimeout(function () {
+                            captainPasswordInput.focus();
+                        }, 100);
+                    }
+                });
+            }
+
+            if (captainPasswordInput) {
+                captainPasswordInput.addEventListener('keypress', function (e) {
+                    if (e.key === 'Enter') captainSubmitBtn.click();
+                });
+            }
+
+            // EXPENSE LOG
+            var expenseBtn = document.getElementById('expenseLogBtn');
+            var expenseModal = document.getElementById('expenseModal');
+            var expenseCloseBtn = document.getElementById('expenseCloseBtn');
+            var expenseSubmitBtn = document.getElementById('expenseSubmitBtn');
+            var expensePasswordInput = document.getElementById('expensePassword');
+            var expenseError = document.getElementById('expenseError');
+
+            if (expenseBtn) {
+                expenseBtn.addEventListener('click', function () {
+                    expenseModal.classList.add('active');
+                    expensePasswordInput.focus();
+                });
+            }
+
+            if (expenseCloseBtn) {
+                expenseCloseBtn.addEventListener('click', function () {
+                    expenseModal.classList.remove('active');
+                    expenseError.classList.remove('show');
+                    expensePasswordInput.value = '';
+                });
+            }
+
+            if (expenseSubmitBtn) {
+                expenseSubmitBtn.addEventListener('click', function () {
+                    var password = expensePasswordInput.value;
+                    // Simple password check (change this to your actual password)
+                    if (password === 'EXPENSE2024') {
+                        // Open Formbold expense log form
+                        var form = document.createElement('form');
+                        form.action = 'https://formbold.com/s/6QXVI';
+                        form.method = 'POST';
+                        form.target = '_blank';
+                        document.body.appendChild(form);
+                        form.submit();
+                        document.body.removeChild(form);
+                        expenseModal.classList.remove('active');
+                        expensePasswordInput.value = '';
+                        expenseError.classList.remove('show');
+                    } else {
+                        expenseError.classList.add('show');
+                        expensePasswordInput.value = '';
+                        setTimeout(function () {
+                            expensePasswordInput.focus();
+                        }, 100);
+                    }
+                });
+            }
+
+            if (expensePasswordInput) {
+                expensePasswordInput.addEventListener('keypress', function (e) {
+                    if (e.key === 'Enter') expenseSubmitBtn.click();
+                });
+            }
+
+            // Close modals when clicking outside
+            window.addEventListener('click', function (e) {
+                if (e.target === captainModal) {
+                    captainModal.classList.remove('active');
+                    captainError.classList.remove('show');
+                    captainPasswordInput.value = '';
+                }
+                if (e.target === expenseModal) {
+                    expenseModal.classList.remove('active');
+                    expenseError.classList.remove('show');
+                    expensePasswordInput.value = '';
+                }
+            });
+        }
+
+        // ── Boot Sequence ────────────────────────────────
+        document.addEventListener('DOMContentLoaded', function () {
+            initTopEscalator();
+            initBottomEscalator();
+            initAudio();
+            initBackToTop();
+            initForm();
+            initAccessControls();
+        });
+    </script>
+</body>
+</html>

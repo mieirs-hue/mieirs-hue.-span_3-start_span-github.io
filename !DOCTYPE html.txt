@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uncle Jesse's Always Available LLC</title>
+    <style>
+        /* 🌌 Cyberpunk / Retro Terminal Theme Setup */
+        body {
+            background-color: #0b0f19;
+            color: #e2e8f0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 🖼️ Main Console Wrapper border framework */
+        .console-border {
+            border: 2px solid #ffaa00;
+            border-radius: 8px;
+            padding: 25px;
+            max-width: 900px;
+            width: 100%;
+            background-color: rgba(11, 15, 25, 0.95);
+            box-shadow: 0 0 20px rgba(255, 170, 0, 0.05);
+            box-sizing: border-box;
+        }
+
+        /* 💡 Left-Side System Status Matrix Labels */
+        .matrix-status-panel {
+            float: left;
+            width: 250px;
+            font-family: 'OCR-B', monospace;
+            font-weight: bold;
+            color: #ffaa00;
+            letter-spacing: 1px;
+            line-height: 1.5;
+            padding-top: 15px;
+        }
+
+        /* 🎛️ Amber Display Deck */
+        .display-deck {
+            margin-left: 260px;
+            background: linear-gradient(135deg, #ff9900, #ffcc00);
+            border-radius: 6px;
+            padding: 30px;
+            color: #0b0f19;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.15);
+            min-height: 250px;
+        }
+
+        .welcome-text {
+            font-family: 'OCR-B', monospace;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        /* 🎧 System Architecture Details block */
+        .architecture-note-title {
+            font-family: 'OCR-B', monospace;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            color: #00ffff;
+            letter-spacing: 1px;
+            margin-top: 25px;
+            margin-bottom: 5px;
+        }
+
+        .architecture-note-body {
+            font-size: 14px;
+            line-height: 1.6;
+            text-align: center;
+            font-weight: 500;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* 🐾 System Status Indicator Arrays (Emoji Grid) */
+        .indicator-array {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 15px;
+            font-size: 24px;
+        }
+
+        /* ⚡ Vector Grid Layout */
+        .vector-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+            clear: both;
+            width: 100%;
+        }
+
+        .vector-card {
+            border: 1px solid #00ffff;
+            border-radius: 4px;
+            padding: 15px;
+            text-align: center;
+            background: rgba(0, 255, 255, 0.02);
+            transition: all 0.3s ease;
+        }
+
+        .vector-card:hover {
+            background: rgba(0, 255, 255, 0.08);
+            box-shadow: 0 0 12px rgba(0, 255, 255, 0.15);
+        }
+
+        .vector-title {
+            font-family: 'OCR-B', monospace;
+            color: #00ffff;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .vector-desc {
+            font-family: 'OCR-B', monospace;
+            font-size: 12px;
+            font-weight: bold;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            margin: 0;
+        }
+
+        /* Special Treatment for Vector 03 to Highlight Robotics */
+        .vector-card.active-robotics {
+            border-color: #0088ff;
+            background: rgba(0, 136, 255, 0.05);
+        }
+        .vector-card.active-robotics .vector-title {
+            color: #0088ff;
+        }
+
+        /* 🚀 Keyframe Animations */
+        @keyframes bounceEscalator {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(3px); }
+        }
+
+        /* Clearfix utility */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+
+    <script>
+        let scrollInterval = null;
+
+        // 🔽 Engine 1: Smoothly steps the screen downward 40%
+        function triggerSlowEscalatorDown() {
+            clearInterval(scrollInterval);
+            scrollInterval = setInterval(() => {
+                const currentScroll = window.scrollY;
+                const maxScroll = document.body.scrollHeight * 0.4; // Steps down 40% of the page
+                
+                if (currentScroll < maxScroll) {
+                    window.scrollBy(0, 6); // Controls the speed (6 is a smooth glide)
+                } else {
+                    clearInterval(scrollInterval);
+                }
+            }, 10);
+        }
+
+        // ▲ Engine 2: Smoothly steps the screen back up to the top root
+        function triggerSlowEscalatorUp() {
+            clearInterval(scrollInterval);
+            scrollInterval = setInterval(() => {
+                const currentScroll = window.scrollY;
+                
+                if (currentScroll > 0) {
+                    window.scrollBy(0, -6); // Smooth glide upward (-6 steps backward)
+                } else {
+                    clearInterval(scrollInterval);
+                }
+            }, 10);
+        }
+
+        // 🔄 Automatic Swap Loop: Changes the HOVER behavior flawlessly based on scroll position
+        window.addEventListener('scroll', () => {
+            const textNode = document.getElementById('escalatorText');
+            const arrowNode = document.getElementById('escalatorArrow');
+            const nodeBox = document.getElementById('escalatorNode');
+
+            if (!textNode || !arrowNode || !nodeBox) return;
+
+            if (window.scrollY > 150) {
+                // 🚀 STATE 1: User scrolled down -> Change hover to slide BACK UP
+                textNode.innerText = "[ HOVER TO ESCALATE BACK TO TOP ]";
+                arrowNode.innerText = "▲";
+                
+                nodeBox.removeAttribute('onclick'); // Guard rail
+                nodeBox.onmouseenter = () => triggerSlowEscalatorUp(); // Sets hover engine up
+            } else {
+                // 🛬 STATE 2: User at the top -> Change hover to slide DOWN
+                textNode.innerText = "[ HOVER TO ESCALATE DOWN ]";
+                arrowNode.innerText = "▼";
+                
+                nodeBox.removeAttribute('onclick'); // Guard rail
+                nodeBox.onmouseenter = () => triggerSlowEscalatorDown(); // Sets hover engine down
+            }
+        });
+    </script>
+</head>
+<body>
+
+    <div class="console-border clearfix">
+        
+        <header>
+            <div id="escalatorNode" onmouseenter="triggerSlowEscalatorDown()" style="margin: 0 auto 25px auto; max-width: 280px; padding: 8px; border: 1px dashed #00ffff; background: rgba(0, 255, 255, 0.05); border-radius: 4px; text-align: center; cursor: pointer; transition: all 0.3s ease; clear: both;">
+                <span id="escalatorText" style="color: #00ffff; font-family: 'OCR-B', monospace; font-size: 11px; letter-spacing: 1px; display: block; margin-bottom: 4px;">
+                    [ HOVER TO ESCALATE DOWN ]
+                </span>
+                <div id="escalatorArrow" style="color: #ffcc00; font-size: 18px; font-weight: bold; line-height: 1; animation: bounceEscalator 1.5s infinite;">▼</div>
+            </div>
+        </header>
+
+        <div class="matrix-status-panel">
+            MATRIX_STATUS:<br>
+            SUNSHINE<br>
+            &ORGANIC SYNC
+        </div>
+
+        <div class="display-deck">
+            <div class="welcome-text">HI, WELCOME IN... WHAT BRINGS YOU HERE TODAY?</div>
+            
+            <div style="max-width: 400px; margin: 0 auto 15px auto; text-align: center;">
+                <span style="font-family: 'OCR-B', monospace; font-size: 10px; font-weight: bold; color: #0b0f19; display: block; margin-bottom: 5px; letter-spacing: 1px;">
+                    [ DETECTING SOUND DECK ARCHITECTURE...CLICK TO STREAM ]
+                </span>
+                <audio controls style="width: 100%; height: 32px;">
+                    <source src="your-audio-file.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <div class="architecture-note-title">[ SYSTEM ARCHITECTURE NOTE ]</div>
+            <div class="architecture-note-body">
+                Where automated infrastructure execution meets pristine wilderness calibration. Nature kindly mixes with our advanced robotics arrays and precision mechanical technical services environments to maintain peak site parameters.
+            </div>
+
+            <div class="indicator-array">
+                <span>🦅</span>
+                <span>🐈</span>
+                <span>☀️</span>
+                <span>🤖</span>
+            </div>
+        </div>
+
+        <div class="vector-grid">
+            <div class="vector-card">
+                <div class="vector-title">VECTOR // 01</div>
+                <div class="vector-desc">DIAGNOSTICS & DESIGN</div>
+            </div>
+            <div class="vector-card">
+                <div class="vector-title">VECTOR // 02</div>
+                <div class="vector-desc">HVAC & AUTOMOTIVE</div>
+            </div>
+            <div class="vector-card active-robotics">
+                <div class="vector-title">VECTOR // 03</div>
+                <div class="vector-desc">ACTIVATE ROBOTICS</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div style="margin-top: 400px; max-width: 900px; width: 100%; text-align: center; font-family: 'OCR-B', monospace; font-size: 12px; color: #4a5568;">
+        [ CONSOLE FEED EXPANSION BUFFER ZONE // TESTING ESCALATOR SWAP DEPTH ]
+    </div>
+    <div style="margin-top: 400px;"></div>
+
+</body>
+</html>

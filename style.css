@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+
+/* 
+   - Orbitron: Ultra-modern, high-tech, perfect for "COMMAND CENTER".
+   - Share Tech Mono: Crisp, clean, like a high-end command terminal.
+*/
+
+/* Reset browser defaults */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Force full screen for both canvas and content */
+html, body {
+    width: 100%;
+    height: 100%;
+    background: #000; /* Set the background color to black */
+}
+
+/* Position the canvas behind everything */
+#matrix-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Ensure the container is centered and readable */
+.container {
+    position: absolute; /* Changed from relative to absolute */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    color: #0F0;
+    padding: 20px;
+    overflow-y: auto; /* Allows scrolling if content is long */
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0d1b2a; 
+    color: #ffffff;
+    font-family: 'Courier New', Courier, monospace; 
+}
+
+/* --- The Central Layout Container --- */
+.content-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 50px 20px;
+    display: flex;         /* Enables grid/row alignment */
+    flex-direction: column; 
+    align-items: center;   /* Centers all items inside the wrapper */
+}
+
+#choiceBoard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates a two-column grid */
+    gap: 20px;                             /* Adds the "rhythmic" spacing */
+    width: 100%;
+}
+
+.service-btn {
+    border: 1px solid #ffffff;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* --- Button Styling for consistency --- */
+button {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+/* --- High-Tech Neon Aesthetic --- */
+.service-btn {
+    border: 2px solid #00f2ff;
+    background: rgba(0, 242, 255, 0.05);
+    color: #ffffff;
+    text-shadow: 0 0 8px #00f2ff;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* This restores the soft neon pulse on the box */
+    box-shadow: 0 0 10px rgba(0, 242, 255, 0.2); 
+}
+
+/* Add a hover effect for that active "Gadget" feel */
+.service-btn:hover {
+    background: rgba(0, 242, 255, 0.2);
+    border-color: #ffd700; /* Gold shift on hover */
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+h2 {
+    color: #00f2ff;
+    text-shadow: 0 0 10px #00f2ff;
+    margin-bottom: 30px;
+}
+.flying-logo {
+    width: 200px;
+    position: fixed;
+    top: 20px;
+    left: -300px; /* Start off-screen */
+    animation: fly-across 10s linear infinite;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+@keyframes fly-across {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(150vw); }
+}
+/* Construction Sweep: Looks like a robot beam scanning/building the item */
+@keyframes construct-scan {
+    0% { border-left: 2px solid #00ff41; background-color: rgba(0, 255, 65, 0.05); }
+    50% { border-left: 10px solid #00f2ff; background-color: rgba(0, 242, 255, 0.1); }
+    100% { border-left: 2px solid #00ff41; background-color: rgba(0, 255, 65, 0.05); }
+}
+
+.robot-assembly {
+    animation: construct-scan 3s infinite ease-in-out;
+    transition: all 0.3s;
+/* Animated Worker Bot */
+.worker-bot {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    background-image: url('robot-sprite.gif'); /* Use a GIF of a robot working */
+    background-size: cover;
+    z-index: 999;
+    pointer-events: none; /* Let the user click through them */
+    animation: wander 20s linear infinite alternate;
+}
+
+@keyframes wander {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(100px, 50px); }
+    50% { transform: translate(200px, 0px); }
+    75% { transform: translate(100px, -50px); }
+    100% { transform: translate(0, 0); }
+}
+/* VARIETY 5: Purple Tech Glow (Scanners/Riveters) */
+#scanner-bot, #riveter-bot { 
+    filter: drop-shadow(0 0 10px #9f7aea); 
+    border: 2px solid #9f7aea; 
+}
+
+/* VARIETY 6: Red Warning Glow (Drivers/Loaders) */
+#driver-bot, #loader-bot { 
+    filter: drop-shadow(0 0 10px #f56565); 
+    border: 2px solid #f56565; 
+}
+
+/* VARIETY 7: Steel/Silver Tone (Wrenches/Tools) */
+#ratchet-bot { 
+    filter: brightness(1.2) contrast(1.1); 
+    border: 1px solid #cbd5e0; 
+/* Cleaned up CSS */
+body {
+    margin: 0;
+    background-color: transparent; /* Ensures background shows */
+}
+
+#matrix-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* Pushes matrix in front of content */
+}
+
+.container {
+    position: relative;
+    z-index: 1; /* Keeps content in front */
+    color: #0F0; /* Your neon aesthetic */
+    padding: 20px;
+}
+@keyframes amber-pulse {
+    0% { transform: scale(1); box-shadow: 0 0 10px #ff9d00; }
+    50% { transform: scale(1.02); box-shadow: 0 0 30px #ff9d00; }
+    100% { transform: scale(1); box-shadow: 0 0 10px #ff9d00; }
+}
+.display-deck {
+    /* Metallic Brushed Gold Background */
+    background: linear-gradient(135deg, #d4af37 0%, #aa771c 50%, #5d4a1f 100%) !important;
+    border: 3px solid #ffcc33;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5), inset 0 0 10px rgba(0,0,0,0.5);
+    padding: 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+}/* Apply these globally or to your greeting text */
+.metallic-text {
+    font-family: 'Orbitron', sans-serif; /* High-tech, futuristic look */
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Make your primary message HUGE and bold */
+.command-main {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 3.5rem; /* Large and dominant */
+    line-height: 1.2;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Make your secondary text sharp and clean */
+.sub-greeting {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 2.2rem;
+    color: #e0e0e0;
+}
+/* Neon Yellow for the Note Header */
+.neon-yellow {
+    color: #e3ff00;
+    text-shadow: 0 0 8px #e3ff00, 0 0 15px #e3ff00;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Neon Blue for the Architecture Text */
+.neon-blue {
+    color: #00f3ff;
+    text-shadow: 0 0 5px #00f3ff;
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+/* Target your text container class or element */
+.system-text {
+    /* Enlarge the text */
+    font-size: 24px;       /* Increase as needed for "Matrix" scale */
+    line-height: 1.6;      /* Adds breathing room */
+    letter-spacing: 1.5px; /* Slight tracking for terminal feel */
+    
+    /* High-visibility Color */
+    color: #00FF41;        /* The classic "Matrix" green */
+    
+    /* Ensure it remains monospaced */
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    
+    /* Subtle glow effect for "terminal" feel */
+    text-shadow: 0 0 8px #00FF41; 
+}
+
+/* Optional: Make the background deeper black for contrast */
+body {
+    background-color: #000D00; 
+}.greeting-text{
+	font-weight: bold;
+}
+.escalator-container {
+    padding: 30px;
+    border: 3px solid #00ffff; /* Brighter border */
+    background: rgba(0, 255, 255, 0.2); /* Increased opacity */
+    box-shadow: 0 0 20px #00ffff, inset 0 0 10px #00ffff;
+    color: #ffffff; /* Brighter text */
+    cursor: crosshair;
+    transition: all 0.2s ease;
+    text-align: center;
+    font-family: 'OCR-B', monospace;
+    font-weight: bold;
+}
+
+.escalator-container:hover {
+    background: rgba(0, 255, 255, 0.4); /* Stronger glow on hover */
+    box-shadow: 0 0 40px #00ffff, inset 0 0 20px #00ffff;
+    transform: scale(1.02);
+}

@@ -1,0 +1,65 @@
+<a href="#servicesAnchor" style="text-decoration: none; display: block; margin: 15px auto; max-width: 250px; text-align: center; border: 1px dashed #00ffff; padding: 8px;">
+	<span style="color: #00ffff; font-family: monospace; font-size: 11px;>[ CLICK TO ESCALATE DOWN ]</span>
+	<div style="color: #ffcc00; font-size: 18px; font-weight: bold;">🔽</div>
+</a>
+<div id="escalatorNode" onmouseenter="triggerSlowEscalatorDown()" style="margin: 15px auto 25px auto; max-width: 250px; padding: 8px; border: 1px dashed #00ffff; background: rgba(0, 255, 255, 0.05); border-radius: 4px; text-align: center; cursor: pointer; transition: all 0.3s ease; clear: both;">
+	<span id="escalatorText" style="color:#00ffff; font-family: 'OCR-B', monospace; font-size: 11px; letter-spacing: 1px; display: block; margin-bottom: 4px;">
+		[ HOVER TO ESCATE DOWN ]
+	</span>
+	<div id="escalatorArrow" style="color: #ffcc00; font-size: 18px; font-weight: bold; line-height: 1; animation: bounceEscalator 1.5s infinitw;">
+			🔽
+	</div>
+</div>
+
+<style>
+@keyframes bounceEscalator {
+	0%, 100% { transform: translateY(0); opacity: 0.4; }
+	50% { transform: translateY(5px); opacity: 1; }
+}
+#escalatorNode:hover {
+	background: rgba(0, 255, 255, 0.15) !important;
+	border-style: solid !important;
+	box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+</style>
+
+<script>
+let scrollInterval = null;
+
+function triggerSlowEscalatorDown() {
+	clearInterval(scrollInterval);
+
+	// Smooth custom interval to slow down the downward glide
+	scrollInterval = setInterval(() => {
+		const currentScroll = window.scrollY;
+		const maxScroll = document.body.scrollHeight * 0.5; // Glides smoothly to 50% down the page
+
+		if (currentScroll < maxscroll) {
+			window.scrollBy(0, 6); // Controls scroll speed step (lower = slower, 6 is nice and controlled)		
+		} else {
+			clearInterval(scrollInterval);
+		}
+	}, 10);
+}
+
+//Monitor page position to update text to "Back to Top" if clicked lower down
+window.addEventListener('scroll', () => {
+	const textNode = document.getElementById('escalatorText');
+	const arrowNode = document.getElementById('escalatorArrow');
+	const nodeBox = document.getElementById('escalatorNode');
+
+	if (!textNode || !arrowNode || !nodebox) return;
+
+	if (window.scrollY > 150) {
+		textNode.innerText = "[ BACK TO TOP ]";
+		arrowNode.innerText = "🔼";
+		nodeBox.setAttribute('onclick', 'window.scrollTo({top: 0, behavior: "smooth"})';
+		nodeBox.onmouseenter = null;
+	} else {
+		textNode.innerText = "[HOVER TO ESCALATE DOWN ]";
+		arrowNode.innerText = "🔽";
+		nodeBox.removeAttribute('onclick');
+		nodeBox.onmouseenter = triggerSlowEscalatorDown;
+	}
+});
+</script>
