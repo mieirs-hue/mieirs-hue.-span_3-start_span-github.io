@@ -1201,6 +1201,42 @@
                 width: 100%;
             }
         }
+
+        /* Footer Section Styling */
+        .site-footer {
+            margin-top: 60px;
+            padding: 30px;
+            border-top: 2px solid rgba(0, 255, 102, 0.3);
+            text-align: center;
+            font-family: 'OCR-B', monospace;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #00ffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #00ff66;
+            text-shadow: 0 0 10px rgba(0, 255, 102, 0.6);
+        }
+
+        .footer-credit {
+            color: #a3a300;
+            margin-top: 15px;
+            font-size: 11px;
+        }
     </style>
 </head>
 
@@ -1928,5 +1964,17 @@
             initAccessControls();
         });
     </script>
+
+    <!-- Legal & Compliance Footer -->
+    <div class="site-footer">
+        <div class="footer-links">
+            <a href="privacy.html">[ PRIVACY PROTOCOL ]</a>
+            <span style="color: #666;">|</span>
+            <a href="terms.html">[ SERVICE TERMS ]</a>
+        </div>
+        <div class="footer-credit">
+            &copy; 2026 UNCLE JESSE'S ALWAYS AVAILABLE LLC | System Status: OPERATIONAL
+        </div>
+    </div>
 </body>
 </html>
