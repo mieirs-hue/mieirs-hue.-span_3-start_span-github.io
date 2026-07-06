@@ -1,1280 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Uncle Jesse's Always Available LLC - UNCLE GADGET Edition</title>
- <style>
-        /* 🌌 Cyberpunk / Retro Terminal Theme Setup */
-        body {
-            background-color: #020904;
-            color: #e2e8f0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 24px;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(circle at top, rgba(0,255,8,0.08), transparent 20%),
-                        linear-gradient(180deg, rgba(0,255,8,0.05), transparent 55%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .matrix-wallpaper {
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(circle, rgba(0,255,0,0.10) 0%, transparent 40%);
-            overflow: hidden;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .matrix-wallpaper span {
-            position: absolute;
-            color: rgba(0, 255, 0, 0.12);
-            font-family: monospace;
-            white-space: nowrap;
-            animation: matrixDrop linear infinite;
-            text-shadow: 0 0 12px rgba(0,255,0,0.35);
-            font-size: 16px;
-            line-height: 1.4;
-        }
-
-        @keyframes matrixDrop {
-            0% { transform: translateY(-100%); opacity: 0; }
-            20% { opacity: 0.32; }
-            100% { transform: translateY(120vh); opacity: 0; }
-        }
-
-        .content-layer {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            max-width: 1100px;
-        }
-
-        /* 🖼️ Main Console Wrapper border framework */
-        .console-border {
-            border: 3px solid #ffaa00; 
-            border-radius: 12px;
-            padding: 30px;
-            max-width: 950px;
-            width: 100%;
-            background-color: rgba(11, 15, 25, 0.95);
-            box-shadow: 0 0 25px rgba(255, 170, 0, 0.1);
-            box-sizing: border-box;
-        }
-
-        /* 💡 Left-Side System Status Matrix Labels */
-        .matrix-status-panel {
-            float: left;
-            width: 260px;
-            font-family: 'OCR-B', monospace;
-            font-weight: bold;
-            color: #ffaa00;
-            letter-spacing: 1.5px;
-            line-height: 1.6;
-            padding-top: 15px;
-            font-size: 18px; 
-        }
-
-        /* 🎛️ Amber Display Deck */
-        .display-deck {
-            margin-left: 280px;
-            background: linear-gradient(135deg, #ff9900, #ffcc00);
-            border-radius: 8px;
-            padding: 35px;
-            color: #0b0f19;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
-            min-height: 220px;
-        }
-
-        .welcome-text {
-            font-family: 'OCR-B', monospace;
-            font-size: 15px; 
-            letter-spacing: 2px;
-            text-align: center;
-            font-weight: bold;
-            margin-top: 0;
-            margin-bottom: 25px;
-            opacity: 0.9;
-        }
-
-        /* 🎧 System Architecture Details block */
-        .architecture-note-title {
-            font-family: 'OCR-B', monospace;
-            font-size: 16px; 
-            font-weight: bold;
-            text-align: center;
-            color: #002244; 
-            letter-spacing: 1.5px;
-            margin-top: 30px;
-            margin-bottom: 10px;
-        }
-
-        .architecture-note-body {
-            font-size: 18px; 
-            line-height: 1.7;
-            text-align: center;
-            font-weight: bold;
-            max-width: 550px;
-            margin: 0 auto;
-        }
-
-        /* 🐾 System Status Indicator Arrays (Emoji Grid) */
-        .indicator-array {
-            display: flex;
-            justify-content: center;
-            gap: 35px;
-            margin-top: 25px;
-            font-size: 32px; 
-        }
-
-        /* ⚡ Vector Grid Layout */
-        .vector-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 35px;
-            clear: both;
-            width: 100%;
-        }
-
-        .vector-card {
-            border: 2px solid #00ffff;
-            border-radius: 6px;
-            padding: 20px;
-            text-align: center;
-            background: rgba(0, 255, 255, 0.02);
-            transition: all 0.3s ease;
-        }
-
-        .vector-card:hover {
-            background: rgba(0, 255, 255, 0.1);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.25);
-        }
-
-        .vector-title {
-            font-family: 'OCR-B', monospace;
-            color: #00ffff;
-            font-size: 14px; 
-            font-weight: bold;
-            letter-spacing: 1.5px;
-            margin-bottom: 10px;
-        }
-
-        .vector-desc {
-            font-family: 'OCR-B', monospace;
-            font-size: 14px; 
-            font-weight: bold;
-            color: #ffffff;
-            letter-spacing: 0.5px;
-            margin: 0;
-        }
-
-        .vector-card.active-robotics {
-            border-color: #0088ff;
-            background: rgba(0, 136, 255, 0.05);
-        }
-        .vector-card.active-robotics .vector-title {
-            color: #0088ff;
-        }
-
-        .contact-input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0 20px 0;
-            background: rgba(11, 15, 25, 0.6);
-            border: 1px solid #00ffff;
-            color: #ffffff;
-            font-family: 'OCR-B', monospace;
-            font-size: 16px;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        .contact-input:focus {
-            border-color: #00ff66;
-            outline: none;
-            box-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
-        }
-
-        .submit-button {
-            background: #ffcc00;
-            color: #0b0f19;
-            border: none;
-            padding: 15px 30px;
-            font-family: 'OCR-B', monospace;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 4px;
-            width: 100%;
-            letter-spacing: 1.5px;
-            transition: all 0.3s ease;
-        }
-
-        .submit-button:hover {
-            background: #00ff66;
-            box-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
-        }
-        /* 🟢 Neon Green Expansion Content Rooms */
-        .content-expansion-zone {
-            margin-top: 50px;
-            width: 100%;
-            max-width: 950px;
-            display: flex;
-            flex-direction: column;
-            gap: 35px;
-            box-sizing: border-box;
-        }
-/* Services & Architecture Layout */
-.terminal-section { padding: 40px 20px; color: #00ff00; font-family: 'Courier New', Courier, monospace; width: 100%; max-width: 950px; }
-.section-title { text-align: center; margin: 40px 0; letter-spacing: 4px; font-size: 2.0em; color: #fff; }
-
-/* Services & Architecture Layout */
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 15px;
-    margin-bottom: 40px;
-}
-
-/* Flicker Animation */
-@keyframes flicker {
-  0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 700%, 100% { opacity: 1; }
-  20%, 21.999%, 63%, 63.999%, 65%, 69.999% { opacity: 0.7; }
-}
-
-/* Service Card Style */
-.service-card {
-  border: 3px solid #00ff00;
-  padding: 30px;
-  background: rgba(0, 20, 0, 0.9);
-  transition: all 0.3s ease;
-  animation: flicker 4s infinite;
-}
-
-.service-card:hover {
-  border-color: #ffff00;
-  box-shadow: 0 0 20px #ffff00;
-  transform: translateY(-5px);
-  cursor: pointer;
-}
-
-.service-card h3 { margin-top: 0; color: #fff; font-size: 1.5em; }
-.price { font-weight: bold; font-size: 1.3em; color: #00ff00; margin: 15px 0; }
-.service-card ul { list-style: none; padding: 0; font-size: 1.1em; }
-.service-card li { margin-bottom: 12px; }
-
-.hourly-box {
-    border: 3px dashed #00ff00;
-    padding: 30px;
-    text-align: center;
-    font-size: 1.2em;
-}
-.blueprint-letterhead {
-    background-color: #003366;
-    background-image: linear-gradient(#ffffff22 1px, transparent 1px), 
-                      linear-gradient(90deg, #ffffff22 1px, transparent 1px);
-    background-size: 20px 20px;
-    padding: 30px;
-    border: 2px solid #00ff00;
-    color: #00ff00;
-    font-family: 'Courier New', monospace;
-    margin: 20px 0;
-}
-.blueprint-letterhead h2 { margin-top: 0; border-bottom: 1px solid #00ff00; }   
-.gadget-room-panel {
-        border: 3px solid #00ff66; 
-        border-radius: 10px;
-        padding: 30px;
-        background-color: rgba(11, 15, 25, 0.9);
-        box-shadow: 0 0 20px rgba(0, 255, 102, 0.15);
- }
-
-        .room-header {
-            font-family: 'OCR-B', monospace;
-            font-size: 18px; 
-            font-weight: bold;
-            color: #00ff66;
-            letter-spacing: 2px;
-            border-bottom: 2px solid rgba(0, 255, 102, 0.3);
-            padding-bottom: 12px;
-            margin-bottom: 20px;
-        }
-
-        .room-body {
-            font-size: 17px; 
-            line-height: 1.7;
-            color: #e2e8f0;
-        }
-
-        .motto-banner {
-            font-family: 'OCR-B', monospace;
-            font-size: 24px; 
-            font-weight: bold;
-            color: #ffcc00;
-            text-align: center;
-            letter-spacing: 3px;
-            margin: 40px 0;
-            text-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
-        }
-
-        @keyframes bounceEscalator {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(4px); }
-        }
-
-        .clearfix::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-    
-/* Lightning Calculator Styles */
-.calc-container {
-    border: 3px solid #ffff00;
-    padding: 40px;
-    margin-top: 40px;
-    text-align: center;
-    background: rgba(255, 255, 0, 0.05);
-    box-shadow: 0 0 20px rgba(255, 255, 0, 0.3);
-}
-
-.calc-title { font-size: 2.2em; color: #ffff00; margin-bottom: 30px; letter-spacing: 5px; }
-
-#complexityInput {
-    padding: 20px;
-    font-size: 1.5em;
-    width: 60%;
-    background: #000;
-    color: #0f0;
-    border: 2px solid #0f0;
-    text-align: center;
-}
-
-#calculateBtn {
-    padding: 20px 40px;
-    font-size: 1.5em;
-    background: #ffff00;
-    color: #000;
-    font-weight: bold;
-    cursor: pointer;
-    border: none;
-}
-
-#resultDisplay {
-    margin-top: 30px;
-    font-size: 2.5em;
-    color: #ffff00;
-    font-family: 'Courier New', monospace;
-    text-shadow: 0 0 15px #ffff00;
-}
-
-#backToTop {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 52px;
-    height: 52px;
-    background-color: #00ff00;
-    color: #000;
-    border-radius: 50%;
-    text-decoration: none;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    cursor: pointer;
-    box-shadow: 0px 4px 10px rgba(0, 255, 0, 0.3);
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    z-index: 1000;
-    opacity: 0.95;
-}
-
-#backToTop:hover {
-    transform: translateY(-4px);
-    opacity: 1;
-}
-</style>
-
-    <script>
-        let scrollFrameId = null;
-
-        function stopEscalator() {
-            if (scrollFrameId !== null) {
-                cancelAnimationFrame(scrollFrameId);
-                scrollFrameId = null;
-            }
-        }
-    position: relative;
-    display: inline-block;
-    cursor: crosshair;
-    color: #39ff14;
-}
-
-.tooltip-container .tooltip-text {
-    visibility: hidden;
-    opacity: 0;
-    width: 250px;
-    background-color: #000;
-    color: #39ff14;
-    text-align: left;
-    border: 1px solid #39ff14;
-    padding: 10px;
-    border-radius: 2px;
-    position: absolute;
-    z-index: 10;
-    bottom: 125%;
-    left: 50%;
-    transform: translateX(-50%);
-    transition: opacity 0.3s ease-in-out;
-}
-
-.tooltip-container:hover .tooltip-text {
-    visibility: visible;
-    opacity: 1;
-}
-</style>
- <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UNCLE JESSE'S ALWAYS AVAILABLE LLC - UNCLE GADGET Edition</title>
     <style>
-        /* 🌌 Cyberpunk / Retro Terminal Theme Setup */
-        body {
-            background-color: #0b0f19;
-            color: #e2e8f0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 24px; 
+        :root {
+            --bg: #020904;
+            --panel: rgba(11, 15, 25, 0.94);
+            --gold: #ffcc00;
+            --cyan: #00ffff;
+            --green: #00ff66;
+            --text: #e2e8f0;
         }
 
-        /* 🖼️ Main Console Wrapper border framework */
-        .console-border {
-            border: 3px solid #ffaa00; 
-            border-radius: 12px;
-            padding: 30px;
-            max-width: 950px;
-            width: 100%;
-            background-color: rgba(11, 15, 25, 0.95);
-            box-shadow: 0 0 25px rgba(255, 170, 0, 0.1);
+        * {
             box-sizing: border-box;
         }
 
-        /* 💡 Left-Side System Status Matrix Labels */
-        .matrix-status-panel {
-            float: left;
-            width: 260px;
-            font-family: 'OCR-B', monospace;
-            font-weight: bold;
-            color: #ffaa00;
-            letter-spacing: 1.5px;
-            line-height: 1.6;
-            padding-top: 15px;
-            font-size: 18px; 
+        body {
+            margin: 0;
+            padding: 24px;
+            background:
+                radial-gradient(circle at top, rgba(0, 255, 102, 0.08), transparent 24%),
+                linear-gradient(180deg, #020904, #05110b 60%, #020904);
+            color: var(--text);
+            font-family: "Segoe UI", Arial, sans-serif;
         }
 
-        /* 🎛️ Amber Display Deck */
-        .display-deck {
-            margin-left: 280px;
-            background: linear-gradient(135deg, #ff9900, #ffcc00);
-            border-radius: 8px;
-            padding: 35px;
-            color: #0b0f19;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
-            min-height: 220px;
-        }
-
-        .welcome-text {
-            font-family: 'OCR-B', monospace;
-            font-size: 15px; 
-            letter-spacing: 2px;
-            text-align: center;
-            font-weight: bold;
-            margin-top: 0;
-            margin-bottom: 25px;
-            opacity: 0.9;
-        }
-
-        /* 🎧 System Architecture Details block */
-        .architecture-note-title {
-            font-family: 'OCR-B', monospace;
-            font-size: 16px; 
-            font-weight: bold;
-            text-align: center;
-            color: #002244; 
-            letter-spacing: 1.5px;
-            margin-top: 30px;
-            margin-bottom: 10px;
-        }
-
-        .architecture-note-body {
-            font-size: 18px; 
-            line-height: 1.7;
-            text-align: center;
-            font-weight: bold;
-            max-width: 550px;
+        .shell {
+            width: min(1080px, 100%);
             margin: 0 auto;
         }
 
-        /* 🐾 System Status Indicator Arrays (Emoji Grid) */
-        .indicator-array {
-            display: flex;
-            justify-content: center;
-            gap: 35px;
-            margin-top: 25px;
-            font-size: 32px; 
+        .console {
+            border: 3px solid #ffaa00;
+            border-radius: 14px;
+            padding: 28px;
+            background: var(--panel);
+            box-shadow: 0 0 20px rgba(255, 170, 0, 0.15);
         }
 
-        /* ⚡ Vector Grid Layout */
-        .vector-grid {
+        .title {
+            margin: 0 0 12px;
+            text-align: center;
+            color: var(--gold);
+            font-family: "Courier New", monospace;
+            letter-spacing: 1px;
+            font-size: clamp(1.6rem, 3vw, 2.6rem);
+        }
+
+        .status {
+            text-align: center;
+            color: var(--cyan);
+            margin: 0 0 22px;
+            font-family: "Courier New", monospace;
+        }
+
+        .actions {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 35px;
-            clear: both;
-            width: 100%;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
         }
 
-        .vector-card {
-            border: 2px solid #00ffff;
-            border-radius: 6px;
-            padding: 20px;
-            text-align: center;
-            background: rgba(0, 255, 255, 0.02);
-            transition: all 0.3s ease;
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 54px;
+            padding: 12px 16px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 800;
+            border-radius: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid transparent;
         }
 
-        .vector-card:hover {
-            background: rgba(0, 255, 255, 0.1);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.25);
+        .btn-primary {
+            background: linear-gradient(135deg, #ffcc00, #ff9f1c);
+            color: #111;
         }
 
-        .vector-title {
-            font-family: 'OCR-B', monospace;
-            color: #00ffff;
-            font-size: 14px; 
-            font-weight: bold;
-            letter-spacing: 1.5px;
-            margin-bottom: 10px;
+        .btn-secondary {
+            background: rgba(0, 255, 255, 0.08);
+            color: var(--cyan);
+            border-color: rgba(0, 255, 255, 0.3);
         }
 
-        .vector-desc {
-            font-family: 'OCR-B', monospace;
-            font-size: 14px; 
-            font-weight: bold;
-            color: #ffffff;
-            letter-spacing: 0.5px;
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+        }
+
+        .card {
+            border: 2px solid rgba(0, 255, 255, 0.35);
+            border-radius: 8px;
+            padding: 16px;
+            background: rgba(0, 255, 255, 0.03);
+        }
+
+        .card h3 {
+            margin: 0 0 8px;
+            font-size: 0.95rem;
+            color: var(--cyan);
+            letter-spacing: 0.08em;
+            font-family: "Courier New", monospace;
+        }
+
+        .card p {
             margin: 0;
+            line-height: 1.6;
         }
 
-        .vector-card.active-robotics {
-            border-color: #0088ff;
-            background: rgba(0, 136, 255, 0.05);
-        }
-        .vector-card.active-robotics .vector-title {
-            color: #0088ff;
-        }
-
-        .contact-input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0 20px 0;
-            background: rgba(11, 15, 25, 0.6);
-            border: 1px solid #00ffff;
-            color: #ffffff;
-            font-family: 'OCR-B', monospace;
-            font-size: 16px;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        .contact-input:focus {
-            border-color: #00ff66;
-            outline: none;
-            box-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
-        }
-
-        .submit-button {
-            background: #ffcc00;
-            color: #0b0f19;
-            border: none;
-            padding: 15px 30px;
-            font-family: 'OCR-B', monospace;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 4px;
-            width: 100%;
-            letter-spacing: 1.5px;
-            transition: all 0.3s ease;
-        }
-
-        .submit-button:hover {
-            background: #00ff66;
-            box-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
-        }
-        /* 🟢 Neon Green Expansion Content Rooms */
-        .content-expansion-zone {
-            margin-top: 50px;
-            width: 100%;
-            max-width: 950px;
-            display: flex;
-            flex-direction: column;
-            gap: 35px;
-            box-sizing: border-box;
-        }
-/* Services & Architecture Layout */
-.terminal-section { padding: 40px 20px; color: #00ff00; font-family: 'Courier New', Courier, monospace; width: 100%; max-width: 950px; }
-.section-title { text-align: center; margin: 40px 0; letter-spacing: 4px; font-size: 2.0em; color: #fff; }
-
-/* Services & Architecture Layout */
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 15px;
-    margin-bottom: 40px;
-}
-
-/* Flicker Animation */
-@keyframes flicker {
-  0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 700%, 100% { opacity: 1; }
-  20%, 21.999%, 63%, 63.999%, 65%, 69.999% { opacity: 0.7; }
-}
-
-/* Service Card Style */
-.service-card {
-  border: 3px solid #00ff00;
-  padding: 30px;
-  background: rgba(0, 20, 0, 0.9);
-  transition: all 0.3s ease;
-  animation: flicker 4s infinite;
-}
-
-.service-card:hover {
-  border-color: #ffff00;
-  box-shadow: 0 0 20px #ffff00;
-  transform: translateY(-5px);
-  cursor: pointer;
-}
-
-.service-card h3 { margin-top: 0; color: #fff; font-size: 1.5em; }
-.price { font-weight: bold; font-size: 1.3em; color: #00ff00; margin: 15px 0; }
-.service-card ul { list-style: none; padding: 0; font-size: 1.1em; }
-.service-card li { margin-bottom: 12px; }
-
-.hourly-box {
-    border: 3px dashed #00ff00;
-    padding: 30px;
-    text-align: center;
-    font-size: 1.2em;
-}
-.blueprint-letterhead {
-    background-color: #003366;
-    background-image: linear-gradient(#ffffff22 1px, transparent 1px), 
-                      linear-gradient(90deg, #ffffff22 1px, transparent 1px);
-    background-size: 20px 20px;
-    padding: 30px;
-    border: 2px solid #00ff00;
-    color: #00ff00;
-    font-family: 'Courier New', monospace;
-    margin: 20px 0;
-}
-.blueprint-letterhead h2 { margin-top: 0; border-bottom: 1px solid #00ff00; }   
-.gadget-room-panel {
-        border: 3px solid #00ff66; 
-        border-radius: 10px;
-        padding: 30px;
-        background-color: rgba(11, 15, 25, 0.9);
-        box-shadow: 0 0 20px rgba(0, 255, 102, 0.15);
- }
-
-        .room-header {
-            font-family: 'OCR-B', monospace;
-            font-size: 18px; 
-            font-weight: bold;
-            color: #00ff66;
-            letter-spacing: 2px;
-            border-bottom: 2px solid rgba(0, 255, 102, 0.3);
-            padding-bottom: 12px;
-            margin-bottom: 20px;
-        }
-
-        .room-body {
-            font-size: 17px; 
-            line-height: 1.7;
-            color: #e2e8f0;
-        }
-
-        .motto-banner {
-            font-family: 'OCR-B', monospace;
-            font-size: 24px; 
-            font-weight: bold;
-            color: #ffcc00;
+        .footer {
+            margin-top: 18px;
             text-align: center;
-            letter-spacing: 3px;
-            margin: 40px 0;
-            text-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+            font-family: "Courier New", monospace;
+            color: var(--green);
         }
-
-        @keyframes bounceEscalator {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(4px); }
-        }
-
-        .clearfix::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-    
-/* Lightning Calculator Styles */
-.calc-container {
-    border: 3px solid #ffff00;
-    padding: 40px;
-    margin-top: 40px;
-    text-align: center;
-    background: rgba(255, 255, 0, 0.05);
-    box-shadow: 0 0 20px rgba(255, 255, 0, 0.3);
-}
-
-.calc-title { font-size: 2.2em; color: #ffff00; margin-bottom: 30px; letter-spacing: 5px; }
-
-#complexityInput {
-    padding: 20px;
-    font-size: 1.5em;
-    width: 60%;
-    background: #000;
-    color: #0f0;
-    border: 2px solid #0f0;
-    text-align: center;
-}
-
-#calculateBtn {
-    padding: 20px 40px;
-    font-size: 1.5em;
-    background: #ffff00;
-    color: #000;
-    font-weight: bold;
-    cursor: pointer;
-    border: none;
-}
-
-#resultDisplay {
-    margin-top: 30px;
-    font-size: 2.5em;
-    color: #ffff00;
-    font-family: 'Courier New', monospace;
-    text-shadow: 0 0 15px #ffff00;
-}
-</style>
-
-    <script>
-        let scrollFrameId = null;
-
-        function stopEscalator() {
-            if (scrollFrameId !== null) {
-                cancelAnimationFrame(scrollFrameId);
-                scrollFrameId = null;
-            }
-        }
-
-        function startEscalator(destination) {
-            stopEscalator();
-            const startY = window.scrollY || document.documentElement.scrollTop || 0;
-            const maxY = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-            const safeDestination = Math.min(maxY, Math.max(0, destination));
-
-            if (safeDestination === startY) {
-                return;
-            }
-
-            const distance = safeDestination - startY;
-            const durationMs = Math.abs(distance) * 1.5;
-            const pixelsPerMs = distance / durationMs;
-            const startTime = performance.now();
-
-            const step = (now) => {
-                const elapsed = now - startTime;
-                const nextY = startY + pixelsPerMs * elapsed;
-
-                window.scrollTo({ top: nextY, behavior: 'auto' });
-
-                if (elapsed < durationMs) {
-                    scrollFrameId = requestAnimationFrame(step);
-                } else {
-                    window.scrollTo({ top: safeDestination, behavior: 'auto' });
-                    stopEscalator();
-                }
-            };
-
-            scrollFrameId = requestAnimationFrame(step);
-        }
-
-        function getTopEscalatorDestination() {
-            const form = document.getElementById('cyberContactForm');
-            if (form) {
-                return Math.max(0, form.offsetTop - 120);
-            }
-            return Math.max(0, (document.documentElement.scrollHeight - window.innerHeight) / 2);
-        }
-
-        function getBottomEscalatorDestination() {
-            return Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-        }
-
-        function updateEscalatorUI() {
-            const topWidget = document.getElementById('escalatorNode');
-            const topText = document.getElementById('escalatorText');
-            const topArrow = document.getElementById('escalatorArrow');
-            const bottomWidget = document.getElementById('escalatorNodeBottom');
-            const bottomText = document.getElementById('escalatorTextBottom');
-            const bottomArrow = document.getElementById('escalatorArrowBottom');
-
-            if (topWidget && topText && topArrow) {
-                topText.innerText = "[ HOVER TO ESCALATE DOWN ]";
-                topArrow.innerText = "▼";
-                topWidget.onmouseenter = () => startEscalator(getTopEscalatorDestination());
-            }
-
-            if (bottomWidget && bottomText && bottomArrow) {
-                bottomText.innerText = "[ HOVER TO PROCEED DOWN ]";
-                bottomArrow.innerText = "▼";
-                bottomWidget.onmouseenter = () => startEscalator(getBottomEscalatorDestination());
-            }
-        }
-
-        window.addEventListener('DOMContentLoaded', updateEscalatorUI);
-
-// ⚡ BACKGROUND TRANSMISSION & ANIMATION CONTROLLER
-        window.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('cyberContactForm');
-            const btn = document.getElementById('transmitBtn');
-            const successPanel = document.getElementById('successMessage');
-
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault(); // Stop the page from reloading
-                    
-                    // Update button UI to show active processing transmission
-                    btn.innerText = "BEAMING SIGNALS...";
-                    btn.style.background = "#00ffff";
-                    btn.style.color = "#0b0f19";
-
-                    const formData = new FormData(form);
-                    const object = Object.fromEntries(formData);
-                    const json = JSON.stringify(object);
-
-                    // Secretly ship data off to the email handler backend
-      // Force immediate visual uplink confirmation sequence without server check
-        // Hide the input form seamlessly
-        form.style.display = 'none';
-        // Reveal the sleek custom "UPLINK ESTABLISHED" panel
-        successPanel.style.display = 'block';
-    });
-}
-});
-// 🔊 AUDIO ENGINE: Triggers background stream on the absolute first click anywhere on screen
-        function initializeAudioEngine() {
-            const audioTrack = document.getElementById('terminalAudio');
-            
-            // Attempt autoplay cleanly
-            audioTrack.play().then(() => {
-                console.log("Audio streaming established automatically.");
-            }).catch(error => {
-                console.log("Browser blocking automatic playback. Awaiting first interactive click event.");
-                
-                // Fallback: Listen to the very first click on the document body
-                const startAudioOnInteraction = () => {
-                    audioTrack.play();
-                    // Instantly detach listener so subsequent clicks don't reset the track
-                    document.removeEventListener('click', startAudioOnInteraction);
-                };
-                document.addEventListener('click', startAudioOnInteraction);
-            });
-        }
-
-        // Initialize audio engine immediately when the page architecture loads
-        window.addEventListener('DOMContentLoaded', initializeAudioEngine);
-    </script>
-<link rel="stylesheet" href="style.css">
+    </style>
 </head>
-
 <body>
-    <div class="matrix-wallpaper" id="matrixWallpaper"></div>
-    <div class="content-layer">
-    <nav class="status-bar">
-        <div class="status-item">SYSTEM: ONLINE</div>
-        <div class="status-item">LATENCY: 4ms</div>
-        <div class="status-item">USER: AUTHORIZED</div>
-        <div class="status-item">SYSTEM_CLOCK: <span id="clock"></span></div>
-    </nav>
-  
-<div class="flying-logo">
-    <img src="UNCLEJESSELOGO.jpg" alt="UNCLE JESSE'S ALWAYS AVAILABLE LLC Logo" style="width: 100%;">
-</div>
-<style>
-    .action-block {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 30px;
-    }
+    <main class="shell">
+        <section class="console">
+            <h1 class="title">UNCLE GADGET COMMAND CONSOLE</h1>
+            <p class="status">SYSTEM ONLINE // CLEAN BUILD ACTIVE</p>
 
-    .terminal-btn {
-        background-color: #ffcc00;
-        color: #0b0f19;
-        border: none;
-        padding: 16px 32px;
-        font-family: 'Courier New', monospace;
-        font-weight: 900;
-        font-size: 1.3em;
-        cursor: pointer;
-        text-transform: uppercase;
-        border-radius: 6px;
-        transition: all 0.3s ease;
-        box-shadow: 0 6px 12px rgba(0,0,0,0.5);
-    }
-
-    .terminal-btn:hover {
-        background-color: #ffffff;
-        transform: translateY(-4px);
-        box-shadow: 0 8px 16px rgba(0,0,0,0.6);
-    }
-</style>
-    <div class="console-border clearfix">
-        
-         <!-- 📡 Top Widget Station Control Unit -->
-        <header>
-            <div id="escalatorNode" style="margin: 0 auto 30px auto; max-width: 350px; padding: 12px; border: 2px dashed #00ffff; background: rgba(0, 255, 255, 0.05); border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.3s ease; clear: both;">
-                <span id="escalatorText" style="color: #00ffff; font-family: 'OCR-B', monospace; font-size: 13px; font-weight: bold; letter-spacing: 1px; display: block; margin-bottom: 6px;">
-                    [ HOVER TO ESCALATE DOWN ]
-                </span>
-                <div id="escalatorArrow" style="color: #ffcc00; font-size: 22px; font-weight: bold; line-height: 1; animation: bounceEscalator 1.5s infinite;">▼</div>
-</header>
-<!-- Mission Profile Section -->
-<div class="mission-profile-container robot-assembly" style="padding: 20px; border: 1px solid #333;">
-    <a href="jpm.html" target="_blank" class="mission-btn">Mission Profile</a>
-    <h1 style="color: #ffcc00; text-align: center; font-family: 'Courier New', monospace; font-size: 3em; margin: 20px 0;">
-        UNCLE JESSE'S ALWAYS AVAILABLE LLC
-    </h1>
-</div>
-        <!-- 📟 Left Telemetry Status Matrix -->
-        <div class="matrix-status-panel robot-assembly">
-            MATRIX_STATUS:<br>
-            SUNSHINE<br>
-            &ORGANIC SYNC
-        </div>
-
-         <!-- Amber Processing Core Deck -->
-        <div class="display-deck robot-assembly">
-    
-    <!-- The greeting, using your sharp mono style -->
-    <div class="sub-greeting" style="margin-bottom: 20px;">
-        [ SYSTEM_GREETING ] HI,WELCOME TO MY OFFICE.<br>
-         TAKE THE CONTROLS<br>
-	ALWAYS WELCOME.
-    </div>
-
-    <!-- The Star of the Page: High-impact gold/metallic effect -->
-    <div class="metallic-text command-main">
-        COMMAND CENTER ACTIVE.
-    </div>
-
-    <!-- The invitation, using the clean mono style -->
-    <div class="sub-greeting">
-        PLEASE, STEP INTO MY OFFICE.
-    </div>
-
-</div>
-         <!-- 🔈 Audio Stream Deck Shell Architecture -->
-            <div style="max-width: 450px; margin: 0 auto 20px auto; text-align: center;">
-                <span style="font-family: 'OCR-B', monospace; font-size: 22px; font-weight: bold; color: rgb(178, 239, 11); display: block; margin-bottom: 8px; letter-spacing: 1px;">
-                    [ TERMINAL BACKGROUND STREAM ACTIVE ]
-                </span>
-                <!-- Added looped background ambient audio element -->
-                <audio id="terminalAudio" controls loop style="width: 100%; height: 36px;">
-                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-                </audio>
+            <div class="actions">
+                <a class="btn btn-primary" href="appointment.html">Start Project</a>
+                <a class="btn btn-secondary" href="estimator.html">Estimate Complexity</a>
+                <a class="btn btn-secondary" href="jpm.html">Mission Profile</a>
+                <a class="btn btn-secondary" href="index.html">Return To Main Command</a>
             </div>
 
-            <div class="architecture-note-title">[ SYSTEM ARCHITECTURE NOTE ]</div>
-            <div class="architecture-note-body">
-                Where automated infrastructure execution meets pristine wilderness calibration. Nature kindly mixes with our advanced robotics arrays and precision mechanical technical services environments to maintain peak site parameters.
+            <div class="grid">
+                <article class="card">
+                    <h3>Vector 01</h3>
+                    <p>Diagnostics and digital design systems.</p>
+                </article>
+                <article class="card">
+                    <h3>Vector 02</h3>
+                    <p>HVAC and mechanical operations support.</p>
+                </article>
+                <article class="card">
+                    <h3>Vector 03</h3>
+                    <p>Automation and robotics calibration workflows.</p>
+                </article>
             </div>
 
-<div class="action-block" style="text-align: center; margin: 20px 0;">
-    	<a href="appointment.html" class="terminal-btn">[ START PROJECT ]</a>
-	<span style="color: #00ff00; margin: 0 20px; font-weight: bold;">||</span>
-	<a href="estimator.html" class="terminal-btn" style="text-decoration: none;">► ESTIMATE COMPLEXITY UPLINK ◄</a>
-</div>
-            <!-- 🦅 Live Ecosystem Arrays (Eagles & Companions) -->
-            <div class="indicator-array">
-                <span>🦅</span>
-                <span>🐈</span>
-                <span>☀️</span>
-                <span>🤖</span>
-            </div>
-        </div>
-
-        <!-- ⚡ Triple Vector Navigation Grid Matrix -->
-        <div class="vector-grid">
-            <div class="vector-card">
-                <div class="vector-title">VECTOR // 01</div>
-                <div class="vector-desc">DIAGNOSTICS & DESIGN</div>
-            </div>
-            <div class="vector-card">
-                <div class="vector-title">VECTOR // 02</div>
-                <div class="vector-desc">HVAC & AUTOMOTIVE</div>
-            </div>
-            <div class="vector-card active-robotics">
-                <div class="vector-title">VECTOR // 03</div>
-                <div class="vector-desc">ACTIVATE ROBOTICS</div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- 🟢 NEON GREEN ROOM EXPANSIONS -->
-    <div class="content-expansion-zone">
-        
-        <!-- ROOM 01 -->
-        <div class="gadget-room-panel">
-            <div class="room-header">GO-GO-GADGET // DIAGNOSTICS & DESIGN</div>
-            <div class="room-body">
-                Deploying custom digital engineering architectures under the UNCLE JESSE'S ALWAYS AVAILABLE LLC system network. High-level multi-vector consultation setups tracking digital design execution from conception straight through assembly. 
-            </div>
-        </div>
-
-        <!-- ROOM 02 -->
-        <div class="gadget-room-panel">
-            <div class="room-header">GO-GO-GADGET // HVAC & MECHANICAL OPERATIONS</div>
-            <div class="room-body">
-                Advanced electronic principles and refrigeration technical expertise applied straight to high-demand infrastructure execution. Keeping environmental parameters strictly optimized while maintaining operational records for heavy-duty structural maintenance projects.
-            </div>
-        </div>
-
-        <!-- ROOM 03 -->
-        <div class="gadget-room-panel">
-            <div class="room-header">GO-GO-GADGET // ACTIVATE ROBOTICS</div>
-            <div class="room-body">
-                Calibrating high-precision automated systems. Establishing pristine, robot-ready environments utilizing custom stencils, tracking metrics, and sharp laser alignment arrays to ensure clean hardware coordination.
-            </div>
-        </div>
-
-        <!-- 🟡 THE UNCLE GADGET OFFICIAL MOTTO CLOSURE -->
-        <div class="motto-banner">
-            "YOU MAY COUNT ON US..ALWAYS!"
-        </div>
-<!-- 📡 GO-GO-GADGET // COMMUNICATIONS PORTAL -->
-        <div class="contact-form-container">
-            <div class="room-header">SECURE UPLINK // GET IN TOUCH WITH UNCLE JESSE</div>
-            <p style="color: #cbd5e1; margin-bottom: 20px; line-height: 1.6;">
-                Ready to calibrate your infrastructure, deploy digital design architectures, or spin up automated tracking? Drop your operational parameters below to establish a direct secure link.
-            </p>
-            	<!-- 📡 WE3FORMS BACKEND INTEGRATION ENGINE -->
-            <form id="cyberContactForm" action="https://formbold.com/s/3LaQv" method="POST">
-                <input type="hidden" name="_next" value="thank_you.html">
-	    <form id="cyberContactForm" action="https://formbold.com/s/6QXVI" method="POST">
-                <input type="hidden" name="_next" value="thank_you.html">
-                <label style="color: #ffcc00; font-family: 'OCR-B', monospace; font-size: 14px; font-weight: bold;">[ IDENTIFY YOUR IDENTITY / FIRM ]</label>
-                <input type="text" id="name" name="name" class="contact-input" placeholder="Enter name or agency..." required>
-
-                <label style="color: #ffcc00; font-family: 'OCR-B', monospace; font-size: 14px; font-weight: bold;">[ SECURE RETURN UPLINK EMAIL ]</label>
-                <input type="email" id="email" name="email" class="contact-input" placeholder="name@domain.com" required>
-
-                <label style="color: #ffcc00; font-family: 'OCR-B', monospace; font-size: 14px; font-weight: bold;">[ MISSION DESCRIPTION / OBJECTIVES ]</label>
-                <textarea id="message" name="message" class="contact-input" rows="5" placeholder="Outline your technical requirements or system parameters..." required style="resize: vertical;"></textarea>
-
-                <button type="submit" id="transmitBtn" class="submit-button">TRANSMIT UPLINK PARAMETERS</button>
-            </form>
-
-            <p style="color: #cbd5e1; margin-top: 12px; font-size: 0.9em; line-height: 1.4;">
-                Submissions are sent to <strong>mrmieirs@gmail.com</strong> via Formbold. If the first message does not arrive, confirm your email address in your Formbold dashboard.
-            </p>
-
-            <!-- 🟢 HIDDEN ANIMATION PANEL (Fires on Success) -->
-            <div id="successMessage" style="display: none; text-align: center; padding: 40px 10px;">
-                <div style="font-family: 'OCR-B', monospace; font-size: 28px; color: #00ff66; font-weight: bold; letter-spacing: 2px; margin-bottom: 15px; text-shadow: 0 0 15px rgba(0,255,102,0.6);">
-                    ▲ UPLINK ESTABLISHED ▲
-                </div>
-                <div style="font-family: 'OCR-B', monospace; font-size: 16px; color: #00ffff; font-weight: bold; letter-spacing: 1px;">
-                    MISSION PARAMETERS BEAMED SECURELY TO THE CONSOLE RECEPTACLE.
-                </div>
-            </div>
-        </div>
-        <div class="service-card">
-            <h3>MY DIGITAL ROADMAP</h3>
-            <p class="price">STRATEGIC UPLINK</p>
-            <ul>
-                <li class="tooltip-container">
-                    Strategic planning
-                    <span class="tooltip-text">A strategic long-term plan mapping out your digital transformation and technical growth milestones.</span>
-                </li>
-                <li class="tooltip-container">
-                    Execution architecture
-                    <span class="tooltip-text">Tailoring your roadmap to ensure measurable execution and delivery.</span>
-                </li>
-                <li class="tooltip-container">
-                    Growth sustainment
-                    <span class="tooltip-text">Ongoing monitoring and refinement so your roadmap stays aligned with your goals.</span>
-                </li>
-            </ul>
-        </div>
-        <div class="service-card">
-            <h3>INFRASTRUCTURE DEPLOY</h3>
-            <p class="price">$3,500 – $5,000</p>
-            <ul>
-                <li class="tooltip-container">
-                    System Deployment
-                    <span class="tooltip-text">Full-stack implementation of your custom server architecture and software environments.</span>
-                </li>
-                <li class="tooltip-container">
-    Automated Monitoring
-    <span class="tooltip-text">Continuous, real-time surveillance of system health with proactive alerting for incident prevention.</span>
-</li>
-                <li class="tooltip-container">
-    Optimization Testing
-    <span class="tooltip-text">Stress-testing your systems under simulated loads to ensure peak performance and reliability.</span>
-</li>
-            </ul>
-        </div>
-        <div class="service-card">
-            <h3>ENTERPRISE ARCHITECTURE</h3>
-            <p class="price">$7,500+</p>
-            <ul>
-                <li class="tooltip-container">
-    Full Structural Design
-    <span class="tooltip-text">End-to-end framework engineering designed for maximum scalability and data integrity.</span>
-</li>
-                <li class="tooltip-container">
-    Custom Auto-Scripting
-    <span class="tooltip-text">Tailor-made automation scripts designed to eliminate manual bottlenecks and accelerate recurring system tasks.</span>
-</li>
-                <li class="tooltip-container">
-    30-Day Optimization
-    <span class="tooltip-text">A full month of fine-tuning, bug squashing, and performance refinement post-launch.</span>
-</li>
-            </ul>
-        </div>
-    </div>
-	<h2>UNCLE JESSE'S ALWAYS AVAILABLE LLC</h2>
-	<p><strong>Consulting:</strong> $150/hr Standard | $200/hr Accelerated Uplink</p>
-       <p><em>*All fixed-price projects include a mandatory 15-20% structural buffer.</em></p>
-</div>
-<div class="blueprint-letterhead">
-
-<section class="calc-container">
-	<h2 class="calc-title">▲ PROJECT COMPLEXITY ESTIMATOR ▲</h2>
-        <input type="number" id="complexityInput" placeholder="Enter Projected Hours (1-500)">
-        <button id="calculateBtn" onclick="runDiagnostics()">CALCULATE UPLINK (click here)</button>
-        <div id="resultDisplay" style="margin-top: 15px; padding-top: 10px; border-top: 1px solid #00ff00;">
-        SYSTEM READY
-    </div>
-</div>
-</section>
-
-<script>
-function runDiagnostics() {
-    const hours = document.getElementById('complexityInput').value;
-    const display = document.getElementById('resultDisplay');
-
-    if (hours === "") {
-        display.innerHTML = "ERROR: INPUT REQUIRED";
-        return;
-    }
-
-    display.innerHTML = "⚡ ANALYZING UPLINK... ⚡";
-
-    setTimeout(() => {
-        const rate = 150;
-        const total = hours * rate;
-
-        display.innerHTML = `
-            <div style="font-family: 'Courier New', monospace; color: #00ff00;">
-                <p><strong>ANALYSIS LOG:</strong></p>
-                <p>${hours} hours @ $${rate}/hr = <strong>$${total.toLocaleString()}</strong></p>
-                <p><em>*Structural integrity verified.</em></p>
-            </div>
-        `;
-    }, 1500);
-}
-
-function updateClock() {
-    const clock = document.getElementById('clock');
-    if (clock) {
-        clock.innerText = new Date().toLocaleTimeString();
-    }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    updateClock();
-    setInterval(updateClock, 1000);
-
-    const backToTopButton = document.getElementById('backToTop');
-    if (backToTopButton) {
-        backToTopButton.addEventListener('click', (event) => {
-            event.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        const toggleBackToTopVisibility = () => {
-            backToTopButton.style.display = window.scrollY > 300 ? 'flex' : 'none';
-        };
-
-        toggleBackToTopVisibility();
-        window.addEventListener('scroll', toggleBackToTopVisibility, { passive: true });
-    }
-
-    const swarmContainer = document.body;
-    for (let i = 0; i < 100; i++) {
-        const bot = document.createElement('div');
-        bot.className = 'worker-bot';
-        bot.style.top = (Math.random() * 90) + 'vh';
-        bot.style.left = (Math.random() * 90) + 'vw';
-        bot.style.animationDuration = (Math.random() * 10 + 5) + 's';
-        swarmContainer.appendChild(bot);
-    }
-
-    const matrixWallpaper = document.getElementById('matrixWallpaper');
-    const codeLines = ['010101', '011010', '101100', '110011', '001110', '100101', '111000', '000111'];
-    const characters = '01<>-+=\/[]{}()*&^%$#@!';
-
-    for (let i = 0; i < 55; i++) {
-        const span = document.createElement('span');
-        const textLength = Math.floor(Math.random() * 16) + 10;
-        let chars = '';
-        for (let j = 0; j < textLength; j++) {
-            chars += characters[Math.floor(Math.random() * characters.length)];
-        }
-        span.textContent = chars;
-        span.style.left = Math.random() * 100 + 'vw';
-        span.style.animationDuration = (Math.random() * 12 + 8) + 's';
-        span.style.animationDelay = (Math.random() * 10) + 's';
-        span.style.opacity = 0.2 + Math.random() * 0.25;
-        span.style.fontSize = (10 + Math.random() * 14) + 'px';
-        matrixWallpaper.appendChild(span);
-    }
-});
-</script>
-<a href="#" id="backToTop" title="Back to Top" style="display: none;">▲</a>
-<div id="page-end-marker" style="padding-bottom: 50px;"></div>
-    </div>
+            <p class="footer">You may count on us, always.</p>
+        </section>
+    </main>
 </body>
 </html>

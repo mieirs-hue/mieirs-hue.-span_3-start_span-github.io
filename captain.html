@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Captain's Console</title>
+	<style>
+		:root {
+			--bg: #020904;
+			--panel: rgba(6, 16, 14, 0.94);
+			--line: rgba(0, 255, 102, 0.24);
+			--green: #00ff66;
+			--cyan: #00f2ff;
+			--gold: #ffcc00;
+			--text: #d9fbe6;
+			--muted: #8bb69c;
+		}
+
+		* { box-sizing: border-box; }
+
+		html, body { min-height: 100%; margin: 0; }
+
+		body {
+			font-family: "Segoe UI", Arial, sans-serif;
+			color: var(--text);
+			background:
+				radial-gradient(circle at top, rgba(0, 255, 102, 0.08), transparent 24%),
+				radial-gradient(circle at 80% 20%, rgba(0, 242, 255, 0.08), transparent 18%),
+				linear-gradient(180deg, #020904 0%, #04110b 52%, #010503 100%);
+			overflow-x: hidden;
+		}
+
+		body::before {
+			content: "";
+			position: fixed;
+			inset: 0;
+			background-image: linear-gradient(rgba(0, 255, 102, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 102, 0.04) 1px, transparent 1px);
+			background-size: 48px 48px;
+			mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent 85%);
+			pointer-events: none;
+		}
+
+		.shell {
+			min-height: 100vh;
+			display: grid;
+			place-items: center;
+			padding: 32px 18px;
+			position: relative;
+			z-index: 1;
+		}
+
+		.console {
+			width: min(980px, 100%);
+			border: 1px solid var(--line);
+			border-radius: 24px;
+			background: linear-gradient(180deg, rgba(8, 18, 15, 0.96), rgba(3, 8, 6, 0.98));
+			box-shadow: 0 0 0 1px rgba(0, 255, 102, 0.08), 0 24px 70px rgba(0, 0, 0, 0.55), inset 0 0 50px rgba(0, 255, 102, 0.06);
+			overflow: hidden;
+		}
+
+		.topbar {
+			display: flex;
+			justify-content: space-between;
+			gap: 12px;
+			align-items: center;
+			flex-wrap: wrap;
+			padding: 18px 24px;
+			border-bottom: 1px solid var(--line);
+			background: rgba(0, 0, 0, 0.18);
+		}
+
+		.badge, .status {
+			font-family: "Share Tech Mono", "Consolas", monospace;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+		}
+
+		.badge { color: var(--gold); }
+		.status { color: var(--green); }
+
+		.hero {
+			padding: 30px 24px 18px;
+			display: grid;
+			gap: 12px;
+		}
+
+		.title {
+			margin: 0;
+			font-size: clamp(2rem, 4vw, 4.4rem);
+			line-height: 0.95;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			font-weight: 900;
+			color: #f4ffe9;
+			text-shadow: 0 0 16px rgba(0, 255, 102, 0.25), 0 0 32px rgba(0, 242, 255, 0.12);
+		}
+
+		.subtitle {
+			max-width: 72ch;
+			margin: 0;
+			color: var(--muted);
+			font-family: "Share Tech Mono", "Consolas", monospace;
+			font-size: 1rem;
+			line-height: 1.7;
+		}
+
+		.panel {
+			margin: 20px 24px 24px;
+			border: 1px solid rgba(0, 255, 102, 0.24);
+			border-radius: 20px;
+			background: var(--panel);
+			padding: 22px;
+			display: grid;
+			gap: 16px;
+		}
+
+		.gate-row, .portal-links {
+			display: grid;
+			gap: 12px;
+		}
+
+		.gate-row {
+			grid-template-columns: 1fr auto;
+		}
+
+		.password {
+			min-width: 0;
+			border: 1px solid rgba(0, 242, 255, 0.24);
+			background: rgba(1, 10, 8, 0.92);
+			color: #fff;
+			border-radius: 14px;
+			padding: 15px 16px;
+			font-size: 1rem;
+			outline: none;
+		}
+
+		.password:focus {
+			border-color: rgba(0, 255, 102, 0.7);
+			box-shadow: 0 0 0 3px rgba(0, 255, 102, 0.12);
+		}
+
+		.submit, .portal-link, .secondary-link {
+			border: none;
+			border-radius: 14px;
+			padding: 14px 18px;
+			font-weight: 800;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			text-decoration: none;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+			cursor: pointer;
+		}
+
+		.submit {
+			background: linear-gradient(135deg, var(--gold), #ff9f1c);
+			color: #06120d;
+		}
+
+		.portal {
+			display: none;
+			gap: 18px;
+		}
+
+		.portal.active { display: grid; }
+
+		.portal-title {
+			margin: 0;
+			font-size: 1.1rem;
+			color: var(--green);
+			font-family: "Share Tech Mono", "Consolas", monospace;
+			text-transform: uppercase;
+			letter-spacing: 0.14em;
+		}
+
+		.portal-links {
+			grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		}
+
+		.portal-link, .secondary-link {
+			min-height: 58px;
+			text-align: center;
+		}
+
+		.portal-link {
+			background: linear-gradient(135deg, rgba(0, 255, 102, 0.18), rgba(0, 242, 255, 0.12));
+			color: #effff5;
+			border: 1px solid rgba(0, 255, 102, 0.24);
+		}
+
+		.secondary-link {
+			background: rgba(255, 255, 255, 0.03);
+			color: #d5f8e3;
+			border: 1px solid rgba(255, 255, 255, 0.12);
+		}
+
+		.note, .error {
+			margin: 0;
+			line-height: 1.7;
+			font-family: "Share Tech Mono", "Consolas", monospace;
+		}
+
+		.note { color: var(--muted); }
+		.error { min-height: 1.2em; color: #ff5e5e; text-transform: uppercase; letter-spacing: 0.08em; }
+
+		.footer {
+			padding: 0 24px 24px;
+			color: rgba(209, 248, 220, 0.58);
+			font-family: "Share Tech Mono", "Consolas", monospace;
+			font-size: 0.92rem;
+		}
+
+		@media (max-width: 640px) {
+			.shell { padding: 14px; }
+			.topbar, .hero, .panel, .footer { padding-left: 16px; padding-right: 16px; }
+			.gate-row { grid-template-columns: 1fr; }
+		}
+	</style>
+</head>
+<body>
+	<main class="shell">
+		<section class="console" aria-label="Captain's console">
+			<div class="topbar">
+				<div class="badge">Captain Access // Private Portal</div>
+				<div class="status">System Status: Locked</div>
+			</div>
+
+			<div class="hero">
+				<h1 class="title">Captain's Console</h1>
+				<p class="subtitle">Unlock the portal to open Stripe manually, then use the invoices link below. This keeps the account flow private without storing credentials in the page.</p>
+			</div>
+
+			<form class="panel" id="gateForm" autocomplete="off">
+				<div class="badge">Enter Captain Password</div>
+				<div class="gate-row">
+					<input id="passwordInput" class="password" type="password" placeholder="Password" aria-label="Captain password">
+					<button class="submit" type="submit">Unlock Portal</button>
+				</div>
+				<div class="error" id="gateError" aria-live="polite"></div>
+			</form>
+
+			<section class="panel portal" id="portalPanel" aria-live="polite">
+				<h2 class="portal-title">Authorized Links</h2>
+				<div class="portal-links">
+					<a class="portal-link" href="https://dashboard.stripe.com/login" target="_blank" rel="noopener">Open Stripe Login</a>
+					<a class="portal-link" href="https://dashboard.stripe.com/acct_1TnSkzA1sqD04h9C/invoices" target="_blank" rel="noopener">Open Invoices</a>
+					<a class="secondary-link" href="https://calendly.com/mieirs/one-hour-work-service" target="_blank" rel="noopener">Calendly One Hour Service</a>
+					<a class="secondary-link" href="https://calendly.com/mieirs/full-day-service" target="_blank" rel="noopener">Calendly Full Day Service</a>
+					<a class="secondary-link" href="https://calendly.com/mieirs/2-hour-deep-dive-consultation" target="_blank" rel="noopener">Calendly Deep Dive Consultation</a>
+					<a class="secondary-link" href="https://calendly.com/mieirs/new-meeting" target="_blank" rel="noopener">Calendly New Meeting</a>
+					<a class="secondary-link" href="https://calendly.com/mieirs/30min" target="_blank" rel="noopener">Calendly 30 Minute Session</a>
+					<a class="secondary-link" href="https://formbold.com/account/forms/3LaQv" target="_blank" rel="noopener">FormBold Dashboard</a>
+					<a class="secondary-link" href="https://github.com/stripe/stripe-ruby" target="_blank" rel="noopener">GitHub Source Control</a>
+					<a class="secondary-link" href="index.html">Return to Home</a>
+				</div>
+				<p class="note">Your business secretaries, GitHub Copilot, and you keep the operation moving. Stripe is connected to Calendly for payment collection, so sign into Stripe first, then use the scheduling and invoice links as needed.</p>
+			</section>
+
+			<div class="footer">Access code required. Portal state persists for this browser session after a successful unlock.</div>
+		</section>
+	</main>
+
+	<script>
+		(function () {
+			var PASSWORD = 'mywebSITE';
+			var gateForm = document.getElementById('gateForm');
+			var passwordInput = document.getElementById('passwordInput');
+			var gateError = document.getElementById('gateError');
+			var portalPanel = document.getElementById('portalPanel');
+				// we keep coding
+
+			function unlockPortal() {
+				portalPanel.classList.add('active');
+				gateForm.style.display = 'none';
+				sessionStorage.setItem('captainPortalUnlocked', 'true');
+			}
+
+			if (sessionStorage.getItem('captainPortalUnlocked') === 'true') {
+				unlockPortal();
+			}
+
+			gateForm.addEventListener('submit', function (event) {
+				event.preventDefault();
+
+				if (passwordInput.value === PASSWORD) {
+					gateError.textContent = '';
+					unlockPortal();
+				} else {
+					gateError.textContent = 'Invalid password. Access denied.';
+					passwordInput.value = '';
+					passwordInput.focus();
+				}
+			});
+
+			passwordInput.addEventListener('input', function () {
+				gateError.textContent = '';
+			});
+		})();
+	</script>
+</body>
+</html>

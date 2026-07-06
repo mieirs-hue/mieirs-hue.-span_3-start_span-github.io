@@ -138,6 +138,8 @@ h2 {
 .robot-assembly {
     animation: construct-scan 3s infinite ease-in-out;
     transition: all 0.3s;
+}
+
 /* Animated Worker Bot */
 .worker-bot {
     width: 32px;
@@ -173,6 +175,8 @@ h2 {
 #ratchet-bot { 
     filter: brightness(1.2) contrast(1.1); 
     border: 1px solid #cbd5e0; 
+}
+
 /* Cleaned up CSS */
 body {
     margin: 0;

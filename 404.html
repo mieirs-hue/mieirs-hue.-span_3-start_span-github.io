@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        (function () {
+            var canonicalHost = 'www.unclejessesalwaysavailable.com';
+            var current = window.location;
+
+            if (current.hostname === canonicalHost) {
+                window.location.replace('/');
+                return;
+            }
+
+            var target = current.protocol + '//' + canonicalHost + current.pathname + current.search + current.hash;
+            window.location.replace(target);
+        })();
+    </script>
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=https://www.unclejessesalwaysavailable.com/">
+    </noscript>
+</head>
+<body>
+    <p>Redirecting to https://www.unclejessesalwaysavailable.com/ ...</p>
+</body>
+</html>

@@ -1202,6 +1202,140 @@
             }
         }
 
+        /* Tax Database Section */
+        .tax-database-container {
+            background: rgba(2, 9, 4, 0.9);
+            border: 2px solid #00ff66;
+            border-radius: 8px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.15);
+        }
+
+        .tax-db-title {
+            font-family: 'OCR-B', monospace;
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ff66;
+            text-align: center;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(0, 255, 102, 0.6);
+        }
+
+        .tax-db-subtitle {
+            font-family: 'OCR-B', monospace;
+            font-size: 12px;
+            color: #a3a300;
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .tax-category {
+            margin-bottom: 35px;
+        }
+
+        .tax-category-header {
+            font-family: 'OCR-B', monospace;
+            font-size: 16px;
+            font-weight: bold;
+            color: #00ffff;
+            border-bottom: 2px solid rgba(0, 255, 255, 0.4);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            letter-spacing: 1.5px;
+        }
+
+        .tax-category.parts .tax-category-header {
+            color: #ffcc00;
+            border-bottom-color: rgba(255, 204, 0, 0.4);
+        }
+
+        .tax-item-row {
+            display: grid;
+            grid-template-columns: 2fr 1.2fr 1.2fr 2fr 1fr;
+            gap: 15px;
+            padding: 15px;
+            border: 1px solid rgba(0, 255, 102, 0.2);
+            border-radius: 4px;
+            margin-bottom: 12px;
+            background: rgba(11, 15, 25, 0.6);
+            font-size: 13px;
+        }
+
+        .tax-category.parts .tax-item-row {
+            border-color: rgba(255, 204, 0, 0.2);
+        }
+
+        .tax-cell-label {
+            font-family: 'OCR-B', monospace;
+            font-size: 10px;
+            color: #a3a300;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+
+        .tax-cell-value {
+            color: #e2e8f0;
+            font-size: 13px;
+            word-wrap: break-word;
+        }
+
+        .tax-status-label {
+            font-family: 'OCR-B', monospace;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 3px;
+            text-align: center;
+        }
+
+        .tax-status-nontax {
+            background: rgba(0, 255, 102, 0.2);
+            color: #00ff66;
+            border: 1px solid rgba(0, 255, 102, 0.4);
+        }
+
+        .tax-status-tax {
+            background: rgba(255, 204, 0, 0.2);
+            color: #ffcc00;
+            border: 1px solid rgba(255, 204, 0, 0.4);
+        }
+
+        .tax-database-export {
+            text-align: center;
+            margin-top: 25px;
+            padding: 20px;
+            border-top: 1px solid rgba(0, 255, 102, 0.2);
+        }
+
+        .export-btn {
+            background: #00ff66;
+            color: #020904;
+            border: none;
+            padding: 12px 24px;
+            font-family: 'OCR-B', monospace;
+            font-weight: bold;
+            font-size: 12px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .export-btn:hover {
+            background: #fff;
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.6);
+        }
+
+        @media (max-width: 900px) {
+            .tax-item-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* Footer Section Styling */
         .site-footer {
             margin-top: 60px;
@@ -1387,6 +1521,272 @@
 
             <!-- Official Motto -->
             <div class="motto-banner">&ldquo;YOU MAY COUNT ON US&hellip; ALWAYS!&rdquo;</div>
+
+            <!-- TAX COMPLIANCE DATABASE FOR ACCOUNTING -->
+            <div class="tax-database-container" id="taxDatabaseSection">
+                <div class="tax-db-title">[ TAX COMPLIANCE DATABASE ]</div>
+                <div class="tax-db-subtitle">SERVICE LEDGER FOR QUICKBOOKS // XERO // ACCOUNTING INTEGRATION</div>
+
+                <!-- LABOR SERVICES (NON-TAXABLE) -->
+                <div class="tax-category labor">
+                    <div class="tax-category-header">LABOR SERVICES — NON-TAXABLE (California)</div>
+
+                    <!-- Consultation Labor -->
+                    <div class="tax-item-row">
+                        <div>
+                            <div class="tax-cell-label">Item Name</div>
+                            <div class="tax-cell-value">Consultation Labor</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Type</div>
+                            <div class="tax-cell-value">Service/Labor</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Tax Status</div>
+                            <div class="tax-status-label tax-status-nontax">NON-TAXABLE</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Purpose</div>
+                            <div class="tax-cell-value">Technical consulting, diagnostics, system assessment</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Rate</div>
+                            <div class="tax-cell-value">$200/hr</div>
+                        </div>
+                    </div>
+
+                    <!-- Repair Labor -->
+                    <div class="tax-item-row">
+                        <div>
+                            <div class="tax-cell-label">Item Name</div>
+                            <div class="tax-cell-value">Repair Labor</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Type</div>
+                            <div class="tax-cell-value">Service/Labor</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Tax Status</div>
+                            <div class="tax-status-label tax-status-nontax">NON-TAXABLE</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Purpose</div>
+                            <div class="tax-cell-value">Equipment repair, system restoration, maintenance work</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Rate</div>
+                            <div class="tax-cell-value">$200/hr</div>
+                        </div>
+                    </div>
+
+                    <!-- Installation Labor -->
+                    <div class="tax-item-row">
+                        <div>
+                            <div class="tax-cell-label">Item Name</div>
+                            <div class="tax-cell-value">Installation Labor</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Type</div>
+                            <div class="tax-cell-value">Service/Labor</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Tax Status</div>
+                            <div class="tax-status-label tax-status-nontax">NON-TAXABLE</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Purpose</div>
+                            <div class="tax-cell-value">Equipment installation, system deployment, integration work</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Rate</div>
+                            <div class="tax-cell-value">$200/hr</div>
+                        </div>
+                    </div>
+
+                    <!-- Design & Architecture Labor -->
+                    <div class="tax-item-row">
+                        <div>
+                            <div class="tax-cell-label">Item Name</div>
+                            <div class="tax-cell-value">Design & Architecture Labor</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Type</div>
+                            <div class="tax-cell-value">Service/Labor</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Tax Status</div>
+                            <div class="tax-status-label tax-status-nontax">NON-TAXABLE</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Purpose</div>
+                            <div class="tax-cell-value">System design, digital architecture, planning & consulting</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Rate</div>
+                            <div class="tax-cell-value">$200/hr</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PARTS & MATERIALS (TAXABLE) -->
+                <div class="tax-category parts">
+                    <div class="tax-category-header">PARTS & MATERIALS — TAXABLE (California Sales Tax)</div>
+
+                    <!-- HVAC Parts -->
+                    <div class="tax-item-row">
+                        <div>
+                            <div class="tax-cell-label">Item Name</div>
+                            <div class="tax-cell-value">HVAC Components & Parts</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Type</div>
+                            <div class="tax-cell-value">Inventory/Part</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Tax Status</div>
+                            <div class="tax-status-label tax-status-tax">TAXABLE</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Purpose</div>
+                            <div class="tax-cell-value">Furnace parts, compressors, thermostats, refrigerant</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Rate</div>
+                            <div class="tax-cell-value">+CA Tax</div>
+                        </div>
+                    </div>
+
+                    <!-- Mechanical Hardware -->
+                    <div class="tax-item-row">
+                        <div>
+                            <div class="tax-cell-label">Item Name</div>
+                            <div class="tax-cell-value">Mechanical Hardware & Fasteners</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Type</div>
+                            <div class="tax-cell-value">Inventory/Part</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Tax Status</div>
+                            <div class="tax-status-label tax-status-tax">TAXABLE</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Purpose</div>
+                            <div class="tax-cell-value">Bolts, bearings, seals, valves, connectors</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Rate</div>
+                            <div class="tax-cell-value">+CA Tax</div>
+                        </div>
+                    </div>
+
+                    <!-- Electrical Components -->
+                    <div class="tax-item-row">
+                        <div>
+                            <div class="tax-cell-label">Item Name</div>
+                            <div class="tax-cell-value">Electrical Components & Wiring</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Type</div>
+                            <div class="tax-cell-value">Inventory/Part</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Tax Status</div>
+                            <div class="tax-status-label tax-status-tax">TAXABLE</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Purpose</div>
+                            <div class="tax-cell-value">Wiring, breakers, sensors, relays, switches, conduit</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Rate</div>
+                            <div class="tax-cell-value">+CA Tax</div>
+                        </div>
+                    </div>
+
+                    <!-- Robotics & Automation Parts -->
+                    <div class="tax-item-row">
+                        <div>
+                            <div class="tax-cell-label">Item Name</div>
+                            <div class="tax-cell-value">Robotics & Automation Parts</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Type</div>
+                            <div class="tax-cell-value">Inventory/Part</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Tax Status</div>
+                            <div class="tax-status-label tax-status-tax">TAXABLE</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Purpose</div>
+                            <div class="tax-cell-value">Motors, actuators, controllers, sensors, mechanical assemblies</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Rate</div>
+                            <div class="tax-cell-value">+CA Tax</div>
+                        </div>
+                    </div>
+
+                    <!-- Digital & Software Equipment -->
+                    <div class="tax-item-row">
+                        <div>
+                            <div class="tax-cell-label">Item Name</div>
+                            <div class="tax-cell-value">Digital Equipment & Software</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Type</div>
+                            <div class="tax-cell-value">Inventory/Part</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Tax Status</div>
+                            <div class="tax-status-label tax-status-tax">TAXABLE</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Purpose</div>
+                            <div class="tax-cell-value">Servers, networking, security systems, software licenses</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Rate</div>
+                            <div class="tax-cell-value">+CA Tax</div>
+                        </div>
+                    </div>
+
+                    <!-- Miscellaneous Supplies -->
+                    <div class="tax-item-row">
+                        <div>
+                            <div class="tax-cell-label">Item Name</div>
+                            <div class="tax-cell-value">Miscellaneous Supplies & Materials</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Type</div>
+                            <div class="tax-cell-value">Inventory/Part</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Tax Status</div>
+                            <div class="tax-status-label tax-status-tax">TAXABLE</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Purpose</div>
+                            <div class="tax-cell-value">Lubricants, coolants, adhesives, protective equipment, materials</div>
+                        </div>
+                        <div>
+                            <div class="tax-cell-label">Rate</div>
+                            <div class="tax-cell-value">+CA Tax</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Export Instructions -->
+                <div class="tax-database-export">
+                    <p style="color: #cbd5e1; margin-bottom: 15px; font-size: 13px;">
+                        [ QUICKBOOKS INTEGRATION ] Copy the database above into your QuickBooks product/service list.<br>
+                        Maintain separate line items for labor (non-taxable) and parts (taxable) on all invoices for California compliance.
+                    </p>
+                    <button class="export-btn" onclick="exportTaxDatabase()">[ EXPORT TO CSV ]</button>
+                </div>
+            </div>
+            <!-- /tax-database-container -->
 
             <!-- Secure Contact Form -->
             <div class="contact-form-container" id="contactSection">
@@ -1845,8 +2245,7 @@
 
             if (captainBtn) {
                 captainBtn.addEventListener('click', function () {
-                    captainModal.classList.add('active');
-                    captainPasswordInput.focus();
+                    window.location.href = 'captain.html';
                 });
             }
 
@@ -1952,6 +2351,49 @@
                     expensePasswordInput.value = '';
                 }
             });
+        }
+
+        // ── Tax Database CSV Export ──────────────────────
+        function exportTaxDatabase() {
+            var csvContent = 'data:text/csv;charset=utf-8,';
+            csvContent += 'ITEM_NAME,TYPE,TAX_STATUS,PURPOSE,RATE\n';
+            
+            // Labor items
+            var laborItems = [
+                ['Consultation Labor','Service/Labor','NON-TAXABLE','Technical consulting, diagnostics, system assessment','$200/hr'],
+                ['Repair Labor','Service/Labor','NON-TAXABLE','Equipment repair, system restoration, maintenance work','$200/hr'],
+                ['Installation Labor','Service/Labor','NON-TAXABLE','Equipment installation, system deployment, integration work','$200/hr'],
+                ['Design & Architecture Labor','Service/Labor','NON-TAXABLE','System design, digital architecture, planning & consulting','$200/hr']
+            ];
+            
+            // Parts items
+            var partsItems = [
+                ['HVAC Components & Parts','Inventory/Part','TAXABLE','Furnace parts, compressors, thermostats, refrigerant','+CA Tax'],
+                ['Mechanical Hardware & Fasteners','Inventory/Part','TAXABLE','Bolts, bearings, seals, valves, connectors','+CA Tax'],
+                ['Electrical Components & Wiring','Inventory/Part','TAXABLE','Wiring, breakers, sensors, relays, switches, conduit','+CA Tax'],
+                ['Robotics & Automation Parts','Inventory/Part','TAXABLE','Motors, actuators, controllers, sensors, mechanical assemblies','+CA Tax'],
+                ['Digital Equipment & Software','Inventory/Part','TAXABLE','Servers, networking, security systems, software licenses','+CA Tax'],
+                ['Miscellaneous Supplies & Materials','Inventory/Part','TAXABLE','Lubricants, coolants, adhesives, protective equipment, materials','+CA Tax']
+            ];
+            
+            // Add all items to CSV
+            laborItems.concat(partsItems).forEach(function(item) {
+                var row = item.map(function(cell) {
+                    return '\"' + cell.replace(/\"/g, '\"\"') + '\"';
+                }).join(',');
+                csvContent += row + '\n';
+            });
+            
+            // Create download link
+            var encodedUri = encodeURI(csvContent);
+            var link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', 'Uncle_Jesse_Tax_Service_Database_' + new Date().toISOString().slice(0,10) + '.csv');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            alert('Tax database exported successfully for QuickBooks/Xero import!');
         }
 
         // ── Boot Sequence ────────────────────────────────
