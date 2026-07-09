@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Dispatch | On-Site Engineering Unit</title>
+    <meta
+      name="description"
+      content="Contact dispatch for on-site robotic environment engineering, calibration, and system recovery."
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="index.html">
+          <span class="brand-mark">UJ</span>
+          <span>
+            <strong>Uncle Jesse's Always Available LLC</strong>
+            <small>Mobile Electromechanical Engineering Unit</small>
+          </span>
+        </a>
+        <nav class="site-nav" aria-label="Primary">
+          <a href="index.html">Command Deck</a>
+          <a href="services.html">Service Modules</a>
+          <a href="contact.html" aria-current="page">Contact Dispatch</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="page-header">
+          <p class="eyebrow">Contact Dispatch</p>
+          <h1>Request on-site robotic environment engineering.</h1>
+          <p>
+            Submit deployment details for calibration, mapping, or recovery. Include facility context so
+            the first field visit starts with usable technical constraints.
+          </p>
+        </section>
+
+        <section class="split-grid">
+          <article class="contact-card">
+            <h3>Dispatch Channel</h3>
+            <strong>Unit Email</strong>
+            <p>fieldops@ujaa-engineering.com</p>
+            <strong>Response Objective</strong>
+            <p>Within one business day</p>
+            <strong>Field Rate</strong>
+            <p>$200 per hour (on-site engineering and calibration)</p>
+          </article>
+
+          <article class="form-card">
+            <h3>Deployment Request</h3>
+            <p>Use this form to initiate calibration scheduling and technical scope review.</p>
+            <form
+              class="js-formspree-form"
+              action="https://formbold.com/s/6lBZq"
+              method="POST"
+              novalidate
+            >
+              <label>
+                Name / Company
+                <input type="text" name="name-company" placeholder="Identification" required />
+              </label>
+              <label>
+                Service Request
+                <select name="service-request" required>
+                  <option value="" selected disabled>Select a deployment type</option>
+                  <option value="robotic-infrastructure">Robotic Infrastructure</option>
+                  <option value="consulting">Electromechanical Consulting</option>
+                </select>
+              </label>
+              <label>
+                Field Notes
+                <textarea name="message" placeholder="Facility type, lane constraints, current issue" required></textarea>
+              </label>
+              <input type="hidden" name="_subject" value="New engineering dispatch request" />
+              <div class="form-actions">
+                <button class="button button-primary form-submit" type="submit">Initiate Calibration</button>
+                <a class="button button-secondary" href="services.html">Review Service Modules</a>
+              </div>
+              <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+            </form>
+          </article>
+        </section>
+
+        <section class="section analysis-log">
+          <h2>Pre-Visit Data Checklist</h2>
+          <pre>[REQ-1] Facility floor type and approximate dimensions
+[REQ-2] Existing robot platform and camera/sensor stack
+[REQ-3] Current failure mode: drift, routing, or localization loss
+[REQ-4] Preferred deployment window and access restrictions</pre>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>UNIT: UJ-AA | CONTACT DISPATCH ONLINE</p>
+        <p>Field deployment scheduling and engineering response</p>
+      </footer>
+    </div>
+    <script src="contact-form.js"></script>
+  </body>
+</html>
