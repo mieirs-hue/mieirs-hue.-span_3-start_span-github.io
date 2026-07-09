@@ -744,6 +744,27 @@ h2 {
   line-height: 1.6;
 }
 
+.capability-statement {
+  margin-top: 18px;
+}
+
+.capability-lead {
+  margin: 0;
+  color: var(--text-main);
+  line-height: 1.7;
+}
+
+.competency-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.competency-grid .info-card p {
+  margin-bottom: 0;
+}
+
 .service-log {
   margin-top: 18px;
   border: 1px solid rgba(0, 243, 255, 0.42);

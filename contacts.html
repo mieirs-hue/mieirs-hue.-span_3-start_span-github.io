@@ -1,39 +1,130 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Uplink | UNCLE JESSE'S ALWAYS AVAILABLE LLC</title>
-    <!-- Link your master stylesheet here for design consistency -->
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <header>
-        <h1>UPLINK PORTAL</h1>
-        <nav>
-            <a href="index.html">Return to Command</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Consultation Portal | Uncle Jesse's Always Available LLC</title>
+    <meta
+      name="description"
+      content="Project consultation portal for robotic environment integration, spatial mapping, and technical deployment planning."
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="index.html">
+          <span class="brand-mark">UJ</span>
+          <span>
+            <strong>Uncle Jesse's Always Available LLC</strong>
+            <small>Mobile Electromechanical Engineering Unit</small>
+          </span>
+        </a>
+        <nav class="site-nav" aria-label="Primary">
+          <a href="index.html">Command Deck</a>
+          <a href="services.html">Service Modules</a>
+          <a href="contact.html">Contact Dispatch</a>
         </nav>
-    </header>
+      </header>
 
-    <main class="grid-container">
-        <section class="contact-card">
-            <h2>Establish Communication</h2>
-            <p>Direct digital handshake for technical consulting and design inquiries.</p>
-            
-            <form action="mailto:privacy@unclejesse.com" method="post" enctype="text/plain">
-                <label>Identifier/Name:</label><br>
-                <input type="text" name="name"><br>
-                
-                <label>Transmission Subject:</label><br>
-                <input type="text" name="subject"><br>
-                
-                <label>Message Content:</label><br>
-                <textarea name="message" rows="5"></textarea><br>
-                
-                <button type="submit">Initiate Uplink</button>
-            </form>
+      <main>
+        <section class="page-header">
+          <p class="eyebrow">Project Consultation Portal</p>
+          <h1>Environment Integration Intake for robot-ready spaces.</h1>
+          <p>
+            Use this portal to describe the physical environment, the robot's primary function, and
+            the constraints that will shape the deployment design.
+          </p>
         </section>
-    </main>
 
-</body>
+        <section class="section capability-statement" aria-label="Capability statement">
+          <div class="section-heading">
+            <p class="eyebrow">Capability Statement</p>
+            <h2>System Architecture and Robotic Environment Integration</h2>
+          </div>
+          <p class="capability-lead">
+            Robots are only as effective as the environment they inhabit. At Uncle Jesse's Always
+            Available LLC, I do not just deploy hardware; I engineer the spatial, logical, and
+            technical infrastructure required for your robotics to thrive.
+          </p>
+          <div class="competency-grid">
+            <article class="info-card">
+              <h3>Spatial Navigation Mapping</h3>
+              <p>Implementing high-visibility, color-sorted grid systems to create clear, reliable navigation paths.</p>
+            </article>
+            <article class="info-card">
+              <h3>Architectural Transparency</h3>
+              <p>Providing detailed calculation breakdowns and technical analysis logs for every environment built.</p>
+            </article>
+            <article class="info-card">
+              <h3>Custom Ecosystem Design</h3>
+              <p>Tailoring physical and technical setups for companion robots, utility systems, and advanced automation.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="split-grid">
+          <article class="contact-card">
+            <h3>Integration Brief</h3>
+            <strong>Primary Function</strong>
+            <p>What is the robot's primary function?</p>
+            <strong>Deployment Environment</strong>
+            <p>What is the target deployment environment?</p>
+            <strong>Engineering Scope</strong>
+            <p>Spatial mapping, calibration, troubleshooting, or full environment buildout.</p>
+          </article>
+
+          <article class="form-card">
+            <h3>Intake Form</h3>
+            <p>Submit your project scope for consultation and environment planning.</p>
+            <form
+              class="js-formspree-form"
+              action="https://formbold.com/s/6lBZq"
+              method="POST"
+              novalidate
+            >
+              <label>
+                What is the robot's primary function?
+                <input type="text" name="robot-primary-function" placeholder="Companion, utility, workshop, etc." required />
+              </label>
+              <label>
+                What is the target deployment environment?
+                <select name="deployment-environment" required>
+                  <option value="" selected disabled>Select an environment</option>
+                  <option value="residential">Residential</option>
+                  <option value="commercial">Commercial</option>
+                  <option value="industrial">Industrial</option>
+                  <option value="mixed-use">Mixed Use</option>
+                </select>
+              </label>
+              <label>
+                Project Notes
+                <textarea name="project-notes" placeholder="Floor plan constraints, navigation issues, and any special requirements" required></textarea>
+              </label>
+              <input type="hidden" name="_subject" value="New environment integration intake" />
+              <div class="form-actions">
+                <button class="button button-primary form-submit" type="submit">Submit Intake</button>
+                <a class="button button-secondary" href="services.html">Review Service Modules</a>
+              </div>
+              <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+            </form>
+          </article>
+        </section>
+
+        <section class="section analysis-log">
+          <h2>Project Showcase Log</h2>
+          <pre>[LOG-501] Residential map review complete
+[LOG-502] Spatial corridor draft approved
+[LOG-503] Sensor placement plan confirmed
+[LOG-504] Handoff documentation prepared</pre>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>UNIT: UJ-AA | PROJECT INTAKE ONLINE</p>
+        <p>Robot environment integration and engineering consultation</p>
+      </footer>
+    </div>
+    <script src="contact-form.js"></script>
+  </body>
 </html>
