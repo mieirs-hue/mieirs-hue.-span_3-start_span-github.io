@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNCLE JESSE'S ALWAYS AVAILABLE LLC - UNCLE GADGET Edition</title>
+    <style>
+        :root {
+            --bg: #020904;
+            --panel: rgba(11, 15, 25, 0.94);
+            --gold: #ffcc00;
+            --cyan: #00ffff;
+            --green: #00ff66;
+            --text: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 24px;
+            background:
+                radial-gradient(circle at top, rgba(0, 255, 102, 0.08), transparent 24%),
+                linear-gradient(180deg, #020904, #05110b 60%, #020904);
+            color: var(--text);
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        .shell {
+            width: min(1080px, 100%);
+            margin: 0 auto;
+        }
+
+        .console {
+            border: 3px solid #ffaa00;
+            border-radius: 14px;
+            padding: 28px;
+            background: var(--panel);
+            box-shadow: 0 0 20px rgba(255, 170, 0, 0.15);
+        }
+
+        .title {
+            margin: 0 0 12px;
+            text-align: center;
+            color: var(--gold);
+            font-family: "Courier New", monospace;
+            letter-spacing: 1px;
+            font-size: clamp(1.6rem, 3vw, 2.6rem);
+        }
+
+        .status {
+            text-align: center;
+            color: var(--cyan);
+            margin: 0 0 22px;
+            font-family: "Courier New", monospace;
+        }
+
+        .actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 54px;
+            padding: 12px 16px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 800;
+            border-radius: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ffcc00, #ff9f1c);
+            color: #111;
+        }
+
+        .btn-secondary {
+            background: rgba(0, 255, 255, 0.08);
+            color: var(--cyan);
+            border-color: rgba(0, 255, 255, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+        }
+
+        .card {
+            border: 2px solid rgba(0, 255, 255, 0.35);
+            border-radius: 8px;
+            padding: 16px;
+            background: rgba(0, 255, 255, 0.03);
+        }
+
+        .card h3 {
+            margin: 0 0 8px;
+            font-size: 0.95rem;
+            color: var(--cyan);
+            letter-spacing: 0.08em;
+            font-family: "Courier New", monospace;
+        }
+
+        .card p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .footer {
+            margin-top: 18px;
+            text-align: center;
+            font-family: "Courier New", monospace;
+            color: var(--green);
+        }
+    </style>
+</head>
+<body>
+    <main class="shell">
+        <section class="console">
+            <h1 class="title">UNCLE GADGET COMMAND CONSOLE</h1>
+            <p class="status">SYSTEM ONLINE // CLEAN BUILD ACTIVE</p>
+
+            <div class="actions">
+                <a class="btn btn-primary" href="appointment.html">Start Project</a>
+                <a class="btn btn-secondary" href="estimator.html">Estimate Complexity</a>
+                <a class="btn btn-secondary" href="jpm.html">Mission Profile</a>
+                <a class="btn btn-secondary" href="index.html">Return To Main Command</a>
+            </div>
+
+            <div class="grid">
+                <article class="card">
+                    <h3>Vector 01</h3>
+                    <p>Diagnostics and digital design systems.</p>
+                </article>
+                <article class="card">
+                    <h3>Vector 02</h3>
+                    <p>HVAC and mechanical operations support.</p>
+                </article>
+                <article class="card">
+                    <h3>Vector 03</h3>
+                    <p>Automation and robotics calibration workflows.</p>
+                </article>
+            </div>
+
+            <p class="footer">You may count on us, always.</p>
+        </section>
+    </main>
+</body>
+</html>

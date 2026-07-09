@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UNCLE JESSE'S UPLINK: EXPERTISE MATRIX</title>
+    <style>
+        body { background-color: #001f3f; color: #00ffcc; font-family: "OCR-B", monospace; margin: 0; padding: 20px; }
+        .blueprint-container {
+            border: 2px solid #ff00ff; padding: 30px; background: rgba(0, 43, 91, 0.5);
+            max-width: 900px; margin: auto;
+            background-image: linear-gradient(#003366 1px, transparent 1px), linear-gradient(90deg, #003366 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        h1, h2 { color: #ff00ff; text-transform: uppercase; text-align: center; }
+        .grid-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px; }
+        .toggle-bubble {
+            background: #000; border: 2px solid #00ff00; color: #00ff00; padding: 15px;
+            text-align: center; cursor: pointer; border-radius: 20px; transition: 0.3s;
+        }
+        .toggle-bubble.active { background: #00ff00; color: #000; }
+        .section-box { border: 1px solid #00ff00; padding: 15px; margin-top: 20px; background: rgba(0,0,0,0.6); }
+        .cyclone { font-size: 50px; text-align: center; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="blueprint-container">
+	<div id="controlPanel" style="text-align: right; margin-bottom: 20px;">
+    <button onclick="window.location.href='uncle2.html'" style="background: #333; color: #ff0000; border: 1px solid #ff0000; padding: 8px 15px; cursor: pointer; font-family: monospace;">
+        EJECT ⏏️
+    </button>
+</div>
+    <h1>[ UNCLE JESSE'S UPLINK EXPERTISE MATRIX ]</h1>
+    
+    <div class="grid-container" id="expertiseGrid">
+        <!-- 12 Expert Toggle Bubbles -->
+        <div class="toggle-bubble" onclick="toggleExpertise(this, 'Subaru Repair', 250)">SUBARU REPAIR</div>
+        <div class="toggle-bubble" onclick="toggleExpertise(this, 'Subaru Maint.', 150)">SUBARU MAINT.</div>
+        <div class="toggle-bubble" onclick="toggleExpertise(this, 'HVAC Repair', 300)">HVAC REPAIR</div>
+        <div class="toggle-bubble" onclick="toggleExpertise(this, 'HVAC Maint.', 150)">HVAC MAINT.</div>
+        <div class="toggle-bubble" onclick="toggleExpertise(this, 'AI Modeling', 400)">AI MODELING</div>
+        <div class="toggle-bubble" onclick="toggleExpertise(this, 'PC Maint.', 200)">PC MAINT.</div>
+        <div class="toggle-bubble" onclick="toggleExpertise(this, 'Rexhall Rust', 350)">REXHALL RUST</div>
+        <div class="toggle-bubble" onclick="toggleExpertise(this, 'Ceramic Coat', 250)">CERAMIC COAT</div>
+        <div class="toggle-bubble" onclick="toggleExpertise(this, 'Circuitry Design', 300)">CIRCUITRY</div>
+        <div class="toggle-bubble" onclick="toggleExpertise(this, 'Motorhome Seal', 200)">RV SEALING</div>
+        <div class="toggle-bubble" onclick="toggleExpertise(this, 'Tech Consulting', 200)">CONSULTING</div>
+        <div class="toggle-bubble" onclick="toggleExpertise(this, 'Digital Design', 200)">DIGITAL DESIGN</div>
+	<!-- New Service Bubbles -->
+<div class="toggle-bubble" onclick="toggleExpertise(this, 'Companion Field Support', 200)">COMPANION FIELD SUPPORT</div>
+<div class="toggle-bubble" onclick="toggleExpertise(this, 'Environmental Sanitization', 150)">ENVIRONMENTAL SANITIZATION</div>
+<div class="toggle-bubble" onclick="toggleExpertise(this, 'Ghostbusters', 500)">GHOSTBUSTERS</div>
+    </div>
+	<div class="section-box">
+    <h3>2. UPLINK CART</h3>
+    <div id="cartDisplay">NO COMPONENTS SELECTED</div>
+    <p><strong>TOTAL STRUCTURAL LOAD: $<span id="totalDisplay">0</span></strong></p>
+    <!-- This button stays visible to allow immediate access to checkout.html -->
+    <div id="checkoutArea" style="margin-top: 20px; text-align: center;">
+        
+    </div>
+</div>
+
+<script>
+    let total = 0;
+    function toggleExpertise(el, name, price) {
+        const cartDisplay = document.getElementById('cartDisplay');
+        const totalDisplay = document.getElementById('totalDisplay');
+        
+        el.classList.toggle('active');
+        
+        if (el.classList.contains('active')) {
+            total += price;
+            if (total === price) cartDisplay.innerHTML = '';
+            cartDisplay.innerHTML += `<div class="cart-item">${name} ($${price})</div>`;
+        } else {
+            total -= price;
+            cartDisplay.innerHTML = cartDisplay.innerHTML.replace(`<div class="cart-item">${name} ($${price})</div>`, '');
+            if (total === 0) cartDisplay.innerHTML = 'NO COMPONENTS SELECTED';
+        }
+        totalDisplay.innerText = total.toLocaleString();
+    }
+function saveAndCheckout() {
+    // 1. Get the current list and total from your page
+    const selections = document.getElementById('cartDisplay').innerHTML;
+    const total = document.getElementById('totalDisplay').innerText;
+
+    // 2. Save them to the browser's persistent storage
+    localStorage.setItem('userSelections', JSON.stringify(selections));
+    localStorage.setItem('grandTotal', total);
+
+    // 3. Move to the checkout page
+    window.location.href = 'checkout.html';
+}
+</script>
+
+</body>
+</html>

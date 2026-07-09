@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Profile | Jesse Mieirs</title>
+    <style>
+        :root {
+            --bg: #03090a;
+            --panel: rgba(7, 18, 17, 0.94);
+            --panel-soft: rgba(10, 22, 20, 0.88);
+            --line: rgba(0, 255, 170, 0.2);
+            --text: #e8fff3;
+            --muted: #9ec3b1;
+            --gold: #ffcc00;
+            --cyan: #00eaff;
+            --green: #00ff66;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            min-height: 100%;
+        }
+
+        body {
+            font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 18% 12%, rgba(0, 255, 120, 0.1), transparent 24%),
+                radial-gradient(circle at 82% 8%, rgba(0, 234, 255, 0.08), transparent 20%),
+                linear-gradient(180deg, #020706 0%, #03100c 55%, #020706 100%);
+            padding: 22px;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(0, 255, 102, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 102, 0.03) 1px, transparent 1px);
+            background-size: 42px 42px;
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.95), transparent 90%);
+        }
+
+        .shell {
+            width: min(1100px, 100%);
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .topbar {
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 14px;
+            padding: 10px 14px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            font-family: "Courier New", monospace;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+        }
+
+        .status {
+            color: var(--green);
+            font-size: 0.84rem;
+        }
+
+        .home-link {
+            text-decoration: none;
+            color: var(--cyan);
+            border: 1px solid rgba(0, 234, 255, 0.3);
+            border-radius: 999px;
+            padding: 6px 10px;
+            font-size: 0.78rem;
+        }
+
+        .hero {
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 18px;
+            background: var(--panel);
+            display: grid;
+            grid-template-columns: 170px 1fr;
+            gap: 18px;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .avatar-stack {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .avatar-stack img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .hero-title {
+            margin: 0;
+            font-size: clamp(1.4rem, 4vw, 2.6rem);
+            line-height: 1;
+            color: var(--gold);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-weight: 900;
+            text-shadow: 0 0 14px rgba(255, 204, 0, 0.3);
+        }
+
+        .hero-sub {
+            margin: 8px 0 0;
+            color: var(--muted);
+            line-height: 1.7;
+            max-width: 70ch;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .card {
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: var(--panel-soft);
+            padding: 16px;
+        }
+
+        .card h2 {
+            margin: 0 0 10px;
+            font-family: "Courier New", monospace;
+            color: var(--cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            font-size: 0.95rem;
+        }
+
+        .card p {
+            margin: 0 0 8px;
+            color: #def6eb;
+            line-height: 1.65;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .footer {
+            margin-top: 14px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 10px 14px;
+            text-align: center;
+            font-family: "Courier New", monospace;
+            letter-spacing: 0.08em;
+            color: var(--green);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 780px) {
+            body {
+                padding: 12px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .avatar-stack {
+                max-width: 240px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="shell">
+        <div class="topbar">
+            <span class="status">Command Profile: Online</span>
+            <a class="home-link" href="index.html">Return To Command Center</a>
+        </div>
+
+        <section class="hero" aria-label="Mission profile summary">
+            <div class="avatar-stack">
+                <img src="B1DE88F5-862D-4964-B249-16986C927FF6-IMG_STYLE.PNG" alt="Mission asset portrait 1">
+                <img src="7A9B53A4-EDFA-4793-B3A1-0B10EAA82E78-IMG_STYLE.PNG" alt="Mission asset portrait 2">
+            </div>
+            <div>
+                <h1 class="hero-title">Command Center: Jesse Mieirs</h1>
+                <p class="hero-sub">Operations profile for field service, system design, and mission execution planning. This board tracks credentials, active workstreams, and current deployment goals.</p>
+            </div>
+        </section>
+
+        <section class="grid" aria-label="Profile detail cards">
+            <article class="card">
+                <h2>Professional Profile</h2>
+                <p>Education: Bachelor of History, Sacramento State (2017).</p>
+                <p>Military Service: USAF Veteran (1998-exit).</p>
+                <p>Expertise: HVAC, refrigeration, and electronic principles.</p>
+            </article>
+
+            <article class="card">
+                <h2>Living And Interests</h2>
+                <p>Location: Folsom, CA.</p>
+                <p>Companions: Cookie and Snickers.</p>
+                <p><strong>Past Hobbies:</strong> Rock climbing, motorcycle riding, ocean camping, and animal lover.</p>
+            </article>
+
+            <article class="card">
+                <h2>Mechanical Projects (June 2026)</h2>
+                <p>Rexhall Aerbus: Exterior restoration (rust repair, sealing holes, turbo paint, 2K gloss topcoat).</p>
+                <p>Subaru Crosstrek: Engine refresh (intake manifold/valve cover gaskets, serpentine belt).</p>
+            </article>
+
+            <article class="card">
+                <h2>Current Missions</h2>
+                <p>Garage Org: Finalizing robot-ready space by 2027.</p>
+                <p>Travel: Planning for 2028 Los Angeles Summer.</p>
+            </article>
+        </section>
+
+        <div class="footer">Mission Profile Locked And Synced</div>
+    </main>
+</body>
+</html>
