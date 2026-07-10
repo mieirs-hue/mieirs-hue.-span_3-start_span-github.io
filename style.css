@@ -854,6 +854,38 @@ h2 {
   gap: 10px;
 }
 
+.audio-stream {
+  margin: 10px 0 0;
+  border: 1px solid rgba(0, 243, 255, 0.45);
+  background: rgba(2, 6, 10, 0.72);
+  padding: 8px;
+}
+
+.audio-stream figcaption {
+  margin: 0 0 8px;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+}
+
+.audio-stream audio {
+  width: 100%;
+  display: block;
+}
+
+.audio-stream p {
+  margin: 8px 0 0;
+}
+
+.audio-stream a {
+  color: var(--neon-blue);
+  border-bottom: 1px solid rgba(0, 243, 255, 0.55);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.74rem;
+}
+
 #audioStatus {
   color: var(--text-dim);
   font-size: 0.85rem;
