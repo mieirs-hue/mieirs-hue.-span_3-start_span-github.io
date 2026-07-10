@@ -121,6 +121,24 @@ a {
   padding: 14px 16px;
 }
 
+.header-emergency-link {
+  border: 1px solid var(--signal-red);
+  color: #fff;
+  background: linear-gradient(135deg, #c81c1c, #640808);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 8px 10px;
+  box-shadow: 0 0 14px rgba(255, 82, 82, 0.3);
+  animation: emergency-pulse 2.8s ease-in-out infinite;
+}
+
+.header-emergency-link:hover,
+.header-emergency-link:focus-visible {
+  filter: brightness(1.08);
+}
+
 .brand {
   display: inline-flex;
   gap: 12px;
@@ -757,6 +775,16 @@ h2 {
   margin-top: 12px;
 }
 
+.emergency-intake {
+  margin-top: 12px;
+  border-color: rgba(255, 95, 95, 0.62);
+  background: linear-gradient(160deg, rgba(255, 95, 95, 0.1), rgba(0, 0, 0, 0.5));
+}
+
+.emergency-intake h3 {
+  color: #ffb0b0;
+}
+
 .emergency-intro {
   margin: 0;
   color: #ff7e7e;
@@ -1264,6 +1292,11 @@ select {
   .site-header {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .header-emergency-link {
+    width: 100%;
+    text-align: center;
   }
 
   .hero,

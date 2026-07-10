@@ -211,6 +211,46 @@
               >Initiate Emergency Dispatch</a
             >
           </div>
+          <article class="form-card emergency-intake" aria-label="Emergency dispatch intake form">
+            <h3>Emergency Dispatch Intake</h3>
+            <p>Submit this short brief for immediate triage and SMS/email escalation workflow routing.</p>
+            <form class="js-formspree-form" action="https://formbold.com/s/6lBZq" method="POST" novalidate>
+              <label>
+                Customer name
+                <input type="text" name="emergency-customer-name" placeholder="Full name" required />
+              </label>
+              <label>
+                Callback number
+                <input type="tel" name="emergency-phone" placeholder="(###) ###-####" required />
+              </label>
+              <label>
+                Dispatch location
+                <input type="text" name="emergency-location" placeholder="Site address or facility name" required />
+              </label>
+              <label>
+                Service or equipment
+                <input type="text" name="emergency-equipment" placeholder="Robot, generator, HVAC, conveyor, etc." required />
+              </label>
+              <label>
+                Priority level
+                <select name="emergency-priority" required>
+                  <option value="" selected disabled>Select priority</option>
+                  <option value="critical">Critical</option>
+                  <option value="high">High</option>
+                  <option value="normal">Normal</option>
+                </select>
+              </label>
+              <label>
+                Emergency summary
+                <textarea name="message" placeholder="Describe failure mode, safety risk, and current system condition" required></textarea>
+              </label>
+              <input type="hidden" name="_subject" value="EMERGENCY DISPATCH REQUEST" />
+              <div class="form-actions">
+                <button class="button button-primary form-submit" type="submit">Dispatch Now</button>
+              </div>
+              <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+            </form>
+          </article>
           <div class="split-grid emergency-grid">
             <article class="contact-card emerg-track">
               <h3>Priority Dispatch</h3>
