@@ -733,6 +733,10 @@ h2 {
   margin-top: 10px;
 }
 
+.emergency-actions-single {
+  grid-template-columns: 1fr;
+}
+
 .emergency-call-link {
   display: block;
   padding: 12px 14px;

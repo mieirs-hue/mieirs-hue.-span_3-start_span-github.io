@@ -81,7 +81,9 @@
   };
 
   const initEscalators = () => {
-    const smoothScrollTo = (targetY, duration = 4800) => {
+    const slowScrollDuration = 7800;
+
+    const smoothScrollTo = (targetY, duration = slowScrollDuration) => {
       const startY = window.scrollY;
       const distance = targetY - startY;
       const startTime = performance.now();
@@ -107,7 +109,7 @@
 
     if (escalatorBottomButton) {
       const scrollToBottom = () => {
-        smoothScrollTo(document.body.scrollHeight, 4800);
+        smoothScrollTo(document.body.scrollHeight, slowScrollDuration);
       };
 
       escalatorBottomButton.addEventListener('mouseenter', scrollToBottom);
@@ -117,7 +119,7 @@
 
     if (backToTopButton) {
       backToTopButton.addEventListener('click', () => {
-        smoothScrollTo(0, 4800);
+        smoothScrollTo(0, slowScrollDuration);
       });
     }
   };
