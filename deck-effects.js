@@ -4,6 +4,8 @@
   const audioToggle = document.getElementById('audioToggle');
   const audioStatus = document.getElementById('audioStatus');
   const systemAudio = document.getElementById('systemAudio');
+  const escalatorTargetButton = document.querySelector('[data-scroll-target]');
+  const escalatorBottomButton = document.querySelector('[data-scroll-bottom]');
 
   const animateCounters = () => {
     counterElements.forEach((element) => {
@@ -104,9 +106,37 @@
     });
   };
 
+  const initEscalators = () => {
+    if (escalatorTargetButton) {
+      escalatorTargetButton.addEventListener('click', () => {
+        const targetId = escalatorTargetButton.getAttribute('data-scroll-target');
+        const target = targetId ? document.getElementById(targetId) : null;
+
+        if (!target) {
+          return;
+        }
+
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.classList.add('escalator-target-pulse');
+        setTimeout(() => target.classList.remove('escalator-target-pulse'), 1200);
+      });
+    }
+
+    if (escalatorBottomButton) {
+      const scrollToBottom = () => {
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      };
+
+      escalatorBottomButton.addEventListener('mouseenter', scrollToBottom);
+      escalatorBottomButton.addEventListener('focus', scrollToBottom);
+      escalatorBottomButton.addEventListener('click', scrollToBottom);
+    }
+  };
+
   animateCounters();
   buildSystemLog();
   initAudioControls();
+  initEscalators();
   triggerFlyingBanner();
   setInterval(triggerFlyingBanner, 10000);
 })();

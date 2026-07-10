@@ -3,6 +3,7 @@
   --panel-dark: #090c11;
   --panel-soft: rgba(6, 10, 16, 0.88);
   --neon-blue: #00f3ff;
+  --neon-green: #39ff14;
   --gold: #d7b35a;
   --signal-red: #ff5f5f;
   --text-main: #d9fbff;
@@ -281,6 +282,102 @@ a {
 .future-robots-callout a {
   color: var(--neon-blue);
   border-bottom: 1px solid rgba(0, 243, 255, 0.55);
+}
+
+.escalator-nav {
+  margin: 0 0 16px;
+  border: 1px solid rgba(57, 255, 20, 0.5);
+  background: linear-gradient(160deg, rgba(57, 255, 20, 0.08), rgba(0, 243, 255, 0.07));
+  padding: 12px;
+}
+
+.escalator-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.escalator-btn {
+  font: inherit;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  background: #020406;
+  border: 2px solid var(--neon-green);
+  color: var(--neon-green);
+  min-height: 48px;
+  padding: 0 14px;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+#escalator-btn-1::after,
+#escalator-btn-2::after {
+  position: absolute;
+  right: 10px;
+  font-size: 0.82rem;
+}
+
+#escalator-btn-1::after {
+  content: "▼";
+  color: var(--signal-red);
+}
+
+#escalator-btn-2 {
+  border-color: var(--signal-red);
+  color: var(--signal-red);
+}
+
+#escalator-btn-2::after {
+  content: "▲";
+  color: var(--neon-blue);
+}
+
+#escalator-btn-1:hover,
+#escalator-btn-1:focus-visible {
+  background-color: rgba(57, 255, 20, 0.2);
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.65);
+  transform: translateY(-2px);
+}
+
+#escalator-btn-2:hover,
+#escalator-btn-2:focus-visible {
+  background-color: rgba(255, 95, 95, 0.12);
+  border-color: var(--neon-blue);
+  color: var(--neon-blue);
+  animation: pulse-red-cyan 1s infinite;
+}
+
+.escalator-target-pulse {
+  animation: escalator-target-pulse 1.1s ease;
+}
+
+@keyframes pulse-red-cyan {
+  0% {
+    box-shadow: 0 0 15px rgba(255, 95, 95, 0.85);
+  }
+
+  50% {
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.75);
+  }
+
+  100% {
+    box-shadow: 0 0 15px rgba(255, 95, 95, 0.85);
+  }
+}
+
+@keyframes escalator-target-pulse {
+  0% {
+    box-shadow: 0 0 0 rgba(255, 95, 95, 0);
+  }
+
+  40% {
+    box-shadow: 0 0 22px rgba(255, 95, 95, 0.8);
+  }
+
+  100% {
+    box-shadow: 0 0 0 rgba(255, 95, 95, 0);
+  }
 }
 
 .tagline-brand-lockup {
@@ -1084,6 +1181,7 @@ select {
   .hero,
   .split-grid,
   .counter-grid,
+  .escalator-grid,
   .mission-grid,
   .service-log-grid,
   .gallery-grid,

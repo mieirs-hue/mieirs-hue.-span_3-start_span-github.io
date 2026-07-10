@@ -54,6 +54,28 @@
           </p>
         </section>
 
+        <section class="escalator-nav" aria-label="Escalator navigation controls">
+          <p class="callout-label">Escalator Architecture</p>
+          <div class="escalator-grid">
+            <button
+              id="escalator-btn-1"
+              class="escalator-btn"
+              type="button"
+              data-scroll-target="uplink-section"
+            >
+              Descend To Uplink
+            </button>
+            <button
+              id="escalator-btn-2"
+              class="escalator-btn"
+              type="button"
+              data-scroll-bottom
+            >
+              Hover To Escalate
+            </button>
+          </div>
+        </section>
+
         <section class="command-dock mission-brief" aria-label="Engineering mission brief">
           <h1>[Mission: Infrastructure Architecture]</h1>
           <p>
@@ -199,7 +221,7 @@
           </div>
         </section>
 
-        <section class="form-block">
+        <section id="uplink-section" class="form-block">
           <h2>Request System Deployment</h2>
           <form class="js-formspree-form" action="https://formbold.com/s/6lBZq" method="POST" novalidate>
             <label>
