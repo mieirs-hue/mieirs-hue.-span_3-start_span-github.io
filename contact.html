@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project Consultation Portal | Uncle Jesse's Always Available LLC</title>
+    <title>Autonomous Systems Intake Portal | Uncle Jesse's Always Available LLC</title>
     <meta
       name="description"
-      content="Project consultation portal for robotic environment integration, spatial mapping, and technical deployment planning."
+      content="Consultation intake for robotics deployment, aerospace support automation, and energy infrastructure diagnostics."
     />
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -30,10 +30,10 @@
       <main>
         <section class="page-header">
           <p class="eyebrow">Project Consultation Portal</p>
-          <h1>Environment Integration Intake for robot-ready spaces.</h1>
+          <h1>Multi-sector intake for robotics, aerospace, and energy automation projects.</h1>
           <p>
-            Use this portal to describe the physical environment, the robot's primary function, and
-            the constraints that will shape the deployment design.
+            Use this portal to define your system type, operating environment, uptime requirements,
+            and technical constraints so deployment planning starts with the right data.
           </p>
         </section>
 
@@ -43,22 +43,22 @@
             <h2>System Architecture and Robotic Environment Integration</h2>
           </div>
           <p class="capability-lead">
-            Robots are only as effective as the environment they inhabit. At Uncle Jesse's Always
-            Available LLC, I do not just deploy hardware; I engineer the spatial, logical, and
-            technical infrastructure required for your robotics to thrive.
+            Autonomous systems are only as effective as the field conditions around them. At Uncle
+            Jesse's Always Available LLC, deployment means more than hardware install; it means
+            calibrated infrastructure, measurable reliability, and service continuity.
           </p>
           <div class="competency-grid">
             <article class="info-card">
-              <h3>Spatial Navigation Mapping</h3>
-              <p>Implementing high-visibility, color-sorted grid systems to create clear, reliable navigation paths.</p>
+              <h3>Robotics and Autonomous Systems</h3>
+              <p>Deployment, commissioning, sensor calibration, and predictive maintenance for uptime-critical operations.</p>
             </article>
             <article class="info-card">
-              <h3>Architectural Transparency</h3>
-              <p>Providing detailed calculation breakdowns and technical analysis logs for every environment built.</p>
+              <h3>Space and Aerospace Support</h3>
+              <p>Ground-side service for autonomous test equipment, cleanroom robotics, and precision alignment assets.</p>
             </article>
             <article class="info-card">
-              <h3>Custom Ecosystem Design</h3>
-              <p>Tailoring physical and technical setups for companion robots, utility systems, and advanced automation.</p>
+              <h3>Energy Automation Infrastructure</h3>
+              <p>Inspection robotics support, thermal diagnostics systems, and substation automation troubleshooting.</p>
             </article>
           </div>
         </section>
@@ -66,16 +66,16 @@
         <section class="split-grid">
           <article class="contact-card">
             <h3>Integration Brief</h3>
-            <strong>Primary Function</strong>
-            <p>What is the robot's primary function?</p>
-            <strong>Navigation Sensor Suite</strong>
-            <p>Visual, magnetic, LIDAR, QR, or mixed-sensor guidance stack.</p>
-            <strong>Deployment Environment</strong>
-            <p>What is the target deployment environment?</p>
-            <strong>Surface + Marking Strategy</strong>
-            <p>Material compatibility, contrast needs, and marker system preference.</p>
-            <strong>Engineering Scope</strong>
-            <p>Spatial mapping, calibration, troubleshooting, or full environment buildout.</p>
+            <strong>Sector and System Type</strong>
+            <p>Robotics, aerospace support, or energy automation plus the platform requiring service.</p>
+            <strong>Sensor and Controls Stack</strong>
+            <p>Visual, thermal, lidar, PLC/SCADA, edge-AI, and telemetry systems currently in use.</p>
+            <strong>Facility Constraints</strong>
+            <p>Safety zones, cleanroom level, environmental conditions, and access windows.</p>
+            <strong>Reliability Requirements</strong>
+            <p>Uptime target, failure impact, and preferred service-response timeline.</p>
+            <strong>Engagement Scope</strong>
+            <p>Commissioning, predictive maintenance, diagnostics, retraining, or emergency recovery.</p>
           </article>
 
           <article class="form-card">
@@ -87,6 +87,28 @@
               method="POST"
               novalidate
             >
+              <label>
+                Contact email
+                <input type="email" name="email" placeholder="name@company.com" required />
+              </label>
+              <label>
+                Contact phone
+                <input type="tel" name="phone" placeholder="(555) 555-5555" required />
+              </label>
+              <label>
+                Facility location
+                <input type="text" name="facility-location" placeholder="City, state, and facility name" required />
+              </label>
+              <label>
+                Project sector
+                <select name="project-sector" required>
+                  <option value="" selected disabled>Select a sector</option>
+                  <option value="robotics-autonomous-systems">Robotics and Autonomous Systems</option>
+                  <option value="space-aerospace-support">Space and Aerospace Support</option>
+                  <option value="energy-infrastructure">Energy Infrastructure</option>
+                  <option value="advanced-manufacturing">Advanced Manufacturing</option>
+                </select>
+              </label>
               <label>
                 What is the robot's primary function? 
                 <input type="text" name="robot-primary-function" placeholder="Companion, utility, workshop, etc." required />
@@ -113,6 +135,24 @@
                 </select>
               </label>
               <label>
+                Existing automation controls
+                <input type="text" name="controls-stack" placeholder="PLC, SCADA, custom controls, none" required />
+              </label>
+              <label>
+                Uptime target
+                <input type="text" name="uptime-target" placeholder="Example: 99.5% monthly uptime" required />
+              </label>
+              <label>
+                Response urgency
+                <select name="response-urgency" required>
+                  <option value="" selected disabled>Select urgency</option>
+                  <option value="routine-planning">Routine Planning</option>
+                  <option value="priority-two-week">Priority (within 2 weeks)</option>
+                  <option value="urgent-72-hour">Urgent (within 72 hours)</option>
+                  <option value="emergency-24-7">Emergency 24/7 Support</option>
+                </select>
+              </label>
+              <label>
                 Surface requirements
                 <textarea name="surface-requirements" placeholder="Contrast ratios, anti-static needs, friction targets, and material constraints" required></textarea>
               </label>
@@ -128,6 +168,10 @@
                 Project Notes
                 <textarea name="project-notes" placeholder="Floor plan constraints, navigation issues, and any special requirements" required></textarea>
               </label>
+              <label>
+                Compliance or standards notes
+                <textarea name="compliance-notes" placeholder="ISO, safety policy, cleanroom protocol, utility standards, or audit constraints" required></textarea>
+              </label>
               <input type="hidden" name="_subject" value="New environment integration intake" />
               <div class="form-actions">
                 <button class="button button-primary form-submit" type="submit">Submit Intake</button>
@@ -140,10 +184,10 @@
 
         <section class="section analysis-log">
           <h2>Project Showcase Log</h2>
-          <pre>[LOG-501] Residential map review complete
-[LOG-502] Spatial corridor draft approved
-[LOG-503] Sensor placement plan confirmed
-[LOG-504] Handoff documentation prepared</pre>
+          <pre>[LOG-501] Robotics commissioning scope received
+      [LOG-502] Facility constraints and controls stack verified
+      [LOG-503] Sensor and reliability targets confirmed
+      [LOG-504] Proposal package prepared for dispatch</pre>
         </section>
       </main>
 
