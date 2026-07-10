@@ -58,7 +58,7 @@
       }
     };
 
-    setAudioState('AUDIO: PLAY', 'Auto-start on first click');
+    setAudioState('AUDIO: PLAY', 'Drop gadget-theme.mp3 into assets/audio');
 
     ['click', 'pointerdown', 'keydown', 'touchstart'].forEach((eventName) => {
       document.addEventListener(eventName, initializeAudio, { once: true });
@@ -75,7 +75,7 @@
           setAudioState('AUDIO: PLAY', 'Paused');
         }
       } catch {
-        setAudioState('AUDIO: PLAY', 'No audio file detected. Add gadget-theme.mp3');
+        setAudioState('AUDIO: PLAY', 'No audio file detected. Add assets/audio/gadget-theme.mp3');
       }
     });
   };
