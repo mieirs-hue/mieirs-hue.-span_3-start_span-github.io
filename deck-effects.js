@@ -1,10 +1,8 @@
 (() => {
   const counterElements = document.querySelectorAll('.live-counter');
-  const logTrack = document.getElementById('systemLogTrack');
   const audioToggle = document.getElementById('audioToggle');
   const audioStatus = document.getElementById('audioStatus');
   const systemAudio = document.getElementById('systemAudio');
-  const escalatorTargetButton = document.querySelector('[data-scroll-target]');
   const escalatorBottomButton = document.querySelector('[data-scroll-bottom]');
 
   const animateCounters = () => {
@@ -32,96 +30,56 @@
     });
   };
 
-  const buildSystemLog = () => {
-    if (!logTrack) {
-      return;
-    }
-
-    const diagnostics = [
-      '[ACTIVE] LIDAR alignment sweep running | zone A-3',
-      '[ACTIVE] ORB keypoint density check | threshold 950',
-      '[ACTIVE] Drive lane confidence | 99.2 percent stable',
-      '[ACTIVE] Wheel odometry sync | delta 0.02',
-      '[ACTIVE] Camera offset correction | plus 1.7 deg',
-      '[ACTIVE] Tape signature validation | pass',
-      '[ACTIVE] Route planner dry-run | no collisions detected',
-      '[ACTIVE] Calibration persistence write | complete',
-      '[ACTIVE] Emergency fallback map | standby ready',
-      '[ACTIVE] Uplink telemetry stream | nominal'
-    ];
-
-    const repeatedLogs = diagnostics.concat(diagnostics);
-    logTrack.innerHTML = '';
-    repeatedLogs.forEach((entry) => {
-      const line = document.createElement('p');
-      line.className = 'log-line';
-      line.textContent = entry;
-      logTrack.appendChild(line);
-    });
-  };
-
-  const triggerFlyingBanner = () => {
-    const banner = document.createElement('div');
-    banner.className = 'flying-banner';
-    banner.textContent = 'FIELD UNIT ONLINE | CALIBRATION SWEEP ACTIVE';
-
-    const topPositions = ['16%', '24%', '32%', '40%'];
-    banner.style.top = topPositions[Math.floor(Math.random() * topPositions.length)];
-
-    document.body.appendChild(banner);
-
-    requestAnimationFrame(() => {
-      banner.classList.add('is-active');
-    });
-
-    setTimeout(() => {
-      banner.remove();
-    }, 9300);
-  };
-
   const initAudioControls = () => {
     if (!audioToggle || !audioStatus || !systemAudio) {
       return;
     }
+
+    let audioInitialized = false;
 
     const setAudioState = (label, status) => {
       audioToggle.textContent = label;
       audioStatus.textContent = status;
     };
 
-    setAudioState('System Audio: Initialize', 'Idle');
+    const initializeAudio = async () => {
+      if (audioInitialized) {
+        return;
+      }
+
+      audioInitialized = true;
+
+      try {
+        await systemAudio.play();
+        setAudioState('Audio Pause', 'Live');
+      } catch {
+        setAudioState('Audio Resume', 'Tap pause/resume to retry');
+      }
+    };
+
+    setAudioState('Audio Pause', 'Auto-start on first click');
+
+    ['click', 'pointerdown', 'keydown', 'touchstart'].forEach((eventName) => {
+      document.addEventListener(eventName, initializeAudio, { once: true });
+    });
 
     audioToggle.addEventListener('click', async () => {
       try {
         if (systemAudio.paused) {
+          audioInitialized = true;
           await systemAudio.play();
-          setAudioState('System Audio: Pause', 'Active');
+          setAudioState('Audio Pause', 'Live');
         } else {
           systemAudio.pause();
-          setAudioState('System Audio: Resume', 'Standby');
+          setAudioState('Audio Resume', 'Paused');
         }
       } catch {
-        setAudioState('System Audio: Retry', 'No audio file detected. Add system-audio.mp3');
+        setAudioState('Audio Resume', 'No audio file detected. Add system-audio.mp3');
       }
     });
   };
 
   const initEscalators = () => {
-    if (escalatorTargetButton) {
-      escalatorTargetButton.addEventListener('click', () => {
-        const targetId = escalatorTargetButton.getAttribute('data-scroll-target');
-        const target = targetId ? document.getElementById(targetId) : null;
-
-        if (!target) {
-          return;
-        }
-
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        target.classList.add('escalator-target-pulse');
-        setTimeout(() => target.classList.remove('escalator-target-pulse'), 1200);
-      });
-    }
-
     if (escalatorBottomButton) {
       const scrollToBottom = () => {
         window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
@@ -134,9 +92,6 @@
   };
 
   animateCounters();
-  buildSystemLog();
   initAudioControls();
   initEscalators();
-  triggerFlyingBanner();
-  setInterval(triggerFlyingBanner, 10000);
 })();

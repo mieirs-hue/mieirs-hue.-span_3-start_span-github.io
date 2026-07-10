@@ -58,14 +58,6 @@
           <p class="callout-label">Escalator Architecture</p>
           <div class="escalator-grid">
             <button
-              id="escalator-btn-1"
-              class="escalator-btn"
-              type="button"
-              data-scroll-target="uplink-section"
-            >
-              Descend To Uplink
-            </button>
-            <button
               id="escalator-btn-2"
               class="escalator-btn"
               type="button"
@@ -249,24 +241,18 @@
           </form>
         </section>
 
-        <section class="audio-control" aria-label="System audio controls">
-          <h2>System Audio</h2>
-          <div class="audio-actions">
-            <button class="button button-primary" id="audioToggle" type="button">System Audio: Initialize</button>
-            <span id="audioStatus">Idle</span>
-          </div>
-          <audio id="systemAudio" loop preload="none">
-            <source src="system-audio.mp3" type="audio/mpeg" />
-          </audio>
-        </section>
       </main>
 
-      <section class="system-log-escalator" aria-label="Auto-scrolling system log">
-        <h2>System Log</h2>
-        <div class="log-window">
-          <div class="log-track" id="systemLogTrack"></div>
+      <aside class="audio-board" aria-label="Persistent system audio controls">
+        <p class="audio-board-title">Audio Board</p>
+        <div class="audio-actions">
+          <button class="button button-primary" id="audioToggle" type="button">Audio Pause</button>
+          <span id="audioStatus">Auto-start on first click</span>
         </div>
-      </section>
+        <audio id="systemAudio" loop preload="none">
+          <source src="system-audio.mp3" type="audio/mpeg" />
+        </audio>
+      </aside>
 
       <footer class="site-footer">
         <p>UNIT: UJ-AA | FIELD DEPLOYMENT READY</p>
