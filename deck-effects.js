@@ -36,6 +36,8 @@
       return;
     }
 
+    let firstEngagementHandled = false;
+
     const setAudioState = (label, status) => {
       audioToggle.textContent = label;
       audioStatus.textContent = status;
@@ -58,9 +60,18 @@
       }
     };
 
-    if (hasPlayableSource) {
-      primeAudio();
-    }
+    const handleFirstEngagement = async () => {
+      if (firstEngagementHandled || !hasPlayableSource) {
+        return;
+      }
+
+      firstEngagementHandled = true;
+      await primeAudio();
+    };
+
+    ['click', 'pointerdown', 'keydown', 'touchstart'].forEach((eventName) => {
+      document.addEventListener(eventName, handleFirstEngagement, { once: true, passive: true });
+    });
 
     systemAudio.addEventListener('play', () => {
       setAudioState('AUDIO: PAUSE', 'Cyberpunk stream active');
@@ -92,9 +103,10 @@
   };
 
   const initEscalators = () => {
-    const slowScrollDuration = 15000;
+    const bottomScrollDuration = 25000;
+    const backToTopDuration = 15000;
 
-    const smoothScrollTo = (targetY, duration = slowScrollDuration) => {
+    const smoothScrollTo = (targetY, duration) => {
       const startY = window.scrollY;
       const distance = targetY - startY;
       const startTime = performance.now();
@@ -120,7 +132,7 @@
 
     if (escalatorBottomButton) {
       const scrollToBottom = () => {
-        smoothScrollTo(document.body.scrollHeight, slowScrollDuration);
+        smoothScrollTo(document.body.scrollHeight, bottomScrollDuration);
       };
 
       escalatorBottomButton.addEventListener('mouseenter', scrollToBottom);
@@ -130,7 +142,7 @@
 
     if (backToTopButton) {
       backToTopButton.addEventListener('click', () => {
-        smoothScrollTo(0, slowScrollDuration);
+        smoothScrollTo(0, backToTopDuration);
       });
     }
   };
