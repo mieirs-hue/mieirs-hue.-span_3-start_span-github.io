@@ -1,6 +1,6 @@
 (() => {
   const counterElements = document.querySelectorAll('.live-counter');
-  const audioToggle = document.getElementById('audioToggle');
+  const audioToggle = document.getElementById('audio-toggle');
   const audioStatus = document.getElementById('audioStatus');
   const systemAudio = document.getElementById('systemAudio');
   const escalatorBottomButton = document.querySelector('[data-scroll-bottom]');
@@ -52,13 +52,13 @@
 
       try {
         await systemAudio.play();
-        setAudioState('Audio Pause', 'Live');
+        setAudioState('AUDIO: PAUSE', 'Cyberpunk stream active');
       } catch {
-        setAudioState('Audio Resume', 'Tap pause/resume to retry');
+        setAudioState('AUDIO: PLAY', 'Waiting for interaction...');
       }
     };
 
-    setAudioState('Audio Pause', 'Auto-start on first click');
+    setAudioState('AUDIO: PLAY', 'Auto-start on first click');
 
     ['click', 'pointerdown', 'keydown', 'touchstart'].forEach((eventName) => {
       document.addEventListener(eventName, initializeAudio, { once: true });
@@ -69,13 +69,13 @@
         if (systemAudio.paused) {
           audioInitialized = true;
           await systemAudio.play();
-          setAudioState('Audio Pause', 'Live');
+          setAudioState('AUDIO: PAUSE', 'Cyberpunk stream active');
         } else {
           systemAudio.pause();
-          setAudioState('Audio Resume', 'Paused');
+          setAudioState('AUDIO: PLAY', 'Paused');
         }
       } catch {
-        setAudioState('Audio Resume', 'No audio file detected. Add system-audio.mp3');
+        setAudioState('AUDIO: PLAY', 'No audio file detected. Add gadget-theme.mp3');
       }
     });
   };

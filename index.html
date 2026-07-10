@@ -256,10 +256,11 @@
       <aside class="audio-board" aria-label="Persistent system audio controls">
         <p class="audio-board-title">Audio Board</p>
         <div class="audio-actions">
-          <button class="button button-primary" id="audioToggle" type="button">Audio Pause</button>
+          <button class="button button-primary" id="audio-toggle" type="button">AUDIO: PLAY</button>
           <span id="audioStatus">Auto-start on first click</span>
         </div>
         <audio id="systemAudio" loop preload="none">
+          <source src="gadget-theme.mp3" type="audio/mpeg" />
           <source src="system-audio.mp3" type="audio/mpeg" />
         </audio>
       </aside>
