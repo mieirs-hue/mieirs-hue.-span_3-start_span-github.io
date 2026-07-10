@@ -36,52 +36,47 @@
       return;
     }
 
-    let audioInitialized = false;
-
     const setAudioState = (label, status) => {
       audioToggle.textContent = label;
       audioStatus.textContent = status;
     };
 
-    const initializeAudio = async () => {
-      if (audioInitialized) {
-        return;
-      }
+    const hasPlayableSource =
+      systemAudio.querySelectorAll('source').length > 0 || Boolean(systemAudio.getAttribute('src'));
 
-      audioInitialized = true;
+    setAudioState('AUDIO: PLAY', hasPlayableSource ? 'Audio board ready' : 'No audio source configured');
 
-      try {
-        await systemAudio.play();
-        setAudioState('AUDIO: PAUSE', 'Cyberpunk stream active');
-      } catch {
-        setAudioState('AUDIO: PLAY', 'Waiting for interaction...');
-      }
-    };
+    systemAudio.addEventListener('play', () => {
+      setAudioState('AUDIO: PAUSE', 'Cyberpunk stream active');
+    });
 
-    setAudioState('AUDIO: PLAY', 'Drop gadget-theme.mp3 into assets/audio');
+    systemAudio.addEventListener('pause', () => {
+      setAudioState('AUDIO: PLAY', 'Paused');
+    });
 
-    ['click', 'pointerdown', 'keydown', 'touchstart'].forEach((eventName) => {
-      document.addEventListener(eventName, initializeAudio, { once: true });
+    systemAudio.addEventListener('ended', () => {
+      setAudioState('AUDIO: PLAY', 'Playback ended');
+    });
+
+    systemAudio.addEventListener('error', () => {
+      setAudioState('AUDIO: PLAY', 'Audio load issue. Use Download Audio link.');
     });
 
     audioToggle.addEventListener('click', async () => {
       try {
         if (systemAudio.paused) {
-          audioInitialized = true;
           await systemAudio.play();
-          setAudioState('AUDIO: PAUSE', 'Cyberpunk stream active');
         } else {
           systemAudio.pause();
-          setAudioState('AUDIO: PLAY', 'Paused');
         }
       } catch {
-        setAudioState('AUDIO: PLAY', 'No audio file detected. Add assets/audio/gadget-theme.mp3');
+        setAudioState('AUDIO: PLAY', 'Browser blocked autoplay. Press play in controls below.');
       }
     });
   };
 
   const initEscalators = () => {
-    const slowScrollDuration = 7800;
+    const slowScrollDuration = 12000;
 
     const smoothScrollTo = (targetY, duration = slowScrollDuration) => {
       const startY = window.scrollY;

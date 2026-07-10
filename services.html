@@ -228,6 +228,26 @@
         </section>
       </main>
 
+      <aside class="audio-board" aria-label="Persistent system audio controls">
+        <p class="audio-board-title">Audio Board</p>
+        <div class="audio-actions">
+          <button class="button button-primary" id="audio-toggle" type="button">AUDIO: PLAY</button>
+          <span id="audioStatus">Audio board ready</span>
+        </div>
+        <figure class="audio-stream">
+          <figcaption>SYSTEM AUDIO STREAM:</figcaption>
+          <audio id="systemAudio" controls loop preload="metadata" playsinline>
+            <source src="assets/audio/gadget-theme.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+          <p>
+            <a href="assets/audio/gadget-theme.mp3" download="gadget-theme.mp3">Download Audio</a>
+          </p>
+        </figure>
+      </aside>
+
+      <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">Back To Top</button>
+
       <footer class="site-footer">
         <p>UNIT: UJ-AA | SERVICE MODULES READY</p>
         <p>On-site robotic environment architecture and calibration</p>
@@ -235,5 +255,6 @@
     </div>
     <script src="contact-form.js"></script>
     <script src="services-checklist.js"></script>
+    <script src="deck-effects.js"></script>
   </body>
 </html>
