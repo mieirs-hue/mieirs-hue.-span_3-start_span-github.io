@@ -44,7 +44,23 @@
     const hasPlayableSource =
       systemAudio.querySelectorAll('source').length > 0 || Boolean(systemAudio.getAttribute('src'));
 
-    setAudioState('AUDIO: PLAY', hasPlayableSource ? 'Audio board ready' : 'No audio source configured');
+    setAudioState('AUDIO: PLAY', hasPlayableSource ? 'Audio board ready (click to start)' : 'No audio source configured');
+
+    const primeAudio = async () => {
+      try {
+        const playAttempt = systemAudio.play();
+        if (playAttempt && typeof playAttempt.then === 'function') {
+          await playAttempt;
+        }
+      } catch {
+        // Autoplay is blocked in many browsers by policy; this should never block page scripts.
+        setAudioState('AUDIO: PLAY', 'Autoplay blocked by browser. Press play.');
+      }
+    };
+
+    if (hasPlayableSource) {
+      primeAudio();
+    }
 
     systemAudio.addEventListener('play', () => {
       setAudioState('AUDIO: PAUSE', 'Cyberpunk stream active');
@@ -119,7 +135,15 @@
     }
   };
 
-  animateCounters();
-  initAudioControls();
-  initEscalators();
+  const startDeckEffects = () => {
+    animateCounters();
+    initAudioControls();
+    initEscalators();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startDeckEffects, { once: true });
+  } else {
+    startDeckEffects();
+  }
 })();
