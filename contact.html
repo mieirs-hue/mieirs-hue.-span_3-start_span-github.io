@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Dispatch | On-Site Engineering Unit</title>
+    <title>Project Consultation Portal | Uncle Jesse's Always Available LLC</title>
     <meta
       name="description"
-      content="Contact dispatch for on-site robotic environment engineering, calibration, and system recovery."
+      content="Project consultation portal for robotic environment integration, spatial mapping, and technical deployment planning."
     />
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -14,7 +14,7 @@
     <div class="page-shell">
       <header class="site-header">
         <a class="brand" href="index.html">
-          <span class="brand-mark">UJ</span>
+          <span class="brand-mark"><img src="UNCLEJESSELOGO.jpg" alt="Uncle Jesse's Always Available LLC logo" /></span>
           <span>
             <strong>Uncle Jesse's Always Available LLC</strong>
             <small>Mobile Electromechanical Engineering Unit</small>
@@ -29,28 +29,54 @@
 
       <main>
         <section class="page-header">
-          <p class="eyebrow">Contact Dispatch</p>
-          <h1>Request on-site robotic environment engineering.</h1>
+          <p class="eyebrow">Project Consultation Portal</p>
+          <h1>Environment Integration Intake for robot-ready spaces.</h1>
           <p>
-            Submit deployment details for calibration, mapping, or recovery. Include facility context so
-            the first field visit starts with usable technical constraints.
+            Use this portal to describe the physical environment, the robot's primary function, and
+            the constraints that will shape the deployment design.
           </p>
+        </section>
+
+        <section class="section capability-statement" aria-label="Capability statement">
+          <div class="section-heading">
+            <p class="eyebrow">Capability Statement</p>
+            <h2>System Architecture and Robotic Environment Integration</h2>
+          </div>
+          <p class="capability-lead">
+            Robots are only as effective as the environment they inhabit. At Uncle Jesse's Always
+            Available LLC, I do not just deploy hardware; I engineer the spatial, logical, and
+            technical infrastructure required for your robotics to thrive.
+          </p>
+          <div class="competency-grid">
+            <article class="info-card">
+              <h3>Spatial Navigation Mapping</h3>
+              <p>Implementing high-visibility, color-sorted grid systems to create clear, reliable navigation paths.</p>
+            </article>
+            <article class="info-card">
+              <h3>Architectural Transparency</h3>
+              <p>Providing detailed calculation breakdowns and technical analysis logs for every environment built.</p>
+            </article>
+            <article class="info-card">
+              <h3>Custom Ecosystem Design</h3>
+              <p>Tailoring physical and technical setups for companion robots, utility systems, and advanced automation.</p>
+            </article>
+          </div>
         </section>
 
         <section class="split-grid">
           <article class="contact-card">
-            <h3>Dispatch Channel</h3>
-            <strong>Unit Email</strong>
-            <p>fieldops@ujaa-engineering.com</p>
-            <strong>Response Objective</strong>
-            <p>Within one business day</p>
-            <strong>Field Rate</strong>
-            <p>$200 per hour (on-site engineering and calibration)</p>
+            <h3>Integration Brief</h3>
+            <strong>Primary Function</strong>
+            <p>What is the robot's primary function?</p>
+            <strong>Deployment Environment</strong>
+            <p>What is the target deployment environment?</p>
+            <strong>Engineering Scope</strong>
+            <p>Spatial mapping, calibration, troubleshooting, or full environment buildout.</p>
           </article>
 
           <article class="form-card">
-            <h3>Deployment Request</h3>
-            <p>Use this form to initiate calibration scheduling and technical scope review.</p>
+            <h3>Intake Form</h3>
+            <p>Submit your project scope for consultation and environment planning.</p>
             <form
               class="js-formspree-form"
               action="https://formbold.com/s/6lBZq"
@@ -58,24 +84,26 @@
               novalidate
             >
               <label>
-                Name / Company
-                <input type="text" name="name-company" placeholder="Identification" required />
+                What is the robot's primary function? 
+                <input type="text" name="robot-primary-function" placeholder="Companion, utility, workshop, etc." required />
               </label>
               <label>
-                Service Request
-                <select name="service-request" required>
-                  <option value="" selected disabled>Select a deployment type</option>
-                  <option value="robotic-infrastructure">Robotic Infrastructure</option>
-                  <option value="consulting">Electromechanical Consulting</option>
+                What is the target deployment environment?
+                <select name="deployment-environment" required>
+                  <option value="" selected disabled>Select an environment</option>
+                  <option value="residential">Residential</option>
+                  <option value="commercial">Commercial</option>
+                  <option value="industrial">Industrial</option>
+                  <option value="mixed-use">Mixed Use</option>
                 </select>
               </label>
               <label>
-                Field Notes
-                <textarea name="message" placeholder="Facility type, lane constraints, current issue" required></textarea>
+                Project Notes
+                <textarea name="project-notes" placeholder="Floor plan constraints, navigation issues, and any special requirements" required></textarea>
               </label>
-              <input type="hidden" name="_subject" value="New engineering dispatch request" />
+              <input type="hidden" name="_subject" value="New environment integration intake" />
               <div class="form-actions">
-                <button class="button button-primary form-submit" type="submit">Initiate Calibration</button>
+                <button class="button button-primary form-submit" type="submit">Submit Intake</button>
                 <a class="button button-secondary" href="services.html">Review Service Modules</a>
               </div>
               <p class="form-status" data-form-status role="status" aria-live="polite"></p>
@@ -84,17 +112,17 @@
         </section>
 
         <section class="section analysis-log">
-          <h2>Pre-Visit Data Checklist</h2>
-          <pre>[REQ-1] Facility floor type and approximate dimensions
-[REQ-2] Existing robot platform and camera/sensor stack
-[REQ-3] Current failure mode: drift, routing, or localization loss
-[REQ-4] Preferred deployment window and access restrictions</pre>
+          <h2>Project Showcase Log</h2>
+          <pre>[LOG-501] Residential map review complete
+[LOG-502] Spatial corridor draft approved
+[LOG-503] Sensor placement plan confirmed
+[LOG-504] Handoff documentation prepared</pre>
         </section>
       </main>
 
       <footer class="site-footer">
-        <p>UNIT: UJ-AA | CONTACT DISPATCH ONLINE</p>
-        <p>Field deployment scheduling and engineering response</p>
+        <p>UNIT: UJ-AA | PROJECT INTAKE ONLINE</p>
+        <p>Robot environment integration and engineering consultation</p>
       </footer>
     </div>
     <script src="contact-form.js"></script>
