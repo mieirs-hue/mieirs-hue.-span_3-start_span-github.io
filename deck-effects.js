@@ -92,7 +92,7 @@
   };
 
   const initEscalators = () => {
-    const slowScrollDuration = 12000;
+    const slowScrollDuration = 15000;
 
     const smoothScrollTo = (targetY, duration = slowScrollDuration) => {
       const startY = window.scrollY;
