@@ -81,9 +81,33 @@
   };
 
   const initEscalators = () => {
+    const smoothScrollTo = (targetY, duration = 4800) => {
+      const startY = window.scrollY;
+      const distance = targetY - startY;
+      const startTime = performance.now();
+
+      const easeInOutCubic = (t) => {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      };
+
+      const step = (now) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = easeInOutCubic(progress);
+
+        window.scrollTo({ top: startY + distance * eased, behavior: 'auto' });
+
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        }
+      };
+
+      requestAnimationFrame(step);
+    };
+
     if (escalatorBottomButton) {
       const scrollToBottom = () => {
-        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        smoothScrollTo(document.body.scrollHeight, 4800);
       };
 
       escalatorBottomButton.addEventListener('mouseenter', scrollToBottom);
@@ -93,7 +117,7 @@
 
     if (backToTopButton) {
       backToTopButton.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        smoothScrollTo(0, 4800);
       });
     }
   };
