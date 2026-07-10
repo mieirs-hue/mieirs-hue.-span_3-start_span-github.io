@@ -1,55 +1,102 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <style>
-        body {
-            background-color: #0b1a2a; /* Deep blue/black background */
-            color: #4ade80; /* Terminal green */
-            font-family: 'Courier New', Courier, monospace;
-            padding: 40px;
-        }
-        textarea {
-            background-color: #0b1a2a;
-            color: #4ade80;
-            border: 1px solid #4ade80;
-            width: 100%;
-            max-width: 600px;
-            height: 100px;
-            display: block;
-            margin: 20px 0;
-            padding: 10px;
-        }
-        button {
-            background-color: transparent;
-            color: #4ade80;
-            border: 1px solid #4ade80;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #4ade80;
-            color: #0b1a2a;
-        }
-        a {
-            color: #4ade80;
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
-    <h1>[ MISSION SUMMARY & PENDING APPROVAL ]</h1>
-    <p>Your parameters have been received. Please confirm details to proceed.</p>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Quote and Payment Intake | Uncle Jesse's Always Available LLC</title>
+        <meta
+            name="description"
+            content="Submit project details for quote approval and secure invoice payment workflow setup."
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="page-shell">
+            <header class="site-header">
+                <a class="brand" href="index.html">
+                    <span class="brand-mark"><img src="UNCLEJESSELOGO.jpg" alt="Uncle Jesse's Always Available LLC logo" /></span>
+                    <span>
+                        <strong>Uncle Jesse's Always Available LLC</strong>
+                        <small>Mobile Electromechanical Engineering Unit</small>
+                    </span>
+                </a>
+                <nav class="site-nav" aria-label="Primary">
+                    <a href="index.html">Command Deck</a>
+                    <a href="services.html">Service Modules</a>
+                    <a href="contact.html">Contact Dispatch</a>
+                    <a href="checkout.html" aria-current="page">Quote and Payment</a>
+                </nav>
+            </header>
 
-   
-<!-- modify this form HTML and place wherever you want your form -->
-<form action="https://formbold.com/s/3LaQv" method="POST">
-  <input type="email" placeholder="Email" name="email">
-  <input type="text" placeholder="Subject" name="subject">
-  <textarea name="message" placeholder="Type your message"></textarea>
+            <main>
+                <section class="page-header">
+                    <p class="eyebrow">Client Operations Node</p>
+                    <h1>Quote approval and payment workflow intake.</h1>
+                    <p>
+                        Use this portal to confirm scope, billing contact details, and preferred payment timeline.
+                        Stripe invoice links are issued after scope approval.
+                    </p>
+                </section>
 
-  <!-- your other form fields go here -->
-  <button type="submit">Send Message</button>
-</form>
+                <section class="split-grid">
+                    <article class="contact-card">
+                        <h3>Workflow Sequence</h3>
+                        <p><strong>1. Scope Review:</strong> Final service scope and timeline approved.</p>
+                        <p><strong>2. Invoice Dispatch:</strong> Secure Stripe invoice link sent to billing contact.</p>
+                        <p><strong>3. Scheduling Lock:</strong> Consultation or field deployment schedule is confirmed.</p>
+                        <p><strong>4. Delivery Cycle:</strong> Engineering logs and status updates are issued during execution.</p>
+                    </article>
 
-</body>
+                    <article class="form-card">
+                        <h3>Quote and Billing Intake</h3>
+                        <form class="js-formspree-form" action="https://formbold.com/s/6lBZq" method="POST" novalidate>
+                            <label>
+                                Billing contact name
+                                <input type="text" name="billing-contact" placeholder="Full name" required />
+                            </label>
+                            <label>
+                                Billing email
+                                <input type="email" name="email" placeholder="billing@company.com" required />
+                            </label>
+                            <label>
+                                Company or project name
+                                <input type="text" name="project-name" placeholder="Project identifier" required />
+                            </label>
+                            <label>
+                                Requested service lane
+                                <select name="service-lane" required>
+                                    <option value="" selected disabled>Select service lane</option>
+                                    <option value="robotics-autonomous-systems">Robotics and Autonomous Systems</option>
+                                    <option value="space-aerospace-support">Space and Aerospace Support</option>
+                                    <option value="energy-automation">Energy Automation Infrastructure</option>
+                                    <option value="advanced-manufacturing">Advanced Manufacturing Support</option>
+                                </select>
+                            </label>
+                            <label>
+                                Budget guidance
+                                <input type="text" name="budget-guidance" placeholder="Target budget or approval cap" required />
+                            </label>
+                            <label>
+                                Notes for invoice setup
+                                <textarea name="message" placeholder="PO requirements, milestone billing, or invoicing constraints" required></textarea>
+                            </label>
+                            <input type="hidden" name="_subject" value="New quote and payment workflow intake" />
+                            <div class="form-actions">
+                                <button class="button button-primary form-submit" type="submit">Submit Intake</button>
+                                <a class="button button-secondary" href="appointment.html">Schedule First</a>
+                                <a class="button button-secondary" href="pay_now.html">Payment Guidance</a>
+                            </div>
+                            <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+                        </form>
+                    </article>
+                </section>
+            </main>
+
+            <footer class="site-footer">
+                <p>UNIT: UJ-AA | BILLING INTAKE ONLINE</p>
+                <p>Quote review and invoice workflow activation</p>
+            </footer>
+        </div>
+        <script src="contact-form.js"></script>
+    </body>
 </html>

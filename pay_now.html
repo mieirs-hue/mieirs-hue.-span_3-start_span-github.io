@@ -1,20 +1,93 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Request Project - UNCLE JESSE'S ALWAYS AVAILABLE LLC</title>
-</head>
-<body>
-    <h2>Project Request</h2>
-    <!-- This form submits data to your CRM or email service, not a payment gateway -->
-    <form action="/api/submit" method="POST">
-        <label>Name:</label><br>
-        <input type="text" name="name" required><br><br>
-        
-        <label>Project Details:</label><br>
-        <textarea name="details" required></textarea><br><br>
-        
-        <button type="submit">Submit Request for Approval</button>
-    </form>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Payment Guidance | Uncle Jesse's Always Available LLC</title>
+        <meta
+            name="description"
+            content="Secure payment guidance and remittance confirmation for approved engineering projects."
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="page-shell">
+            <header class="site-header">
+                <a class="brand" href="index.html">
+                    <span class="brand-mark"><img src="UNCLEJESSELOGO.jpg" alt="Uncle Jesse's Always Available LLC logo" /></span>
+                    <span>
+                        <strong>Uncle Jesse's Always Available LLC</strong>
+                        <small>Mobile Electromechanical Engineering Unit</small>
+                    </span>
+                </a>
+                <nav class="site-nav" aria-label="Primary">
+                    <a href="index.html">Command Deck</a>
+                    <a href="services.html">Service Modules</a>
+                    <a href="contact.html">Contact Dispatch</a>
+                    <a href="pay_now.html" aria-current="page">Payment Guidance</a>
+                </nav>
+            </header>
+
+            <main>
+                <section class="page-header">
+                    <p class="eyebrow">Payment Operations</p>
+                    <h1>Secure invoice payment workflow for approved projects.</h1>
+                    <p>
+                        For security, invoice links are sent directly from the billing workflow after project scope
+                        approval. Use this page to submit payment confirmation and remittance notes.
+                    </p>
+                </section>
+
+                <section class="split-grid">
+                    <article class="contact-card">
+                        <h3>Payment Flow</h3>
+                        <p><strong>Invoice Source:</strong> Stripe-hosted link sent to your billing email.</p>
+                        <p><strong>Accepted Method:</strong> Card or account method supported by secure invoice checkout.</p>
+                        <p><strong>After Payment:</strong> Confirmation is logged and your project scheduling queue is updated.</p>
+                        <div class="form-actions" style="margin-top: 12px;">
+                            <a class="button button-secondary" href="checkout.html">Need an Invoice Link?</a>
+                            <a class="button button-primary" href="appointment.html">Schedule a Billing Review</a>
+                        </div>
+                    </article>
+
+                    <article class="form-card">
+                        <h3>Remittance Confirmation</h3>
+                        <form class="js-formspree-form" action="https://formbold.com/s/6lBZq" method="POST" novalidate>
+                            <label>
+                                Company or client name
+                                <input type="text" name="client-name" placeholder="Client or organization" required />
+                            </label>
+                            <label>
+                                Billing email
+                                <input type="email" name="email" placeholder="billing@company.com" required />
+                            </label>
+                            <label>
+                                Invoice reference
+                                <input type="text" name="invoice-reference" placeholder="Invoice number" required />
+                            </label>
+                            <label>
+                                Payment date
+                                <input type="text" name="payment-date" placeholder="MM/DD/YYYY" required />
+                            </label>
+                            <label>
+                                Confirmation notes
+                                <textarea name="message" placeholder="Transaction reference and any remittance details" required></textarea>
+                            </label>
+                            <input type="hidden" name="_subject" value="Payment remittance confirmation" />
+                            <div class="form-actions">
+                                <button class="button button-primary form-submit" type="submit">Submit Confirmation</button>
+                            </div>
+                            <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+                        </form>
+                    </article>
+                </section>
+            </main>
+
+            <footer class="site-footer">
+                <p>UNIT: UJ-AA | PAYMENT GUIDANCE ACTIVE</p>
+                <p>Secure invoice workflow and remittance confirmation</p>
+            </footer>
+        </div>
+        <script src="contact-form.js"></script>
+    </body>
 </html>

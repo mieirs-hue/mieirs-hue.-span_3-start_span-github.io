@@ -1152,6 +1152,13 @@ select {
   gap: 16px;
 }
 
+.embed-frame {
+  width: 100%;
+  min-height: 560px;
+  border: 1px solid rgba(0, 243, 255, 0.45);
+  background: rgba(2, 6, 10, 0.8);
+}
+
 .hero-copy h1,
 .page-header h1 {
   max-width: 100%;
@@ -1257,6 +1264,10 @@ select {
   .audio-actions {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .embed-frame {
+    min-height: 500px;
   }
 
   h1 {

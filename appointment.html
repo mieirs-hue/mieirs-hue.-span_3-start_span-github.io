@@ -1,21 +1,66 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        body { background-color: #0b0f19; color: #00ff00; font-family: 'Courier New', monospace; padding: 20px; }
-        .schedule-box { border: 1px solid #ffcc00; padding: 20px; max-width: 800px; margin: auto; }
-    </style>
-</head>
-<body>
-    <div class="schedule-box">
-        <h3>SCHEDULE MISSION BRIEFING</h3>
-        <p>Please select an available time slot below to finalize your mission scheduling:</p>
-        
-        <!-- Replace the URL below with your actual Calendly link -->
-        <iframe src="https://calendly.com/mieirs/30min" width="100%" height="480" frameborder="0"></iframe>
-        
-        <br>
-        <a href="receipt.html" style="color: #ffcc00; font-family: 'Courier New', monospace; text-decoration: none">[SKIP TO RECEIPT]</a>
-    </div>
-</body>
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Schedule Consultation | Uncle Jesse's Always Available LLC</title>
+        <meta
+            name="description"
+            content="Schedule a robotics, aerospace, or energy automation consultation with Uncle Jesse's Always Available LLC."
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="page-shell">
+            <header class="site-header">
+                <a class="brand" href="index.html">
+                    <span class="brand-mark"><img src="UNCLEJESSELOGO.jpg" alt="Uncle Jesse's Always Available LLC logo" /></span>
+                    <span>
+                        <strong>Uncle Jesse's Always Available LLC</strong>
+                        <small>Mobile Electromechanical Engineering Unit</small>
+                    </span>
+                </a>
+                <nav class="site-nav" aria-label="Primary">
+                    <a href="index.html">Command Deck</a>
+                    <a href="services.html">Service Modules</a>
+                    <a href="contact.html">Contact Dispatch</a>
+                    <a href="appointment.html" aria-current="page">Scheduling</a>
+                </nav>
+            </header>
+
+            <main>
+                <section class="page-header">
+                    <p class="eyebrow">Scheduling Node</p>
+                    <h1>Book consultations without back-and-forth email delay.</h1>
+                    <p>
+                        Select an available calendar slot for diagnostics, deployment planning, project scoping,
+                        or emergency systems triage.
+                    </p>
+                </section>
+
+                <section class="section">
+                    <div class="section-heading">
+                        <p class="eyebrow">Calendly Integration</p>
+                        <h2>Live mission-briefing schedule</h2>
+                    </div>
+                    <iframe
+                        class="embed-frame"
+                        src="https://calendly.com/mieirs/30min"
+                        title="Consultation scheduling calendar"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                    ></iframe>
+                    <div class="form-actions" style="margin-top: 12px;">
+                        <a class="button button-secondary" href="contact.html">Need a Custom Scope First?</a>
+                        <a class="button button-primary" href="checkout.html">Proceed to Quote and Payment Intake</a>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="site-footer">
+                <p>UNIT: UJ-AA | SCHEDULING ACTIVE</p>
+                <p>Consultation booking for robotics, aerospace, and energy projects</p>
+            </footer>
+        </div>
+    </body>
 </html>
