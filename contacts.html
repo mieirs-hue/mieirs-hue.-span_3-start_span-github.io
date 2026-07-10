@@ -68,8 +68,12 @@
             <h3>Integration Brief</h3>
             <strong>Primary Function</strong>
             <p>What is the robot's primary function?</p>
+            <strong>Navigation Sensor Suite</strong>
+            <p>Visual, magnetic, LIDAR, QR, or mixed-sensor guidance stack.</p>
             <strong>Deployment Environment</strong>
             <p>What is the target deployment environment?</p>
+            <strong>Surface + Marking Strategy</strong>
+            <p>Material compatibility, contrast needs, and marker system preference.</p>
             <strong>Engineering Scope</strong>
             <p>Spatial mapping, calibration, troubleshooting, or full environment buildout.</p>
           </article>
@@ -96,6 +100,29 @@
                   <option value="industrial">Industrial</option>
                   <option value="mixed-use">Mixed Use</option>
                 </select>
+              </label>
+              <label>
+                Robotic spatial navigation technology
+                <select name="sensor-suite" required>
+                  <option value="" selected disabled>Select sensor technology</option>
+                  <option value="visual-camera">Visual / Camera</option>
+                  <option value="magnetic-hall">Magnetic / Hall Effect</option>
+                  <option value="lidar-laser">LIDAR / Laser</option>
+                  <option value="qr-barcodes">QR / Barcodes</option>
+                  <option value="other">Other</option>
+                </select>
+              </label>
+              <label>
+                Surface requirements
+                <textarea name="surface-requirements" placeholder="Contrast ratios, anti-static needs, friction targets, and material constraints" required></textarea>
+              </label>
+              <label>
+                Primary surface material
+                <input type="text" name="surface-material" placeholder="Concrete, industrial tile, epoxy, composite, etc." required />
+              </label>
+              <label>
+                Preferred marking solution
+                <textarea name="infrastructure-preference" placeholder="High-durability vinyl, industrial paint, embedded markers, or custom hybrid approach" required></textarea>
               </label>
               <label>
                 Project Notes

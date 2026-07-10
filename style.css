@@ -294,6 +294,18 @@ a {
   margin-bottom: 10px;
 }
 
+.tagline-note {
+  margin: 10px 0 0;
+  color: var(--text-main);
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+.tagline-note a {
+  color: var(--neon-blue);
+  border-bottom: 1px solid rgba(0, 243, 255, 0.55);
+}
+
 .always-available-link {
   width: min(210px, 100%);
   display: block;
