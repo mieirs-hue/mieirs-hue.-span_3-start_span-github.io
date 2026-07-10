@@ -4,6 +4,7 @@
   const audioStatus = document.getElementById('audioStatus');
   const systemAudio = document.getElementById('systemAudio');
   const escalatorBottomButton = document.querySelector('[data-scroll-bottom]');
+  const backToTopButton = document.getElementById('backToTop');
 
   const animateCounters = () => {
     counterElements.forEach((element) => {
@@ -88,6 +89,12 @@
       escalatorBottomButton.addEventListener('mouseenter', scrollToBottom);
       escalatorBottomButton.addEventListener('focus', scrollToBottom);
       escalatorBottomButton.addEventListener('click', scrollToBottom);
+    }
+
+    if (backToTopButton) {
+      backToTopButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     }
   };
 
