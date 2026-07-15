@@ -1,7 +1,0 @@
-<!-- pay-now.html -->
-<form action="thank-you.html" method="GET">
-    <label>Project Details:</label><br>
-    <textarea name="details" required></textarea><br><br>
-    
-    <button type="submit">Submit Request for Approval</button>
-</form>

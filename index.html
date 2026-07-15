@@ -10,7 +10,11 @@
     />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body class="booking-notice-on">
+    <section class="booking-alert-sash" aria-label="Booking status alert">
+      <p>RETURN AGAIN SOON, WE WILL BE HERE</p>
+    </section>
+
     <div class="page-shell">
       <header class="site-header">
         <a class="brand" href="index.html">
@@ -37,6 +41,10 @@
           <span>|</span>
           <span>[ Certified Robotic Integrator ]</span>
         </div>
+      </section>
+
+      <section class="fully-booked-stamp-wrap" aria-label="Current booking state">
+        <p class="fully-booked-stamp" role="status" aria-live="polite">FULLY BOOKED</p>
       </section>
 
       <main class="command-dock">
